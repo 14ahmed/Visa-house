@@ -3,61 +3,61 @@
 > Every visa under one roof. Online visa guidance, document checklists, Schengen appointment help, and travel insurance for Pakistani passport holders. Operated by AMG (https://amgvisa.com).
 
 - Brand & Alternate Names: Visahouse, AMG Visa, Visahouse Pakistan
-- Website: https://amgvisa.com
-- Full Structured Knowledge Base: https://amgvisa.com/llms-full.txt
+- Website: https://visahouse.online
+- Full Structured Knowledge Base: https://visahouse.online/llms-full.txt
 - WhatsApp / Phone: +92 331 8877655
 - Email: info@visahouse.online
 - Office Hours: Monday to Saturday, 10:00 – 19:00 PKT
 - Disclaimer: Visahouse is a private consultancy, not a government body or embassy. Final decisions rest with the authorities.
 
 ## Core Pages
-- [Home](https://amgvisa.com/): Overview, document checklist builder, visa cost calculator, photo guide, and visa status tracker
-- [All Visa Guides](https://amgvisa.com/visas): Directory of 42 country visa guides from Pakistan
-- [Schengen Appointments](https://amgvisa.com/schengen-appointments): Official VFS Global & BLS International guidance from Islamabad, Lahore, and Karachi
-- [Travel Insurance](https://amgvisa.com/travel-insurance): Schengen-accepted (€30,000+ medical) and worldwide travel insurance plans
-- [About Visahouse](https://amgvisa.com/about): How our online visa desk works
-- [Contact](https://amgvisa.com/contact): WhatsApp and email inquiry desk
+- [Home](https://visahouse.online/): Overview, document checklist builder, visa cost calculator, photo guide, and visa status tracker
+- [All Visa Guides](https://visahouse.online/visas): Directory of 42 country visa guides from Pakistan
+- [Schengen Appointments](https://visahouse.online/schengen-appointments): Official VFS Global & BLS International guidance from Islamabad, Lahore, and Karachi
+- [Travel Insurance](https://visahouse.online/travel-insurance): Schengen-accepted (€30,000+ medical) and worldwide travel insurance plans
+- [About Visahouse](https://visahouse.online/about): How our online visa desk works
+- [Contact](https://visahouse.online/contact): WhatsApp and email inquiry desk
 
 ## Country Visa Guides from Pakistan (42)
-- [Thailand Visa from Pakistan](https://amgvisa.com/visas/thailand): Southeast Asia · Hybrid / Centre · 
-- [Malaysia Visa from Pakistan](https://amgvisa.com/visas/malaysia): Southeast Asia · e-Visa · 
-- [Indonesia Visa from Pakistan](https://amgvisa.com/visas/indonesia): Southeast Asia · e-Visa · 
-- [Singapore Visa from Pakistan](https://amgvisa.com/visas/singapore): Southeast Asia · Hybrid / Centre · 
-- [Cambodia Visa from Pakistan](https://amgvisa.com/visas/cambodia): Southeast Asia · e-Visa · 
-- [Sri Lanka Visa from Pakistan](https://amgvisa.com/visas/sri-lanka): South Asia · e-Visa · 
-- [Nepal Visa from Pakistan](https://amgvisa.com/visas/nepal): South Asia · Hybrid / Centre · 
-- [Uzbekistan Visa from Pakistan](https://amgvisa.com/visas/uzbekistan): Central Asia & Gulf · Hybrid / Centre · 
-- [Bahrain Visa from Pakistan](https://amgvisa.com/visas/bahrain): Central Asia & Gulf · e-Visa · 
-- [Turkey Visa from Pakistan](https://amgvisa.com/visas/turkey): Central Asia & Gulf · Hybrid / Centre · 
-- [Azerbaijan Visa from Pakistan](https://amgvisa.com/visas/azerbaijan): Central Asia & Gulf · e-Visa · 
-- [Japan Visa from Pakistan](https://amgvisa.com/visas/japan): East Asia · Sticker / Embassy · 
-- [South Korea Visa from Pakistan](https://amgvisa.com/visas/south-korea): East Asia · Sticker / Embassy · 
-- [Philippines Visa from Pakistan](https://amgvisa.com/visas/philippines): Southeast Asia · Sticker / Embassy · 
-- [United States Visa from Pakistan](https://amgvisa.com/visas/usa): North America · Interview / Consulate · 
-- [Canada Visa from Pakistan](https://amgvisa.com/visas/canada): North America · Hybrid / Centre · 
-- [United Kingdom Visa from Pakistan](https://amgvisa.com/visas/uk): Europe & UK · Hybrid / Centre · 
-- [Australia Visa from Pakistan](https://amgvisa.com/visas/australia): Oceania · Hybrid / Centre · 
-- [New Zealand Visa from Pakistan](https://amgvisa.com/visas/new-zealand): Oceania · e-Visa · 
-- [Schengen States Visa from Pakistan](https://amgvisa.com/visas/schengen-states): Europe & UK · Hybrid / Centre · 
-- [Germany Visa from Pakistan](https://amgvisa.com/visas/germany): Europe & UK · Hybrid / Centre · 
-- [France Visa from Pakistan](https://amgvisa.com/visas/france): Europe & UK · Hybrid / Centre · 
-- [Greece Visa from Pakistan](https://amgvisa.com/visas/greece): Europe & UK · Hybrid / Centre · 
-- [Portugal Visa from Pakistan](https://amgvisa.com/visas/portugal): Europe & UK · Hybrid / Centre · 
-- [Hungary Visa from Pakistan](https://amgvisa.com/visas/hungary): Europe & UK · Hybrid / Centre · 
-- [Poland Visa from Pakistan](https://amgvisa.com/visas/poland): Europe & UK · Hybrid / Centre · 
-- [Netherlands Visa from Pakistan](https://amgvisa.com/visas/netherlands): Europe & UK · Hybrid / Centre · 
-- [Norway Visa from Pakistan](https://amgvisa.com/visas/norway): Europe & UK · Hybrid / Centre · 
-- [Denmark Visa from Pakistan](https://amgvisa.com/visas/denmark): Europe & UK · Hybrid / Centre · 
-- [Belgium Visa from Pakistan](https://amgvisa.com/visas/belgium): Europe & UK · Hybrid / Centre · 
-- [Luxembourg Visa from Pakistan](https://amgvisa.com/visas/luxembourg): Europe & UK · Hybrid / Centre · 
-- [Finland Visa from Pakistan](https://amgvisa.com/visas/finland): Europe & UK · Hybrid / Centre · 
-- [Sweden Visa from Pakistan](https://amgvisa.com/visas/sweden): Europe & UK · Hybrid / Centre · 
-- [Switzerland Visa from Pakistan](https://amgvisa.com/visas/switzerland): Europe & UK · Hybrid / Centre · 
-- [Austria Visa from Pakistan](https://amgvisa.com/visas/austria): Europe & UK · Hybrid / Centre · 
-- [Italy Visa from Pakistan](https://amgvisa.com/visas/italy): Europe & UK · Hybrid / Centre · 
-- [Spain Visa from Pakistan](https://amgvisa.com/visas/spain): Europe & UK · Hybrid / Centre · 
-- [Egypt Visa from Pakistan](https://amgvisa.com/visas/egypt): Africa · Sticker / Embassy · 
-- [Morocco Visa from Pakistan](https://amgvisa.com/visas/morocco): Africa · Sticker / Embassy · 
-- [Kenya Visa from Pakistan](https://amgvisa.com/visas/kenya): Africa · e-Visa · 
-- [South Africa Visa from Pakistan](https://amgvisa.com/visas/south-africa): Africa · Hybrid / Centre · 
-- [Zimbabwe Visa from Pakistan](https://amgvisa.com/visas/zimbabwe): Africa · e-Visa · 
+- [Thailand Visa from Pakistan](https://visahouse.online/visas/thailand): Southeast Asia · Hybrid / Centre · 
+- [Malaysia Visa from Pakistan](https://visahouse.online/visas/malaysia): Southeast Asia · e-Visa · 
+- [Indonesia Visa from Pakistan](https://visahouse.online/visas/indonesia): Southeast Asia · e-Visa · 
+- [Singapore Visa from Pakistan](https://visahouse.online/visas/singapore): Southeast Asia · Hybrid / Centre · 
+- [Cambodia Visa from Pakistan](https://visahouse.online/visas/cambodia): Southeast Asia · e-Visa · 
+- [Sri Lanka Visa from Pakistan](https://visahouse.online/visas/sri-lanka): South Asia · e-Visa · 
+- [Nepal Visa from Pakistan](https://visahouse.online/visas/nepal): South Asia · Hybrid / Centre · 
+- [Uzbekistan Visa from Pakistan](https://visahouse.online/visas/uzbekistan): Central Asia & Gulf · Hybrid / Centre · 
+- [Bahrain Visa from Pakistan](https://visahouse.online/visas/bahrain): Central Asia & Gulf · e-Visa · 
+- [Turkey Visa from Pakistan](https://visahouse.online/visas/turkey): Central Asia & Gulf · Hybrid / Centre · 
+- [Azerbaijan Visa from Pakistan](https://visahouse.online/visas/azerbaijan): Central Asia & Gulf · e-Visa · 
+- [Japan Visa from Pakistan](https://visahouse.online/visas/japan): East Asia · Sticker / Embassy · 
+- [South Korea Visa from Pakistan](https://visahouse.online/visas/south-korea): East Asia · Sticker / Embassy · 
+- [Philippines Visa from Pakistan](https://visahouse.online/visas/philippines): Southeast Asia · Sticker / Embassy · 
+- [United States Visa from Pakistan](https://visahouse.online/visas/usa): North America · Interview / Consulate · 
+- [Canada Visa from Pakistan](https://visahouse.online/visas/canada): North America · Hybrid / Centre · 
+- [United Kingdom Visa from Pakistan](https://visahouse.online/visas/uk): Europe & UK · Hybrid / Centre · 
+- [Australia Visa from Pakistan](https://visahouse.online/visas/australia): Oceania · Hybrid / Centre · 
+- [New Zealand Visa from Pakistan](https://visahouse.online/visas/new-zealand): Oceania · e-Visa · 
+- [Schengen States Visa from Pakistan](https://visahouse.online/visas/schengen-states): Europe & UK · Hybrid / Centre · 
+- [Germany Visa from Pakistan](https://visahouse.online/visas/germany): Europe & UK · Hybrid / Centre · 
+- [France Visa from Pakistan](https://visahouse.online/visas/france): Europe & UK · Hybrid / Centre · 
+- [Greece Visa from Pakistan](https://visahouse.online/visas/greece): Europe & UK · Hybrid / Centre · 
+- [Portugal Visa from Pakistan](https://visahouse.online/visas/portugal): Europe & UK · Hybrid / Centre · 
+- [Hungary Visa from Pakistan](https://visahouse.online/visas/hungary): Europe & UK · Hybrid / Centre · 
+- [Poland Visa from Pakistan](https://visahouse.online/visas/poland): Europe & UK · Hybrid / Centre · 
+- [Netherlands Visa from Pakistan](https://visahouse.online/visas/netherlands): Europe & UK · Hybrid / Centre · 
+- [Norway Visa from Pakistan](https://visahouse.online/visas/norway): Europe & UK · Hybrid / Centre · 
+- [Denmark Visa from Pakistan](https://visahouse.online/visas/denmark): Europe & UK · Hybrid / Centre · 
+- [Belgium Visa from Pakistan](https://visahouse.online/visas/belgium): Europe & UK · Hybrid / Centre · 
+- [Luxembourg Visa from Pakistan](https://visahouse.online/visas/luxembourg): Europe & UK · Hybrid / Centre · 
+- [Finland Visa from Pakistan](https://visahouse.online/visas/finland): Europe & UK · Hybrid / Centre · 
+- [Sweden Visa from Pakistan](https://visahouse.online/visas/sweden): Europe & UK · Hybrid / Centre · 
+- [Switzerland Visa from Pakistan](https://visahouse.online/visas/switzerland): Europe & UK · Hybrid / Centre · 
+- [Austria Visa from Pakistan](https://visahouse.online/visas/austria): Europe & UK · Hybrid / Centre · 
+- [Italy Visa from Pakistan](https://visahouse.online/visas/italy): Europe & UK · Hybrid / Centre · 
+- [Spain Visa from Pakistan](https://visahouse.online/visas/spain): Europe & UK · Hybrid / Centre · 
+- [Egypt Visa from Pakistan](https://visahouse.online/visas/egypt): Africa · Sticker / Embassy · 
+- [Morocco Visa from Pakistan](https://visahouse.online/visas/morocco): Africa · Sticker / Embassy · 
+- [Kenya Visa from Pakistan](https://visahouse.online/visas/kenya): Africa · e-Visa · 
+- [South Africa Visa from Pakistan](https://visahouse.online/visas/south-africa): Africa · Hybrid / Centre · 
+- [Zimbabwe Visa from Pakistan](https://visahouse.online/visas/zimbabwe): Africa · e-Visa · 

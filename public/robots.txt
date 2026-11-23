@@ -1,7 +1,7 @@
-# Visahouse - A project by AMG (https://amgvisa.com)
+# Visahouse (https://visahouse.online) - A project by AMG (https://amgvisa.com)
 # Technical SEO, AEO & GEO robots.txt (RFC 9309 compliant)
-# AI Knowledge Base: https://amgvisa.com/llms.txt
-# Full Structured Guide: https://amgvisa.com/llms-full.txt
+# AI Knowledge Base: https://visahouse.online/llms.txt
+# Full Structured Guide: https://visahouse.online/llms-full.txt
 
 # Primary Search Engines
 User-agent: Googlebot
@@ -49,4 +49,4 @@ Disallow: /*?fbclid=*
 Disallow: /*?gclid=*
 
 # XML Sitemap
-Sitemap: https://amgvisa.com/sitemap.xml
+Sitemap: https://visahouse.online/sitemap.xml

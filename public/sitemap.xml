@@ -1,301 +1,487 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://amgvisa.com/</loc>
+    <loc>https://visahouse.online/</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/og-image.avif</image:loc>
+      <image:title>Visahouse Pakistan Visa Desk</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/editorial_passport_desk_1795385383765.avif</image:loc>
+      <image:title>Visahouse Pakistan visa desk with passport application file, route map, pen, and verification stamp</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas</loc>
+    <loc>https://visahouse.online/visas</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/thailand</loc>
+    <loc>https://visahouse.online/visas/thailand</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_thailand_1795434245187.avif</image:loc>
+      <image:title>Thailand Visa from Pakistan - Wat Arun riverside temple spires &amp; Chao Phraya longtail boat</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/malaysia</loc>
+    <loc>https://visahouse.online/visas/malaysia</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_malaysia_1795434132427.avif</image:loc>
+      <image:title>Malaysia Visa from Pakistan - Petronas Twin Towers skybridge &amp; Kuala Lumpur palms</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/indonesia</loc>
+    <loc>https://visahouse.online/visas/indonesia</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_indonesia_1795434245215.avif</image:loc>
+      <image:title>Indonesia Visa from Pakistan - Balinese Candi Bentar split stone temple gate &amp; terraced rice hills</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/singapore</loc>
+    <loc>https://visahouse.online/visas/singapore</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_singapore_1795434133710.avif</image:loc>
+      <image:title>Singapore Visa from Pakistan - Marina Bay three-tower SkyPark &amp; lotus waterfront pavilion</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/cambodia</loc>
+    <loc>https://visahouse.online/visas/cambodia</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_cambodia_1795434132593.avif</image:loc>
+      <image:title>Cambodia Visa from Pakistan - Angkor Wat lotus-bud stone towers &amp; still reflection pool</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/sri-lanka</loc>
+    <loc>https://visahouse.online/visas/sri-lanka</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_sri_lanka_1795434133245.avif</image:loc>
+      <image:title>Sri Lanka Visa from Pakistan - Nine Arch Stone Viaduct Bridge &amp; Ella highland tea slopes</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/nepal</loc>
+    <loc>https://visahouse.online/visas/nepal</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_nepal_1795434245053.avif</image:loc>
+      <image:title>Nepal Visa from Pakistan - Kathmandu Boudhanath stupa spire &amp; snow-capped Himalayan peaks</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/uzbekistan</loc>
+    <loc>https://visahouse.online/visas/uzbekistan</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_uzbekistan_1795434132176.avif</image:loc>
+      <image:title>Uzbekistan Visa from Pakistan - Samarkand Registan tiled pishtaq archway &amp; turquoise dome</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/bahrain</loc>
+    <loc>https://visahouse.online/visas/bahrain</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_bahrain_1795434245538.avif</image:loc>
+      <image:title>Bahrain Visa from Pakistan - Manama World Trade Center twin wind-turbine sail towers</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/turkey</loc>
+    <loc>https://visahouse.online/visas/turkey</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_turkey.avif</image:loc>
+      <image:title>Turkey Visa from Pakistan - Istanbul Blue Mosque domes, slender minarets &amp; Bosphorus ferry</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/azerbaijan</loc>
+    <loc>https://visahouse.online/visas/azerbaijan</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_azerbaijan.avif</image:loc>
+      <image:title>Azerbaijan Visa from Pakistan - Baku Flame Towers rising above historic Maiden Tower on the Caspian</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/japan</loc>
+    <loc>https://visahouse.online/visas/japan</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_japan_1795434245845.avif</image:loc>
+      <image:title>Japan Visa from Pakistan - Wooden Shinto torii gate framing Mount Fuji &amp; blossom branches</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/south-korea</loc>
+    <loc>https://visahouse.online/visas/south-korea</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_south_korea_1795434132252.avif</image:loc>
+      <image:title>South Korea Visa from Pakistan - Seoul Gyeongbokgung curved palace eaves &amp; courtyard pine</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/philippines</loc>
+    <loc>https://visahouse.online/visas/philippines</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_philippines_1795434132351.avif</image:loc>
+      <image:title>Philippines Visa from Pakistan - Palawan limestone karst cliffs &amp; lagoon outrigger boat</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/usa</loc>
+    <loc>https://visahouse.online/visas/usa</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_usa_1795434131418.avif</image:loc>
+      <image:title>United States Visa from Pakistan - United States neoclassical Capitol dome &amp; grand colonnade</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/canada</loc>
+    <loc>https://visahouse.online/visas/canada</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_canada_1795434244609.avif</image:loc>
+      <image:title>Canada Visa from Pakistan - Toronto CN Tower needle &amp; snow-dusted Canadian Rockies</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/uk</loc>
+    <loc>https://visahouse.online/visas/uk</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_uk_1795434245251.avif</image:loc>
+      <image:title>United Kingdom Visa from Pakistan - London Big Ben Elizabeth Tower &amp; Westminster Bridge arches</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/australia</loc>
+    <loc>https://visahouse.online/visas/australia</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_australia_1795434131694.avif</image:loc>
+      <image:title>Australia Visa from Pakistan - Sydney Opera House billowing harbour shells &amp; coastal ripples</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/new-zealand</loc>
+    <loc>https://visahouse.online/visas/new-zealand</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_new_zealand_1795434246198.avif</image:loc>
+      <image:title>New Zealand Visa from Pakistan - Milford Sound Mitre Peak &amp; reflective fiord waters</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/schengen-states</loc>
+    <loc>https://visahouse.online/visas/schengen-states</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_schengen_1795434244942.avif</image:loc>
+      <image:title>Schengen States Visa from Pakistan - Antique European cartographic compass rose &amp; twelve-star ring</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/germany</loc>
+    <loc>https://visahouse.online/visas/germany</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_germany_1795434245476.avif</image:loc>
+      <image:title>Germany Visa from Pakistan - Berlin Brandenburg Gate neoclassical colonnade &amp; quadriga</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/france</loc>
+    <loc>https://visahouse.online/visas/france</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_france_1795434134185.avif</image:loc>
+      <image:title>France Visa from Pakistan - Paris Eiffel Tower wrought-iron lattice &amp; chestnut treetops</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/greece</loc>
+    <loc>https://visahouse.online/visas/greece</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_greece_1795434244712.avif</image:loc>
+      <image:title>Greece Visa from Pakistan - Athens Acropolis Parthenon Doric colonnade &amp; limestone hill</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/portugal</loc>
+    <loc>https://visahouse.online/visas/portugal</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_portugal_1795434245145.avif</image:loc>
+      <image:title>Portugal Visa from Pakistan - Lisbon Belém limestone fortress watchtower &amp; Atlantic waves</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/hungary</loc>
+    <loc>https://visahouse.online/visas/hungary</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_hungary_1795434132388.avif</image:loc>
+      <image:title>Hungary Visa from Pakistan - Budapest Neo-Gothic Parliament dome &amp; Danube reflection</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/poland</loc>
+    <loc>https://visahouse.online/visas/poland</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_poland_1795434245182.avif</image:loc>
+      <image:title>Poland Visa from Pakistan - Polish Old Town Renaissance gabled facades &amp; Gothic spire</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/netherlands</loc>
+    <loc>https://visahouse.online/visas/netherlands</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_netherlands_clean_1795434333496.avif</image:loc>
+      <image:title>Netherlands Visa from Pakistan - Traditional Dutch timber windmill &amp; gabled Amsterdam canal houses</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/norway</loc>
+    <loc>https://visahouse.online/visas/norway</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_norway_1795434245446.avif</image:loc>
+      <image:title>Norway Visa from Pakistan - Norwegian fjord cliffs &amp; tiered wooden stave church</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/denmark</loc>
+    <loc>https://visahouse.online/visas/denmark</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_denmark_1795434133211.avif</image:loc>
+      <image:title>Denmark Visa from Pakistan - Copenhagen Nyhavn gabled townhouses &amp; wooden sailboat mast</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/belgium</loc>
+    <loc>https://visahouse.online/visas/belgium</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_belgium_1795434133986.avif</image:loc>
+      <image:title>Belgium Visa from Pakistan - Brussels Grand Place Gothic belfry spire &amp; Flemish guildhalls</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/luxembourg</loc>
+    <loc>https://visahouse.online/visas/luxembourg</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_luxembourg_1795434334139.avif</image:loc>
+      <image:title>Luxembourg Visa from Pakistan - Luxembourg City Pont Adolphe monumental masonry arch bridge</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/finland</loc>
+    <loc>https://visahouse.online/visas/finland</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_finland_1795434132665.avif</image:loc>
+      <image:title>Finland Visa from Pakistan - Helsinki neoclassical Cathedral dome &amp; birch-framed steps</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/sweden</loc>
+    <loc>https://visahouse.online/visas/sweden</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_sweden_1795434334351.avif</image:loc>
+      <image:title>Sweden Visa from Pakistan - Stockholm City Hall brick waterfront bell tower &amp; arches</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/switzerland</loc>
+    <loc>https://visahouse.online/visas/switzerland</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_switzerland_1795434133849.avif</image:loc>
+      <image:title>Switzerland Visa from Pakistan - Matterhorn alpine pyramid peak &amp; mountain railway viaduct</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/austria</loc>
+    <loc>https://visahouse.online/visas/austria</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_austria_1795434133382.avif</image:loc>
+      <image:title>Austria Visa from Pakistan - Vienna Karlskirche baroque verdigris dome &amp; twin columns</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/italy</loc>
+    <loc>https://visahouse.online/visas/italy</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_italy.avif</image:loc>
+      <image:title>Italy Visa from Pakistan - Roman Colosseum stone arches framed by Mediterranean cypresses</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/spain</loc>
+    <loc>https://visahouse.online/visas/spain</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_spain.avif</image:loc>
+      <image:title>Spain Visa from Pakistan - Barcelona Sagrada Familia ornate spires &amp; Catalan arches</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/egypt</loc>
+    <loc>https://visahouse.online/visas/egypt</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_egypt_1795434334043.avif</image:loc>
+      <image:title>Egypt Visa from Pakistan - Great Pyramids of Giza, desert dunes &amp; Nile felucca sail</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/morocco</loc>
+    <loc>https://visahouse.online/visas/morocco</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_morocco_1795434131114.avif</image:loc>
+      <image:title>Morocco Visa from Pakistan - Marrakech Koutoubia minaret framed by scalloped horseshoe arch</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/kenya</loc>
+    <loc>https://visahouse.online/visas/kenya</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_kenya_1795434333329.avif</image:loc>
+      <image:title>Kenya Visa from Pakistan - Kenyan savannah flat-topped acacia tree &amp; distant alpine peak</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/south-africa</loc>
+    <loc>https://visahouse.online/visas/south-africa</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_south_africa_clean_1795434333323.avif</image:loc>
+      <image:title>South Africa Visa from Pakistan - Cape Town Table Mountain coastal massif &amp; ocean bay</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/visas/zimbabwe</loc>
+    <loc>https://visahouse.online/visas/zimbabwe</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_zimbabwe_1795434132286.avif</image:loc>
+      <image:title>Zimbabwe Visa from Pakistan - Victoria Falls cascading gorge &amp; historic steel arch bridge</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/schengen-appointments</loc>
+    <loc>https://visahouse.online/schengen-appointments</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_schengen_1795434244942.avif</image:loc>
+      <image:title>Schengen Visa Appointments from Pakistan - Antique European cartographic compass rose &amp; twelve-star ring</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/travel-insurance</loc>
+    <loc>https://visahouse.online/travel-insurance</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://visahouse.online/src/assets/images/stamp_insurance_1795434133216.avif</image:loc>
+      <image:title>Schengen &amp; Worldwide Travel Insurance from Pakistan - Archival heraldic travel medical protection shield &amp; wings</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://amgvisa.com/about</loc>
+    <loc>https://visahouse.online/about</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://amgvisa.com/contact</loc>
+    <loc>https://visahouse.online/contact</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://amgvisa.com/privacy</loc>
+    <loc>https://visahouse.online/privacy</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://amgvisa.com/terms</loc>
+    <loc>https://visahouse.online/terms</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

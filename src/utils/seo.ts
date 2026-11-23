@@ -16,7 +16,8 @@ export interface PageSeoSpec {
 }
 
 export function buildCanonicalUrl(path: string): string {
-  const cleanPath = path === '/' ? '' : path.replace(/\/+$/, '');
+  if (path === '/') return `${SITE_CONFIG.siteUrl}/`;
+  const cleanPath = path.replace(/\/+$/, '');
   return `${SITE_CONFIG.siteUrl}${cleanPath}`;
 }
 
@@ -72,7 +73,7 @@ export function buildHomeSchemas(): Record<string, unknown>[] {
       parentOrganization: {
         '@type': 'Organization',
         name: 'AMG',
-        url: SITE_CONFIG.siteUrl,
+        url: SITE_CONFIG.parentBrandUrl,
       },
     },
     {
@@ -157,7 +158,7 @@ export function buildGuideWebPageSchema(params: {
     reviewedBy: {
       '@type': 'Organization',
       name: 'AMG Visa Desk',
-      url: SITE_CONFIG.siteUrl,
+      url: SITE_CONFIG.parentBrandUrl,
     },
   };
 }

@@ -2,6 +2,7 @@ node_modules/
 build/
 dist/
 dist-ssr/
+.wrangler/
 .aistudio/
 coverage/
 .DS_Store

@@ -1,0 +1,52 @@
+# Visahouse - A project by AMG (https://amgvisa.com)
+# Technical SEO, AEO & GEO robots.txt (RFC 9309 compliant)
+# AI Knowledge Base: https://amgvisa.com/llms.txt
+# Full Structured Guide: https://amgvisa.com/llms-full.txt
+
+# Primary Search Engines
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+Allow: /
+Allow: /assets/
+Disallow: /404
+Disallow: /404.html
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+
+# AI Search, Answer Engines & Citation Crawlers (AEO / GEO)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /404
+Disallow: /404.html
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+
+# All Other Compliant Crawlers
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /404
+Disallow: /404.html
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+
+# XML Sitemap
+Sitemap: https://amgvisa.com/sitemap.xml

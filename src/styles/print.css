@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Visahouse Print-Friendly Archival Document Stylesheet
+   Formats Document Checklist & Travel Readiness Guide into a crisp,
+   single-page A4 professional brief when printing (Ctrl+P / Print Sheet).
+   ========================================================================== */
+
+/* Screen defaults: hide print-only letterhead & footer */
+.print-only {
+  display: none;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 10mm 11mm;
+}
+
+@media print {
+  /* 1. Reset canvas, paper textures, shadows & colors for crisp ink economy */
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 9pt !important;
+    line-height: 1.32 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .paper-grain,
+  .paper-card-texture,
+  .bg-paper,
+  .bg-paper-deep,
+  .bg-slip {
+    background: #ffffff !important;
+    background-image: none !important;
+  }
+
+  /* 2. Reveal print-only editorial letterhead & footer */
+  .print-only {
+    display: block !important;
+  }
+
+  .print-only-flex {
+    display: flex !important;
+  }
+
+  /* 3. Strip site chrome, forms, interactive buttons & non-document sections */
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  body:has([data-print-document="true"]) main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Hide any direct section/wrapper inside <main> that does not contain a printable document */
+  body:has([data-print-document="true"])
+    main
+    > :not([data-print-document="true"]):not(:has([data-print-document="true"])) {
+    display: none !important;
+  }
+
+  /* Flatten outer section wrappers around printable documents to reclaim vertical space */
+  body:has([data-print-document="true"]) main > section,
+  body:has([data-print-document="true"]) main > div {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  body:has([data-print-document="true"]) main > section > div,
+  body:has([data-print-document="true"]) main > div > div {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Collapse 12-column grids that wrap printable documents into full-width single flow */
+  .print-flatten-grid {
+    display: block !important;
+    gap: 0 !important;
+  }
+
+  .print-flatten-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* 4. Scoped single-document printing (triggered by Print Checklist / Print Field Card) */
+  html[data-print-scope="checklist"] [data-print-kind="readiness"] {
+    display: none !important;
+  }
+
+  html[data-print-scope="readiness"] [data-print-kind="checklist"] {
+    display: none !important;
+  }
+
+  /* When printing a single specific destination row from the 38-destination readiness index */
+  html[data-print-scope="readiness"][data-print-slug] [data-readiness-slug] {
+    display: none !important;
+  }
+
+  html[data-print-scope="readiness"][data-print-slug] [data-readiness-focused="true"] {
+    display: block !important;
+  }
+
+  /* Ensure expanded appendix details print cleanly when a single readiness row is focused */
+  html[data-print-scope="readiness"][data-print-slug] [data-readiness-focused="true"] .print-expand-details {
+    display: grid !important;
+  }
+
+  /* On combined Country page prints, use the page's single combined letterhead instead of repeating inside readiness */
+  html:not([data-print-scope="readiness"]) [data-print-kind="readiness"][data-mode="single"] .print-readiness-solo-header {
+    display: none !important;
+  }
+
+  /* Hide combined Country page letterhead when printing readiness-only scope */
+  html[data-print-scope="readiness"] .print-combined-letterhead {
+    display: none !important;
+  }
+
+  /* 5. Print-only Letterhead & Footer */
+  .print-letterhead {
+    display: flex !important;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12pt;
+    padding-bottom: 6pt;
+    margin-bottom: 8pt;
+    border-bottom: 1.5pt solid #1c1b19;
+  }
+
+  .print-letterhead-brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #1c1b19;
+    line-height: 1.1;
+  }
+
+  .print-letterhead-meta {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 7pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4740;
+    text-align: right;
+    line-height: 1.35;
+  }
+
+  .print-doc-footer {
+    margin-top: 8pt;
+    padding-top: 5pt;
+    border-top: 0.75pt solid #8a8376;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12pt;
+    font-size: 7pt;
+    color: #4a4740;
+  }
+
+  /* 6. Printable Document Containers (Checklist + Travel Readiness) */
+  [data-print-document="true"] {
+    border: 0.75pt solid #1c1b19 !important;
+    border-radius: 0 !important;
+    padding: 8pt 10pt !important;
+    margin: 0 0 8pt 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  [data-print-document="true"]:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
+  /* Prevent double border when DocumentChecklist sits inside DocumentChecklistLibrary */
+  [data-print-document="true"] [data-print-nested="true"] {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  [data-print-document="true"] h2,
+  [data-print-document="true"] h3 {
+    font-size: 12pt !important;
+    line-height: 1.15 !important;
+    margin-top: 2pt !important;
+    margin-bottom: 2pt !important;
+    color: #111111 !important;
+  }
+
+  [data-print-document="true"] .mono-label {
+    font-size: 6.75pt !important;
+    letter-spacing: 0.11em !important;
+    color: #3f3d37 !important;
+  }
+
+  /* 7. Document Checklist Print Formatting: Compact 2-Column Single-Page Layout */
+  .print-checklist-header {
+    padding-bottom: 5pt !important;
+    margin-bottom: 6pt !important;
+    border-bottom: 0.75pt solid #1c1b19 !important;
+  }
+
+  .print-checklist-groups {
+    margin-top: 5pt !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8pt 12pt !important;
+  }
+
+  .print-checklist-groups > div {
+    margin-top: 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-checklist-groups h4 {
+    font-size: 7pt !important;
+    margin-bottom: 3pt !important;
+    padding-bottom: 2pt !important;
+    border-bottom: 0.6pt solid #777268 !important;
+    color: #0f5c4b !important;
+  }
+
+  .print-checklist-groups ul {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-checklist-groups li {
+    padding: 2.5pt 0 !important;
+    border-color: #d6cfc2 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-checklist-groups label {
+    min-height: 0 !important;
+    gap: 5pt !important;
+    align-items: flex-start !important;
+  }
+
+  .print-checklist-groups input[type="checkbox"] {
+    width: 9pt !important;
+    height: 9pt !important;
+    margin-top: 1.5pt !important;
+    accent-color: #0f5c4b !important;
+  }
+
+  .print-checklist-item-title {
+    font-size: 8.2pt !important;
+    line-height: 1.2 !important;
+    color: #111111 !important;
+  }
+
+  .print-checklist-core-tag {
+    font-size: 6.5pt !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+  }
+
+  .print-checklist-item-detail {
+    font-size: 7.2pt !important;
+    line-height: 1.24 !important;
+    margin-top: 1pt !important;
+    color: #3f3d37 !important;
+  }
+
+  /* 8. Travel Readiness Guide Print Formatting: Single-Page Structured Archival Table */
+  .print-readiness-header {
+    padding-bottom: 5pt !important;
+    margin-bottom: 4pt !important;
+    border-bottom: 0.75pt solid #1c1b19 !important;
+  }
+
+  /* Single-destination archival 5-row field card (Country pages) */
+  [data-print-kind="readiness"][data-mode="single"] [data-testid="travel-readiness-list"] > li {
+    padding: 4pt 0 !important;
+    display: grid !important;
+    grid-template-columns: 145pt minmax(0, 1fr) !important;
+    gap: 8pt !important;
+    align-items: baseline !important;
+    border-color: #d6cfc2 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  [data-print-kind="readiness"][data-mode="single"] [data-testid="travel-readiness-list"] > li > div {
+    grid-column: auto !important;
+  }
+
+  [data-print-kind="readiness"][data-mode="single"] [data-testid="travel-readiness-list"] p {
+    margin-top: 1pt !important;
+    font-size: 7.8pt !important;
+    line-height: 1.26 !important;
+  }
+
+  /* Directory mode archival rows (Home / Visas Directory) */
+  [data-print-kind="readiness"][data-mode="directory"] [data-testid="travel-readiness-list"] > li {
+    padding: 5pt 0 !important;
+    border-color: #c8c0b0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* If printing full unfiltered directory without a focused row, cap to first 4 rows for clean 1-page reference */
+  html:not([data-print-slug]) [data-print-kind="readiness"][data-mode="directory"] [data-testid="travel-readiness-list"] > li:nth-child(n + 5) {
+    display: none !important;
+  }
+
+  [data-print-kind="readiness"][data-mode="directory"] dl {
+    margin-top: 3pt !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8pt !important;
+  }
+
+  [data-print-kind="readiness"][data-mode="directory"] dd {
+    font-size: 7.4pt !important;
+    line-height: 1.24 !important;
+    margin-top: 1.5pt !important;
+  }
+
+  .print-summary-bar {
+    padding: 5pt 7pt !important;
+    margin: 4pt 0 5pt 0 !important;
+    border: 0.6pt solid #8a8376 !important;
+  }
+
+  .print-summary-bar p {
+    font-size: 7.4pt !important;
+    line-height: 1.25 !important;
+    margin-top: 2pt !important;
+    padding-top: 2pt !important;
+  }
+
+  /* Strip URL expansion on links */
+  a[href]::after {
+    content: none !important;
+  }
+}

@@ -1,0 +1,130 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { EDITORIAL_IMAGES } from '../config/site';
+import { useLanguage } from '../context/LanguageContext';
+import type { BreadcrumbItem } from '../utils/seo';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { ClientTestimonial } from '../components/ClientTestimonial';
+import { Layout } from '../components/Layout';
+import { RubberStamp } from '../components/RubberStamp';
+import { SeoHead } from '../components/SeoHead';
+
+export function AboutPage() {
+  const { t, isUrdu } = useLanguage();
+  const path = '/about';
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path },
+  ];
+
+  return (
+    <Layout whatsappContext="Visahouse consultancy services" applyHref="/contact#apply">
+      <SeoHead
+        title="About Visahouse — Online Visa Consultancy | Pakistan"
+        description="Learn how Visahouse prepares honest, audit-clean visa dossiers, Schengen guidance, and travel insurance for Pakistani passport holders."
+        path={path}
+        breadcrumbs={breadcrumbs}
+      />
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16 border-b border-ink/80">
+        <Breadcrumbs items={breadcrumbs} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-7">
+            <p className="mono-label text-ink-muted">{t.pages.aboutEyebrow}</p>
+            <h1 className="font-display text-4xl sm:text-5xl font-medium tracking-tight leading-[1.08] text-ink mt-2">
+              {t.common.tagline}{' '}
+              <span className="highlighter-mark">{t.pages.aboutHighlight}</span>
+            </h1>
+            <p className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
+              {t.footer.blurb}
+            </p>
+            <div className="mt-7">
+              <RubberStamp
+                label={isUrdu ? 'آن لائن فرسٹ ڈیسک' : 'ONLINE-FIRST DESK'}
+                sublabel={isUrdu ? 'ویزاہاؤس · پاکستان' : 'VISAHOUSE · PAK'}
+                color="#0F5C4B"
+                rotation={-3}
+                variant="rect"
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <figure>
+              <div className="duotone-frame border border-ink/60 rounded-[2px]">
+                <img
+                  src={EDITORIAL_IMAGES.desk.src}
+                  alt={EDITORIAL_IMAGES.desk.alt}
+                  width={EDITORIAL_IMAGES.desk.width}
+                  height={EDITORIAL_IMAGES.desk.height}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-auto object-cover aspect-[4/3]"
+                />
+              </div>
+              <figcaption className="mt-2 mono-label text-[11px] text-ink-muted">
+                {t.home.no05Caption}
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <p className="mono-label text-ink-muted">{t.pages.aboutPrinciplesEyebrow}</p>
+        <h2 className="font-display text-3xl sm:text-4xl font-medium text-ink mt-2 mb-10">
+          {t.pages.aboutPrinciplesHeading}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {t.home.processPromises.map((p, idx) => (
+            <article key={p.index} className="bg-slip border border-rule p-6 sm:p-7 rounded-[3px]">
+              <span className="font-latin-mono text-sm font-semibold text-visa-green tabular-nums">
+                0{idx + 1}
+              </span>
+              <h3 className="font-display text-2xl font-medium text-ink mt-2">{p.title}</h3>
+              <p className="mt-3 text-[15px] text-ink-body leading-relaxed">{p.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <ClientTestimonial
+        eyebrow={isUrdu ? 'نمبر 02 · ویزا کامیابی کی کہانیاں' : 'No. 02 · Visa Success Stories'}
+      />
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+        <div className="bg-slip border border-ink/70 p-6 sm:p-8 rounded-[3px] flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <p className="mono-label text-ink-muted">
+              {isUrdu ? 'اگلا قدم؟' : 'Where Next?'}
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl font-medium text-ink mt-1.5">
+              {isUrdu
+                ? 'کسی ملک کی گائیڈ دیکھیں یا براہِ راست ہمارے ڈیسک سے رابطہ کریں'
+                : 'Inspect a country guide or talk directly with our desk'}
+            </h2>
+            <p className="mt-2 text-sm sm:text-[15px] text-ink-body">
+              {t.common.disclaimer}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <Link
+              to="/visas"
+              className="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 bg-visa-green text-slip text-sm font-medium rounded-[2px] hover:bg-visa-green-dark whitespace-nowrap"
+            >
+              <span>{t.hero.ctaSecondary}</span>
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 border border-ink/80 text-ink text-sm font-medium rounded-[2px] hover:bg-paper-deep whitespace-nowrap"
+            >
+              {t.header.contactDesk}
+            </Link>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}

@@ -1,0 +1,239 @@
+@import "tailwindcss";
+@import "./styles/print.css";
+
+@theme {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-paper: #F4EEE1;
+  --color-paper-deep: #EAE1CE;
+  --color-slip: #FAF6EC;
+  --color-ink: #1C1B19;
+  --color-ink-body: #2C2A26;
+  --color-ink-muted: #59554C;
+  --color-rule: #CFC5B2;
+  --color-rule-strong: #1C1B19;
+  --color-visa-green: #0F5C4B;
+  --color-visa-green-dark: #0A4336;
+  --color-stamp-red: #B93222;
+  --color-marigold: #E8A93B;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-visa-green);
+    outline-offset: 2px;
+  }
+}
+
+/* Tactile archival paper grain overlay (no heavy box shadows) */
+.paper-grain {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(rgba(28, 27, 25, 0.035) 0.75px, transparent 0.75px),
+    radial-gradient(rgba(28, 27, 25, 0.02) 0.5px, transparent 0.5px);
+  background-size: 24px 24px, 11px 11px;
+  background-position: 0 0, 5px 7px;
+}
+
+/* Subtle cotton-stock paper texture for archival testimonial & dossier cards */
+.paper-card-texture {
+  background-color: var(--color-slip);
+  background-image:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.55) 0%, rgba(234, 225, 206, 0.18) 100%),
+    radial-gradient(rgba(28, 27, 25, 0.03) 0.7px, transparent 0.7px),
+    radial-gradient(rgba(15, 92, 75, 0.025) 0.5px, transparent 0.5px);
+  background-size: 100% 100%, 18px 18px, 13px 13px;
+  background-position: 0 0, 2px 3px, 8px 9px;
+}
+
+/* Editorial hairline double rule */
+.rule-double-top {
+  border-top: 1px solid var(--color-ink);
+  box-shadow: inset 0 3px 0 0 var(--color-paper), inset 0 4px 0 0 rgba(28, 27, 25, 0.35);
+}
+
+.rule-double-bottom {
+  border-bottom: 1px solid var(--color-ink);
+  box-shadow: inset 0 -3px 0 0 var(--color-paper), inset 0 -4px 0 0 rgba(28, 27, 25, 0.35);
+}
+
+/* Marigold highlighter fill strictly behind ink text */
+.highlighter-mark {
+  background-image: linear-gradient(
+    180deg,
+    transparent 18%,
+    #E8A93B 18%,
+    #E8A93B 88%,
+    transparent 88%
+  );
+  color: #1C1B19;
+  padding: 0 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Mono archival small-caps label */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Postage stamp perforated scalloped edge via CSS mask */
+.stamp-perforated {
+  --perf-r: 5px;
+  --perf-step: 16px;
+  background-color: var(--color-slip);
+  -webkit-mask-image:
+    radial-gradient(circle at 0 50%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 100% 50%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 50% 0, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 50% 100%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px));
+  -webkit-mask-size:
+    100% var(--perf-step),
+    100% var(--perf-step),
+    var(--perf-step) 100%,
+    var(--perf-step) 100%;
+  -webkit-mask-position: left center, right center, top center, bottom center;
+  -webkit-mask-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 100% 50%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 50% 0, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px)),
+    radial-gradient(circle at 50% 100%, transparent var(--perf-r), #000 calc(var(--perf-r) + 0.5px));
+  mask-size:
+    100% var(--perf-step),
+    100% var(--perf-step),
+    var(--perf-step) 100%,
+    var(--perf-step) 100%;
+  mask-position: left center, right center, top center, bottom center;
+  mask-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
+  mask-composite: intersect;
+}
+
+/* Duotone archival photograph treatment (ink + paper) */
+.duotone-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: #E7DEC9;
+}
+
+.duotone-frame img {
+  filter: grayscale(100%) contrast(1.08) brightness(0.98);
+  mix-blend-mode: multiply;
+}
+
+/* Stamp landing animation (runs once when scrolled into view) */
+.stamp-land-ready {
+  opacity: 0;
+  transform: scale(1.16) rotate(var(--stamp-rot, -4deg));
+}
+
+.stamp-landed {
+  opacity: 0.9;
+  transform: scale(1) rotate(var(--stamp-rot, -4deg));
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease-out;
+}
+
+/* ==========================================================================
+   Urdu (ur) Archival RTL Typography & Cursive Script Preservation
+   ========================================================================== */
+html[lang="ur"] {
+  --font-display: "Noto Nastaliq Urdu", "Noto Naskh Arabic", "Fraunces", serif;
+  --font-sans: "Noto Naskh Arabic", "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html[lang="ur"] body {
+  font-family: var(--font-sans);
+  line-height: 1.85;
+  letter-spacing: 0;
+}
+
+html[lang="ur"] h1,
+html[lang="ur"] h2,
+html[lang="ur"] h3,
+html[lang="ur"] h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0 !important;
+  line-height: 1.95 !important;
+}
+
+html[lang="ur"] h1 {
+  line-height: 2.18 !important;
+}
+
+/* Preserve joined cursive Arabic/Urdu glyphs across archival labels & utility classes */
+html[lang="ur"] .mono-label {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+html[lang="ur"] .font-mono:not(.font-latin-mono) {
+  font-family: var(--font-sans);
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+html[lang="ur"] [class*="tracking-"]:not(.font-latin-mono) {
+  letter-spacing: 0 !important;
+}
+
+html[lang="ur"] .highlighter-mark {
+  padding: 0.02em 0.22em 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(
+    180deg,
+    transparent 36%,
+    #E8A93B 36%,
+    #E8A93B 84%,
+    transparent 84%
+  );
+}
+
+/* Keep explicit Latin/numeric archival codes crisp in LTR */
+.font-latin-mono {
+  font-family: var(--font-mono);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+

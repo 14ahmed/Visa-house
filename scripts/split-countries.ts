@@ -28,7 +28,9 @@ const summaries = DESTINATIONS.map((d) => ({
   facts: {
     visaType: d.facts.visaType,
     entryType: d.facts.entryType,
+    stayDuration: d.facts.stayDuration,
     processingTime: d.facts.processingTime,
+    govtFee: d.facts.govtFee,
   },
 }));
 
@@ -45,7 +47,9 @@ export interface DestinationSummary {
   facts: {
     visaType: string;
     entryType: string;
+    stayDuration: string;
     processingTime: string;
+    govtFee: string;
   };
 }
 
@@ -108,4 +112,37 @@ export async function loadDestination(slug: string): Promise<DestinationData | n
 `;
 fs.writeFileSync(path.resolve(rootDir, 'src/data/loadDestination.ts'), loaderContent, 'utf-8');
 
-console.log(`Generated ${DESTINATIONS.length} separate country modules + destinationIndex.ts + loadDestination.ts`);
+// 4. Emit lightweight checklist source data (without 500-word essays, FAQs, steps, or seoKeywordGuide)
+const checklistSources = DESTINATIONS.filter((d) => d.slug !== 'schengen-states').map((d) => ({
+  slug: d.slug,
+  country: d.country,
+  isoCode: d.isoCode,
+  accentHex: d.accentHex,
+  channel: d.channel,
+  lastVerified: d.facts.lastVerified,
+  eligibilityNote: d.whoCanApply.eligibilityNote,
+  checklist: d.checklist,
+}));
+
+const checklistsContent = `import type { ChecklistGroup, VisaChannel } from './types';
+
+export interface ChecklistDestinationSource {
+  slug: string;
+  country: string;
+  isoCode: string;
+  accentHex: string;
+  channel: VisaChannel;
+  lastVerified: string;
+  eligibilityNote: string;
+  checklist: ChecklistGroup[];
+}
+
+/**
+ * Lightweight checklist payload for DocumentChecklistLibrary and InteractiveVisaGlobe,
+ * excluding long country essays, FAQs, refusal audits, and SEO keyword metadata.
+ */
+export const CHECKLIST_DESTINATION_SOURCES: readonly ChecklistDestinationSource[] = ${JSON.stringify(checklistSources, null, 2)};
+`;
+fs.writeFileSync(path.resolve(rootDir, 'src/data/checklistsData.ts'), checklistsContent, 'utf-8');
+
+console.log(`Generated ${DESTINATIONS.length} separate country modules + destinationIndex.ts + loadDestination.ts + checklistsData.ts`);

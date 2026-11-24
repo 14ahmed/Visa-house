@@ -11,7 +11,6 @@ import { buildFaqSchema, buildHomeSchemas } from '../utils/seo';
 import { HeroSection } from '../components/HeroSection';
 import { LazyInteractiveVisaGlobe as InteractiveVisaGlobe } from '../components/LazyInteractiveVisaGlobe';
 import { Layout } from '../components/Layout';
-import { PakistaniVisaFaqSection } from '../components/PakistaniVisaFaqSection';
 import { PostageStamp } from '../components/PostageStamp';
 import { SeoHead } from '../components/SeoHead';
 import { ViewportLazyWidget } from '../components/ViewportLazyWidget';
@@ -24,6 +23,9 @@ const LazyDocumentChecklistLibrary = lazy(async () => ({
 }));
 const LazyLeadForm = lazy(async () => ({
   default: (await import('../components/LeadForm')).LeadForm,
+}));
+const LazyPakistaniVisaFaqSection = lazy(async () => ({
+  default: (await import('../components/PakistaniVisaFaqSection')).PakistaniVisaFaqSection,
 }));
 const LazyRubberStamp = lazy(async () => ({
   default: (await import('../components/RubberStamp')).RubberStamp,
@@ -667,13 +669,25 @@ export function HomePage() {
       </ViewportLazyWidget>
 
       {/* NO. 09: TIMELINES & DOCUMENT REQUIREMENTS FAQ (FRAUNCES HEADINGS) */}
-      <PakistaniVisaFaqSection
-        id="faq"
-        eyebrow={t.home.no09FaqEyebrow}
-        heading={t.home.no09FaqHeading}
-        description={t.home.no09FaqDesc}
-        className="border-b border-rule"
-      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <ViewportLazyWidget
+          id="faq"
+          eyebrow={t.home.no09FaqEyebrow}
+          heading={t.home.no09FaqHeading}
+          description={t.home.no09FaqDesc}
+          buttonLabel={isUrdu ? 'عمومی سوالات کھولیں' : 'Open Visa FAQs'}
+          minHeightClass="min-h-[260px]"
+        >
+          {() => (
+            <LazyPakistaniVisaFaqSection
+              id="faq"
+              eyebrow={t.home.no09FaqEyebrow}
+              heading={t.home.no09FaqHeading}
+              description={t.home.no09FaqDesc}
+            />
+          )}
+        </ViewportLazyWidget>
+      </div>
 
       {/* NO. 10: VISA NEWS & POLICY ALERTS */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">

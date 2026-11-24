@@ -11,7 +11,9 @@ export interface DestinationSummary {
   facts: {
     visaType: string;
     entryType: string;
+    stayDuration: string;
     processingTime: string;
+    govtFee: string;
   };
 }
 
@@ -49,7 +51,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Tourist Visa (TR) / e-Visa channel",
       "entryType": "Single or Multiple Entry (category-dependent)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -63,7 +67,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Malaysia Tourist e-Visa",
       "entryType": "Single or Multiple Entry (subject to eligibility)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -77,7 +83,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Visitor e-Visa (C1 / Tourist Category)",
       "entryType": "Single Entry (standard tourist category)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -91,7 +99,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Singapore Entry Visa (Assessment Level II)",
       "entryType": "Single or Multiple Entry (at ICA discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -105,7 +115,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Cambodia Tourist e-Visa (Type T)",
       "entryType": "Single Entry",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -119,7 +131,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Sri Lanka Tourist ETA / e-Visa",
       "entryType": "Double Entry (standard short-stay tourist category, confirm active rule)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -133,7 +147,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Nepal Tourist Visa (SAARC / Embassy or Arrival Rule Check)",
       "entryType": "Single or Multiple Entry (subject to active immigration rule)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -147,7 +163,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Uzbekistan Tourist Visa (LOI / Embassy or e-Visa Channel Check)",
       "entryType": "Single or Double Entry (category-dependent)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -161,7 +179,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Bahrain Visit e-Visa (NPRA Portal)",
       "entryType": "Single or Multiple Entry (subject to NPRA category)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -175,7 +195,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Sticker Visa (Anatolia VAC) / Conditional e-Visa",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "Up to 30 days typical",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -189,7 +211,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "ASAN Electronic Visa (e-Visa)",
       "entryType": "Single Entry",
-      "processingTime": ""
+      "stayDuration": "Up to 30 days",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -203,7 +227,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Temporary Visitor Visa (Short-Term Tourism / Business / Family)",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -217,7 +243,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Short-Term General (C-3-9 Tourist / C-3-4 Business)",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -231,7 +259,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Temporary Visitor Visa (9(a) Tourist / Business)",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -245,7 +275,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "B1/B2 Non-Immigrant Visitor Visa (Business / Tourism)",
       "entryType": "Multiple or Single Entry (visa officer discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -259,7 +291,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Temporary Resident Visa (TRV · Tourism / Family / Business)",
       "entryType": "Single or Multiple Entry (up to passport validity · officer discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -273,7 +307,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "UK Standard Visitor Visa (Tourism / Family / Business)",
       "entryType": "Multiple Entry (6-Month, 2-Year, 5-Year or 10-Year tiers)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -287,7 +323,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Visitor Visa (Subclass 600 · Tourist / Sponsored Family / Business)",
       "entryType": "Single or Multiple Entry (electronic visa linked to passport)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -301,7 +339,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "New Zealand Visitor Visa (Online eVisa · Tourism / Family / Business)",
       "entryType": "Single or Multiple Entry (electronic approval)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -315,7 +355,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Schengen Short-Stay Visa (Type-C · 29 Member States)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -329,7 +371,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Germany Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -343,7 +387,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "France Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -357,7 +403,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Greece Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -371,7 +419,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Portugal Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -385,7 +435,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Hungary Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -399,7 +451,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Poland Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -413,7 +467,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Netherlands Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -427,7 +483,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Norway Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -441,7 +499,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Denmark Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -455,7 +515,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Belgium Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -469,7 +531,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Luxembourg Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -483,7 +547,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Finland Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -497,7 +563,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Sweden Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -511,7 +579,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Switzerland Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -525,7 +595,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Austria Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -539,7 +611,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Italy Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -553,7 +627,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Spain Schengen Short-Stay Visa (Type-C)",
       "entryType": "Single or Multiple Entry (up to 90 days in any 180-day period)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -567,7 +643,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Egypt Short-Term Tourist / Business Sticker Visa",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -581,7 +659,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Morocco Short-Stay Tourist / Business Visa",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -595,7 +675,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Kenya Electronic Travel Authorisation (eTA · Tourism / Business)",
       "entryType": "Single Entry (digital pre-travel authorisation)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -609,7 +691,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "South Africa Visitor Visa (DHA-84 · Tourism / Business / Family)",
       "entryType": "Single or Multiple Entry (embassy discretion)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   },
   {
@@ -623,7 +707,9 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "facts": {
       "visaType": "Zimbabwe Electronic Visa (e-Visa · Tourism / Business)",
       "entryType": "Single or Double Entry (category dependent)",
-      "processingTime": ""
+      "stayDuration": "",
+      "processingTime": "",
+      "govtFee": ""
     }
   }
 ];

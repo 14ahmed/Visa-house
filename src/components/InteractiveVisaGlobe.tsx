@@ -11,7 +11,6 @@ import {
 import { feature } from 'topojson-client';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
-import countriesAtlasRaw from 'world-atlas/countries-110m.json';
 import {
   ArrowDown,
   ArrowRight,
@@ -25,7 +24,7 @@ import {
   Plus,
   RotateCcw,
 } from 'lucide-react';
-import { REGIONS } from '../data/destinations';
+import { REGIONS } from '../data/destinationIndex';
 import type { RegionId } from '../data/types';
 import { useLanguage } from '../context/LanguageContext';
 import { buildVisaChecklistDocument } from '../utils/checklistLibrary';
@@ -76,16 +75,39 @@ const APERTURE_RADIUS = 238;
 const MIN_ZOOM = 0.88;
 const MAX_ZOOM = 1.85;
 
-const countriesAtlas = countriesAtlasRaw as unknown as Topology<{
-  countries: GeometryCollection<CountryProperties>;
-}>;
+let cachedWorldFeatures: CountryFeature[] | null = null;
+let worldFeaturesPromise: Promise<CountryFeature[]> | null = null;
 
-const WORLD_FEATURES: CountryFeature[] = (
-  feature(
-    countriesAtlas,
-    countriesAtlas.objects.countries,
-  ) as unknown as FeatureCollection<Geometry, CountryProperties>
-).features as CountryFeature[];
+function loadWorldFeatures(): Promise<CountryFeature[]> {
+  if (cachedWorldFeatures) {
+    return Promise.resolve(cachedWorldFeatures);
+  }
+  if (!worldFeaturesPromise) {
+    worldFeaturesPromise = fetch('/data/countries-110m.json')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to load world atlas: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((raw) => {
+        const atlas = raw as unknown as Topology<{
+          countries: GeometryCollection<CountryProperties>;
+        }>;
+        const fc = feature(
+          atlas,
+          atlas.objects.countries,
+        ) as unknown as FeatureCollection<Geometry, CountryProperties>;
+        cachedWorldFeatures = fc.features as CountryFeature[];
+        return cachedWorldFeatures;
+      })
+      .catch((err) => {
+        worldFeaturesPromise = null;
+        throw err;
+      });
+  }
+  return worldFeaturesPromise;
+}
 
 const GRATICULE_DATA = geoGraticule10();
 
@@ -117,7 +139,29 @@ export function InteractiveVisaGlobe({
     [selectedChecklistId],
   );
 
+  const [worldFeatures, setWorldFeatures] = useState<CountryFeature[]>(
+    () => cachedWorldFeatures ?? [],
+  );
   const [regionFilter, setRegionFilter] = useState<RegionId | 'All'>('All');
+
+  useEffect(() => {
+    if (cachedWorldFeatures || typeof fetch === 'undefined') {
+      return undefined;
+    }
+    let cancelled = false;
+    void loadWorldFeatures()
+      .then((features) => {
+        if (!cancelled) {
+          setWorldFeatures(features);
+        }
+      })
+      .catch(() => {
+        // Keep graticule + pins visible if world-atlas JSON fails to load
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [rotation, setRotation] = useState<[number, number, number]>(() =>
     computeRotationForCoordinates(activeNode.lon, activeNode.lat),
   );
@@ -728,7 +772,7 @@ export function InteractiveVisaGlobe({
 
               {/* World Country Polygons */}
               <g>
-                {WORLD_FEATURES.map((feat, idx) => {
+                {worldFeatures.map((feat, idx) => {
                   const d = pathGen(feat);
                   if (!d) return null;
 

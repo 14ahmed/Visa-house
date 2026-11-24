@@ -58,7 +58,7 @@ export default defineConfig(({mode, isSsrBuild}) => {
               },
               {
                 name: 'all-checklists-data',
-                test: /src[\\/]data[\\/]destinations(?:-|\.ts)/,
+                test: /src[\\/]data[\\/](?:checklistsData|destinations(?:-|\.ts))/,
                 priority: 15,
               },
             ],

@@ -1,5 +1,5 @@
 import { geoDistance, geoInterpolate } from 'd3';
-import { DESTINATIONS } from '../data/destinations';
+import { DESTINATION_SUMMARIES as DESTINATIONS } from '../data/destinationIndex';
 import type { RegionId, VisaChannel } from '../data/types';
 import { buildVisaChecklistDocument } from './checklistLibrary';
 import { getCostCalculatorSchedule } from './visaCostCalculator';

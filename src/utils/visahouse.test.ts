@@ -146,17 +146,19 @@ import {
   buildPrintDocumentHeading,
 } from './printDocument';
 import {
+  EN_TRANSLATION,
   formatLocalizedCopy,
   getLocaleMetadata,
   getTranslation,
+  loadUrduTranslation,
   LOCALE_STORAGE_KEY,
   normalizeLocale,
   translateChannel,
   translateCountryName,
   translateRegion,
   translateVisaTypeLabel,
-  TRANSLATIONS,
 } from './i18n';
+import { UR_TRANSLATION } from './i18nUr';
 
 const EXPECTED_SLUGS = [
   'thailand',
@@ -1236,7 +1238,7 @@ test('printDocument helpers and print.css stylesheet configure clean single-page
   assert.ok(printCss.includes('.print-letterhead'));
 });
 
-test('i18n bilingual engine supports English (LTR) and Urdu (RTL) with complete 38-country coverage, key parity, and zero guarantee claims', () => {
+test('i18n bilingual engine supports English (LTR) and Urdu (RTL) with complete 38-country coverage, key parity, and zero guarantee claims', async () => {
   assert.equal(LOCALE_STORAGE_KEY, 'visahouse_locale');
   assert.equal(normalizeLocale('en'), 'en');
   assert.equal(normalizeLocale('ur'), 'ur');
@@ -1273,6 +1275,10 @@ test('i18n bilingual engine supports English (LTR) and Urdu (RTL) with complete 
     assert.match(translateVisaTypeLabel(vt, vt, 'ur'), /[\u0600-\u06FF]/);
   }
 
+  // Dynamic Urdu translation bundle loader
+  const loadedUr = await loadUrduTranslation();
+  assert.deepEqual(loadedUr, UR_TRANSLATION);
+
   // Interpolation helper
   assert.equal(
     formatLocalizedCopy('View All {count} Countries', { count: 38 }),
@@ -1298,12 +1304,12 @@ test('i18n bilingual engine supports English (LTR) and Urdu (RTL) with complete 
     return [prefix];
   };
 
-  const enKeys = collectKeys(TRANSLATIONS.en).sort();
-  const urKeys = collectKeys(TRANSLATIONS.ur).sort();
+  const enKeys = collectKeys(EN_TRANSLATION).sort();
+  const urKeys = collectKeys(UR_TRANSLATION).sort();
   assert.deepEqual(urKeys, enKeys, 'English and Urdu translation bundles must share identical keys');
 
   // Honesty compliance across both locales (reject positive guarantee claims while allowing explicit "never claim guaranteed" disclaimers)
-  const serializedAll = JSON.stringify(TRANSLATIONS);
+  const serializedAll = JSON.stringify({ en: EN_TRANSLATION, ur: UR_TRANSLATION });
   assert.equal(
     /we guarantee|guaranteed approval|100% approval|lorem ipsum|یقینی ویزا|سو فیصد منظوری/i.test(
       serializedAll,

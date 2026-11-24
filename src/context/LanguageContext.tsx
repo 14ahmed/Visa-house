@@ -10,9 +10,10 @@ import {
 import type { RegionId, VisaChannel } from '../data/types';
 import type { VisaTypeId } from '../utils/checklistLibrary';
 import {
+  EN_TRANSLATION,
   getLocaleMetadata,
-  getTranslation,
   LOCALE_STORAGE_KEY,
+  loadUrduTranslation,
   normalizeLocale,
   translateChannel,
   translateCountryName,
@@ -66,6 +67,7 @@ export function LanguageProvider({
   initialLocale?: Locale;
 }) {
   const [locale, setLocaleState] = useState<Locale>(() => resolveInitialLocale(initialLocale));
+  const [urBundle, setUrBundle] = useState<TranslationBundle | null>(null);
 
   const setLocale = useCallback((next: Locale) => {
     const normalized = normalizeLocale(next);
@@ -82,6 +84,25 @@ export function LanguageProvider({
   const toggleLocale = useCallback(() => {
     setLocale(locale === 'en' ? 'ur' : 'en');
   }, [locale, setLocale]);
+
+  useEffect(() => {
+    if (locale !== 'ur' || urBundle || typeof window === 'undefined') {
+      return undefined;
+    }
+    let cancelled = false;
+    void loadUrduTranslation()
+      .then((bundle) => {
+        if (!cancelled) {
+          setUrBundle(bundle);
+        }
+      })
+      .catch(() => {
+        // Fallback to EN_TRANSLATION if network load fails
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [locale, urBundle]);
 
   useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -108,7 +129,7 @@ export function LanguageProvider({
       dir: meta.dir,
       isUrdu: locale === 'ur',
       meta,
-      t: getTranslation(locale),
+      t: locale === 'ur' && urBundle ? urBundle : EN_TRANSLATION,
       setLocale,
       toggleLocale,
       localizeCountry: (country: string) => translateCountryName(country, locale),
@@ -117,7 +138,7 @@ export function LanguageProvider({
       localizeVisaType: (visaTypeId: VisaTypeId, fallbackEn: string) =>
         translateVisaTypeLabel(visaTypeId, fallbackEn, locale),
     };
-  }, [locale, setLocale, toggleLocale]);
+  }, [locale, urBundle, setLocale, toggleLocale]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
@@ -132,7 +153,7 @@ export function useLanguage(): LanguageContextValue {
       dir: meta.dir,
       isUrdu: false,
       meta,
-      t: getTranslation('en'),
+      t: EN_TRANSLATION,
       setLocale: () => {},
       toggleLocale: () => {},
       localizeCountry: (country: string) => country,

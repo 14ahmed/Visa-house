@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { lazy, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
-import { DESTINATIONS, REGIONS, VISA_CHANNELS } from '../data/destinations';
+import { DESTINATION_SUMMARIES as DESTINATIONS, REGIONS, VISA_CHANNELS } from '../data/destinationIndex';
 import { PAKISTANI_VISA_FAQS } from '../data/visaFaqs';
 import type { RegionId, VisaChannel } from '../data/types';
 import { useLanguage } from '../context/LanguageContext';
@@ -15,19 +15,39 @@ import {
   type BreadcrumbItem,
 } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { DestinationAtlasMap } from '../components/DestinationAtlasMap';
-import { DocumentChecklistLibrary } from '../components/DocumentChecklistLibrary';
 import { LazyInteractiveVisaGlobe as InteractiveVisaGlobe } from '../components/LazyInteractiveVisaGlobe';
 import { Layout } from '../components/Layout';
-import { LeadForm } from '../components/LeadForm';
-import { PakistaniVisaFaqSection } from '../components/PakistaniVisaFaqSection';
 import { PostageStamp } from '../components/PostageStamp';
 import { SeoHead } from '../components/SeoHead';
-import { TravelReadinessGuide } from '../components/TravelReadinessGuide';
-import { VisaCostCalculator } from '../components/VisaCostCalculator';
-import { VisaFeeEstimator } from '../components/VisaFeeEstimator';
-import { VisaPhotoRequirements } from '../components/VisaPhotoRequirements';
-import { WorldVisaHub } from '../components/WorldVisaHub';
+import { ViewportLazyWidget } from '../components/ViewportLazyWidget';
+
+const LazyDestinationAtlasMap = lazy(async () => ({
+  default: (await import('../components/DestinationAtlasMap')).DestinationAtlasMap,
+}));
+const LazyDocumentChecklistLibrary = lazy(async () => ({
+  default: (await import('../components/DocumentChecklistLibrary')).DocumentChecklistLibrary,
+}));
+const LazyLeadForm = lazy(async () => ({
+  default: (await import('../components/LeadForm')).LeadForm,
+}));
+const LazyPakistaniVisaFaqSection = lazy(async () => ({
+  default: (await import('../components/PakistaniVisaFaqSection')).PakistaniVisaFaqSection,
+}));
+const LazyTravelReadinessGuide = lazy(async () => ({
+  default: (await import('../components/TravelReadinessGuide')).TravelReadinessGuide,
+}));
+const LazyVisaCostCalculator = lazy(async () => ({
+  default: (await import('../components/VisaCostCalculator')).VisaCostCalculator,
+}));
+const LazyVisaFeeEstimator = lazy(async () => ({
+  default: (await import('../components/VisaFeeEstimator')).VisaFeeEstimator,
+}));
+const LazyVisaPhotoRequirements = lazy(async () => ({
+  default: (await import('../components/VisaPhotoRequirements')).VisaPhotoRequirements,
+}));
+const LazyWorldVisaHub = lazy(async () => ({
+  default: (await import('../components/WorldVisaHub')).WorldVisaHub,
+}));
 
 export function VisasDirectoryPage() {
   const { t, isUrdu, localizeCountry, localizeRegion, localizeChannel } = useLanguage();
@@ -326,7 +346,24 @@ export function VisasDirectoryPage() {
 
       {/* Consular Route & Schengen SVG Map */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-rule">
-        <DestinationAtlasMap />
+        <ViewportLazyWidget
+          id="route-map"
+          eyebrow={isUrdu ? 'سفارتی روٹ اٹلس' : 'No. 01 — Consular Route Atlas'}
+          heading={
+            isUrdu
+              ? 'ویزا نقشے پر شینگن اور عالمی ممالک دیکھیں'
+              : 'Explore Schengen & global destinations on the visa map'
+          }
+          description={
+            isUrdu
+              ? 'ہر ملک کے پن پر کلک کر کے ویزا کی قسم اور تفصیلی چیک لسٹ دیکھیں۔'
+              : 'Hover or focus any destination pin for a quick visa-type summary, switch to Schengen Focus to inspect European hotspots, or click through to the full country checklist.'
+          }
+          buttonLabel={t.home.routeAtlasBtn}
+          minHeightClass="min-h-[300px]"
+        >
+          {() => <LazyDestinationAtlasMap id="route-map" />}
+        </ViewportLazyWidget>
       </div>
 
       {/* Quick Comparison Ledger Table */}
@@ -387,57 +424,153 @@ export function VisasDirectoryPage() {
           checklistAnchorId="checklist-library"
         />
         <div className="no-print">
-          <WorldVisaHub
+          <ViewportLazyWidget
             id="world-visa-hub"
-            onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
-            checklistAnchorId="checklist-library"
-          />
+            eyebrow={t.worldVisaHub.eyebrow}
+            heading={t.worldVisaHub.heading}
+            description={t.worldVisaHub.subcopy}
+            buttonLabel={isUrdu ? 'گلوبل ویزا ہب کھولیں' : 'Open World Visa Hub'}
+            minHeightClass="min-h-[260px]"
+          >
+            {() => (
+              <LazyWorldVisaHub
+                id="world-visa-hub"
+                onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
+                checklistAnchorId="checklist-library"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
-        <DocumentChecklistLibrary
-          selectedDestinationId={checklistDestinationId}
-          onDestinationChange={setChecklistDestinationId}
-        />
+        <ViewportLazyWidget
+          id="checklist-library"
+          eyebrow={t.checklist.partOneLabel}
+          heading={t.checklist.libraryHeading}
+          description={t.checklist.librarySubcopy}
+          buttonLabel={isUrdu ? 'چیک لسٹ بلڈر کھولیں' : 'Open Checklist Library'}
+          minHeightClass="min-h-[300px]"
+        >
+          {() => (
+            <LazyDocumentChecklistLibrary
+              id="checklist-library"
+              selectedDestinationId={checklistDestinationId}
+              onDestinationChange={setChecklistDestinationId}
+            />
+          )}
+        </ViewportLazyWidget>
         <div className="no-print">
-          <VisaPhotoRequirements id="photo-requirements" headingAs="h2" />
+          <ViewportLazyWidget
+            id="photo-requirements"
+            eyebrow={t.photoGuide.eyebrow}
+            heading={t.photoGuide.heading}
+            description={t.photoGuide.subcopy}
+            buttonLabel={isUrdu ? 'تصویر گائیڈ کھولیں' : 'Open Photo Requirements'}
+            minHeightClass="min-h-[240px]"
+          >
+            {() => <LazyVisaPhotoRequirements id="photo-requirements" headingAs="h2" />}
+          </ViewportLazyWidget>
         </div>
-        <TravelReadinessGuide id="travel-readiness" headingAs="h2" />
+        <ViewportLazyWidget
+          id="travel-readiness"
+          eyebrow={formatLocalizedCopy(t.readiness.eyebrowDirectory, { count: DESTINATIONS.length })}
+          heading={t.readiness.headingDirectory}
+          description={t.readiness.subcopyDirectory}
+          buttonLabel={isUrdu ? 'ٹریول گائیڈ کھولیں' : 'Open Travel Readiness Guide'}
+          minHeightClass="min-h-[260px]"
+        >
+          {() => <LazyTravelReadinessGuide id="travel-readiness" headingAs="h2" />}
+        </ViewportLazyWidget>
       </div>
 
       {/* Interactive Visa Cost Calculator */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-rule">
-        <VisaCostCalculator id="cost-calculator" />
+        <ViewportLazyWidget
+          id="cost-calculator"
+          eyebrow={t.home.no03CalcEyebrow}
+          heading={t.calculator.heading}
+          description={t.calculator.subcopy}
+          buttonLabel={isUrdu ? 'کیلکولیٹر کھولیں' : 'Open Cost Calculator'}
+          minHeightClass="min-h-[280px]"
+          eagerMatchSearch="country="
+        >
+          {() => <LazyVisaCostCalculator id="cost-calculator" />}
+        </ViewportLazyWidget>
       </div>
 
       {/* Gemini Visa Fee & Processing Time Estimator */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-rule">
-        <VisaFeeEstimator />
+        <ViewportLazyWidget
+          id="fee-estimator"
+          eyebrow={t.header.visaFeeEstimator}
+          heading={isUrdu ? 'ویزا فیس اور پروسیسنگ وقت کا تخمینہ' : 'Estimate visa fees and processing times'}
+          description={
+            isUrdu
+              ? 'ملک اور ویزا قسم منتخب کر کے تخمینی سفارتخانہ فیس، PKR رینج اور پروسیسنگ وقت دیکھیں۔'
+              : 'Pick a country and visa type to check estimated embassy fees, PKR ranges, visa-centre charges, and usual processing times for Pakistani passport holders.'
+          }
+          buttonLabel={isUrdu ? 'فیس تخمینہ کار کھولیں' : 'Open Fee Estimator'}
+          minHeightClass="min-h-[260px]"
+        >
+          {() => <LazyVisaFeeEstimator />}
+        </ViewportLazyWidget>
       </div>
 
       {/* Timelines & Document Requirements FAQ */}
-      <PakistaniVisaFaqSection
-        id="visa-faq"
-        eyebrow={t.home.no09FaqEyebrow}
-        heading={t.home.no09FaqHeading}
-        description={t.home.no09FaqDesc}
-        showUtilityLinks={false}
-        className="border-b border-rule"
-      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-rule">
+        <ViewportLazyWidget
+          id="visa-faq"
+          eyebrow={t.home.no09FaqEyebrow}
+          heading={t.home.no09FaqHeading}
+          description={t.home.no09FaqDesc}
+          buttonLabel={isUrdu ? 'عمومی سوالات کھولیں' : 'Open Visa FAQs'}
+          minHeightClass="min-h-[260px]"
+        >
+          {() => (
+            <LazyPakistaniVisaFaqSection
+              id="visa-faq"
+              eyebrow={t.home.no09FaqEyebrow}
+              heading={t.home.no09FaqHeading}
+              description={t.home.no09FaqDesc}
+              showUtilityLinks={false}
+            />
+          )}
+        </ViewportLazyWidget>
+      </div>
 
       {/* Closing Lead Form */}
       <section id="apply" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 scroll-mt-24">
-        <LeadForm
-          defaultDestination="Multiple Destinations / General Inquiry"
+        <ViewportLazyWidget
+          id="apply-form"
+          extraHashes={['apply']}
+          eyebrow={t.leadForm.eyebrow}
           heading={
             isUrdu
               ? 'یقین نہیں کہ آپ کی پروفائل کے لیے کون سا ملک موزوں ہے؟'
               : 'Not sure which country fits your passport profile?'
           }
-          subcopy={
+          description={
             isUrdu
               ? 'اپنا متوقع سفری مہینہ، بجٹ اور سابقہ سفری تاریخ بتائیں۔ ہمارا ڈیسک حقیقت پسندانہ تجاویز اور تازہ دستاویزی چیک لسٹ کی تصدیق کرے گا۔'
               : 'Tell us your travel month, budget, and any prior travel history. Our desk will recommend realistic options and confirm current document checklists.'
           }
-        />
+          buttonLabel={isUrdu ? 'درخواست فارم کھولیں' : 'Open Application Form'}
+          minHeightClass="min-h-[320px]"
+        >
+          {() => (
+            <LazyLeadForm
+              defaultDestination="Multiple Destinations / General Inquiry"
+              heading={
+                isUrdu
+                  ? 'یقین نہیں کہ آپ کی پروفائل کے لیے کون سا ملک موزوں ہے؟'
+                  : 'Not sure which country fits your passport profile?'
+              }
+              subcopy={
+                isUrdu
+                  ? 'اپنا متوقع سفری مہینہ، بجٹ اور سابقہ سفری تاریخ بتائیں۔ ہمارا ڈیسک حقیقت پسندانہ تجاویز اور تازہ دستاویزی چیک لسٹ کی تصدیق کرے گا۔'
+                  : 'Tell us your travel month, budget, and any prior travel history. Our desk will recommend realistic options and confirm current document checklists.'
+              }
+            />
+          )}
+        </ViewportLazyWidget>
         <p className="mt-6 text-xs text-ink-muted">{t.common.disclaimer}</p>
       </section>
     </Layout>

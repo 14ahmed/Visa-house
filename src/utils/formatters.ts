@@ -78,17 +78,28 @@ export function validateLeadForm(input: LeadFormInput): LeadValidationResult {
   };
 }
 
+export interface FilterableDestination {
+  country: string;
+  isoCode: string;
+  region: RegionId;
+  channel: VisaChannel;
+  heroPromise: string;
+  localNotes?: {
+    citiesBody?: string;
+  };
+}
+
 /**
  * Pure filter function for the /visas directory page.
  */
-export function filterDestinations(
-  destinations: readonly DestinationData[],
+export function filterDestinations<T extends FilterableDestination>(
+  destinations: readonly T[],
   options: {
     region: RegionId | 'All';
     channel: VisaChannel | 'All';
     query: string;
   },
-): DestinationData[] {
+): T[] {
   const normalizedQuery = options.query.trim().toLowerCase();
 
   return destinations.filter((item) => {
@@ -105,7 +116,7 @@ export function filterDestinations(
         item.region,
         item.channel,
         item.heroPromise,
-        item.localNotes.citiesBody,
+        item.localNotes?.citiesBody ?? '',
       ]
         .join(' ')
         .toLowerCase();

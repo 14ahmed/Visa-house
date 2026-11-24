@@ -1,7 +1,10 @@
 import { SITE_CONFIG } from '../config/site';
-import { DESTINATIONS } from '../data/destinations';
+import {
+  CHECKLIST_DESTINATION_SOURCES,
+  type ChecklistDestinationSource,
+} from '../data/checklistsData';
 import { SCHENGEN_DOCUMENTS } from '../data/services';
-import type { ChecklistGroup, DestinationData } from '../data/types';
+import type { ChecklistGroup } from '../data/types';
 
 export interface NationalityOption {
   id: string;
@@ -153,7 +156,7 @@ function buildSchengenChecklistGroups(): ChecklistGroup[] {
   ];
 }
 
-function mapDestinationToChecklistOption(dest: DestinationData): ChecklistDestinationOption {
+function mapDestinationToChecklistOption(dest: ChecklistDestinationSource): ChecklistDestinationOption {
   return {
     id: dest.slug,
     country: dest.country,
@@ -161,16 +164,14 @@ function mapDestinationToChecklistOption(dest: DestinationData): ChecklistDestin
     accentHex: dest.accentHex,
     channel: dest.channel,
     detailPath: `/visas/${dest.slug}`,
-    lastVerified: dest.facts.lastVerified,
-    eligibilityNote: dest.whoCanApply.eligibilityNote,
+    lastVerified: dest.lastVerified,
+    eligibilityNote: dest.eligibilityNote,
     groups: dest.checklist,
   };
 }
 
 export const CHECKLIST_DESTINATIONS: ChecklistDestinationOption[] = [
-  ...DESTINATIONS.filter((dest) => dest.slug !== 'schengen-states').map(
-    mapDestinationToChecklistOption,
-  ),
+  ...CHECKLIST_DESTINATION_SOURCES.map(mapDestinationToChecklistOption),
   {
     id: 'schengen',
     country: 'Schengen Area (Type-C)',

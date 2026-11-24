@@ -877,11 +877,11 @@ test('calculateVisaCost covers all 38 destinations, enforces exact line-item tot
       usaBusiness.addOnsSubtotalPkr,
   );
 
-  // Verify Student vs Tourist fee delta (UK Student £524 vs Visitor £127)
+  // Verify Student vs Tourist fee delta (UK Student £558 vs Visitor £135)
   const ukTourist = calculateVisaCost({ destinationSlug: 'uk', visaTypeId: 'tourist', applicants: 1 });
   const ukStudent = calculateVisaCost({ destinationSlug: 'uk', visaTypeId: 'student', applicants: 1 });
-  assert.ok(ukTourist.officialCurrencyNote.includes('GBP 127'));
-  assert.ok(ukStudent.officialCurrencyNote.includes('GBP 524'));
+  assert.ok(ukTourist.officialCurrencyNote.includes('GBP 135'));
+  assert.ok(ukStudent.officialCurrencyNote.includes('GBP 558'));
   assert.ok(ukStudent.embassyPerApplicantPkr > ukTourist.embassyPerApplicantPkr);
   assert.ok(ukStudent.serviceSubtotalPkr > ukTourist.serviceSubtotalPkr);
   assert.ok(ukTourist.notes.some((n) => /international FX conversion|4–5%/i.test(n)));
@@ -891,7 +891,14 @@ test('calculateVisaCost covers all 38 destinations, enforces exact line-item tot
     visaTypeId: 'tourist',
     applicants: 1,
   });
-  assert.ok(auTourist.officialCurrencyNote.includes('AUD 200'));
+  assert.ok(auTourist.officialCurrencyNote.includes('AUD 250'));
+
+  const nzStudent = calculateVisaCost({
+    destinationSlug: 'new-zealand',
+    visaTypeId: 'student',
+    applicants: 1,
+  });
+  assert.ok(nzStudent.officialCurrencyNote.includes('NZD 850'));
 
   // Verify currency formatter & summary output
   assert.equal(formatCurrencyAmount(27800, 'PKR'), 'PKR 27,800');

@@ -338,7 +338,7 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "channel": "Hybrid / Centre",
     "accentHex": "#1D3557",
     "heroPromise": "Precision GOV.UK Standard Visitor Visa drafting, bank-to-salary reconciliation, sponsor paperwork auditing, and VFS Global biometric prep for Pakistani applicants.",
-    "indicativeFeeLabel": "~£127 govt fee",
+    "indicativeFeeLabel": "~£135 govt fee",
     "indicativeProcessing": "15–21 working days (Standard UKVI)",
     "facts": {
       "visaType": "UK Standard Visitor Visa (Tourism / Family / Business)",
@@ -356,7 +356,7 @@ export const DESTINATION_SUMMARIES: readonly DestinationSummary[] = [
     "channel": "Hybrid / Centre",
     "accentHex": "#1B5E63",
     "heroPromise": "ImmiAccount Subclass 600 Visitor Visa filing, Genuine Temporary Entrant documentation, financial audit, and VFS Global biometrics preparation from Pakistan.",
-    "indicativeFeeLabel": "~AUD 200 govt fee",
+    "indicativeFeeLabel": "~AUD 250 govt fee",
     "indicativeProcessing": "3–6 weeks via ImmiAccount",
     "facts": {
       "visaType": "Visitor Visa (Subclass 600 · Tourist / Sponsored Family / Business)",

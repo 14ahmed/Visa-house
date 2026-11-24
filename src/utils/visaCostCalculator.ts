@@ -269,32 +269,33 @@ const FEE_SCHEDULES: Record<string, DestinationFeeSchedule> = {
   // UK & Oceania
   uk: {
     currency: 'GBP',
-    embassyFeeByType: { tourist: 127, business: 127, family_visit: 127, student: 524, transit: 35 },
+    embassyFeeByType: { tourist: 135, business: 135, family_visit: 135, student: 558, transit: 35 },
     centreFeePkr: 9500,
     centreProviderLabel: 'VFS Global UK Visa Application Centre (Islamabad · Lahore · Karachi · Mirpur)',
     baseServiceFeePkr: 29000,
     processingWindowEstimate: '15–21 working days (Standard UKVI)',
     specialNote:
-      '6-month Standard Visitor (£127) and Student (£524) per current UKVI tariffs; UK Student applicants also pay the Immigration Health Surcharge (IHS).',
+      '6-month Standard Visitor (£135) and Student (£558) per official GOV.UK tariffs; UK Student applicants also pay the Immigration Health Surcharge (IHS).',
   },
   australia: {
     currency: 'AUD',
-    embassyFeeByType: { tourist: 200, business: 200, family_visit: 200, student: 2000, transit: 0 },
+    embassyFeeByType: { tourist: 250, business: 250, family_visit: 250, student: 2500, transit: 0 },
     centreFeePkr: 10500,
     centreProviderLabel: 'VFS Global Australia Biometrics Collection Centre',
     baseServiceFeePkr: 30000,
     processingWindowEstimate: '3–6 weeks via ImmiAccount',
     specialNote:
-      'Subclass 600 Visitor Visa (AUD 200) and Subclass 500 Student (AUD 2,000) online via ImmiAccount plus mandatory in-person biometrics in Pakistan.',
+      'Subclass 600 Visitor Visa (AUD 250) and Subclass 500 Student (AUD 2,500) online via ImmiAccount plus mandatory in-person biometrics in Pakistan.',
   },
   'new-zealand': {
     currency: 'NZD',
-    embassyFeeByType: { tourist: 441, business: 441, family_visit: 441, student: 750, transit: 235 },
+    embassyFeeByType: { tourist: 441, business: 441, family_visit: 441, student: 850, transit: 235 },
     centreFeePkr: 6000,
     centreProviderLabel: 'Immigration New Zealand Online Portal / VAC Passport Check',
     baseServiceFeePkr: 27500,
     processingWindowEstimate: '4–7 weeks via INZ Online',
-    specialNote: 'Visitor fee includes NZD 341 visa application charge plus NZD 100 International Visitor Conservation & Tourism Levy (IVL).',
+    specialNote:
+      'Visitor fee (NZD 441) combines NZD 300 application fee + NZD 41 immigration levy + NZD 100 IVL; Fee-Paying Student baseline is NZD 850 per Immigration New Zealand.',
   },
 
   // Schengen States + 15 Schengen countries

@@ -40,6 +40,8 @@ interface SchengenSlotAvailabilityProps {
   className?: string;
 }
 
+const INITIAL_FEED_ISO = '2026-11-23T09:00:00Z';
+
 const STATUS_STYLE: Record<
   SlotStatus,
   {
@@ -79,10 +81,16 @@ export function SchengenSlotAvailability({
   const resolvedEyebrow = eyebrow ?? t.schengenSlots.eyebrow;
   const resolvedHeading = heading ?? t.schengenSlots.heading;
   const resolvedSubcopy = subcopy ?? t.schengenSlots.subcopy;
-  const [feedState, setFeedState] = useState(() => createInitialSchengenSlotFeed());
+  const [feedState, setFeedState] = useState(() => createInitialSchengenSlotFeed(INITIAL_FEED_ISO));
+  const [hydrated, setHydrated] = useState(false);
   const [isStreaming, setIsStreaming] = useState(true);
   const [cityFilter, setCityFilter] = useState<SchengenCityId>('all');
   const [statusFilter, setStatusFilter] = useState<SlotStatus | 'all'>('all');
+
+  useEffect(() => {
+    setHydrated(true);
+    setFeedState(createInitialSchengenSlotFeed());
+  }, []);
 
   useEffect(() => {
     if (!isStreaming) return undefined;
@@ -168,7 +176,7 @@ export function SchengenSlotAvailability({
             <span>
               {t.schengenSlots.lastSync}{' '}
               <strong className="font-latin-mono text-ink font-medium">
-                {formatFeedClock(feedState.lastPolledAt)}
+                {hydrated ? formatFeedClock(feedState.lastPolledAt) : '--:--:--'}
               </strong>
             </span>
             <span aria-hidden="true">·</span>
@@ -379,7 +387,7 @@ export function SchengenSlotAvailability({
                     </div>
                     <span className="font-latin-mono text-[11px] text-ink-muted tabular-nums shrink-0">
                       <strong className="font-semibold text-ink">{entry.isoCode}</strong> ·{' '}
-                      {formatFeedClock(entry.lastUpdatedAt)}
+                      {hydrated ? formatFeedClock(entry.lastUpdatedAt) : '--:--:--'}
                     </span>
                   </div>
 
@@ -470,7 +478,7 @@ export function SchengenSlotAvailability({
                 className="flex items-baseline gap-2.5 py-1 border-b border-rule/50 last:border-b-0"
               >
                 <span className="font-latin-mono text-[11px] text-ink-muted tabular-nums shrink-0">
-                  {formatFeedClock(event.timestamp)}
+                  {hydrated ? formatFeedClock(event.timestamp) : '--:--:--'}
                 </span>
                 <span className="font-latin-mono text-[11px] font-semibold text-visa-green shrink-0">
                   {event.isoCode}

@@ -933,7 +933,7 @@ export function InteractiveVisaGlobe({
                         strokeWidth={isSelected ? 1.5 : 1.2}
                       />
                       {isSelected && (
-                        <g>
+                        <g aria-hidden="true">
                           <rect
                             x={badgeX}
                             y={y - 10}

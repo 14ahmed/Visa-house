@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { lazy, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
@@ -9,7 +9,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/formatters';
 import { buildFaqSchema, buildHomeSchemas } from '../utils/seo';
 import { ClientTestimonial } from '../components/ClientTestimonial';
-import { DocumentChecklistLibrary } from '../components/DocumentChecklistLibrary';
 import { HeroSection } from '../components/HeroSection';
 import { LazyInteractiveVisaGlobe as InteractiveVisaGlobe } from '../components/LazyInteractiveVisaGlobe';
 import { Layout } from '../components/Layout';
@@ -17,15 +16,36 @@ import { LeadForm } from '../components/LeadForm';
 import { PakistaniVisaFaqSection } from '../components/PakistaniVisaFaqSection';
 import { PostageStamp } from '../components/PostageStamp';
 import { RubberStamp } from '../components/RubberStamp';
-import { SchengenSlotAvailability } from '../components/SchengenSlotAvailability';
 import { SeoHead } from '../components/SeoHead';
-import { TravelInsuranceAdvisor } from '../components/TravelInsuranceAdvisor';
-import { TravelReadinessGuide } from '../components/TravelReadinessGuide';
-import { VisaCostCalculator } from '../components/VisaCostCalculator';
-import { VisaNewsAlerts } from '../components/VisaNewsAlerts';
-import { VisaPhotoRequirements } from '../components/VisaPhotoRequirements';
-import { VisaStatusTracker } from '../components/VisaStatusTracker';
-import { WorldVisaHub } from '../components/WorldVisaHub';
+import { ViewportLazyWidget } from '../components/ViewportLazyWidget';
+
+const LazyDocumentChecklistLibrary = lazy(async () => ({
+  default: (await import('../components/DocumentChecklistLibrary')).DocumentChecklistLibrary,
+}));
+const LazySchengenSlotAvailability = lazy(async () => ({
+  default: (await import('../components/SchengenSlotAvailability')).SchengenSlotAvailability,
+}));
+const LazyTravelInsuranceAdvisor = lazy(async () => ({
+  default: (await import('../components/TravelInsuranceAdvisor')).TravelInsuranceAdvisor,
+}));
+const LazyTravelReadinessGuide = lazy(async () => ({
+  default: (await import('../components/TravelReadinessGuide')).TravelReadinessGuide,
+}));
+const LazyVisaCostCalculator = lazy(async () => ({
+  default: (await import('../components/VisaCostCalculator')).VisaCostCalculator,
+}));
+const LazyVisaNewsAlerts = lazy(async () => ({
+  default: (await import('../components/VisaNewsAlerts')).VisaNewsAlerts,
+}));
+const LazyVisaPhotoRequirements = lazy(async () => ({
+  default: (await import('../components/VisaPhotoRequirements')).VisaPhotoRequirements,
+}));
+const LazyVisaStatusTracker = lazy(async () => ({
+  default: (await import('../components/VisaStatusTracker')).VisaStatusTracker,
+}));
+const LazyWorldVisaHub = lazy(async () => ({
+  default: (await import('../components/WorldVisaHub')).WorldVisaHub,
+}));
 
 const TOP_PAKISTAN_SLUGS = [
   'turkey',
@@ -221,56 +241,134 @@ export function HomePage() {
       </section>
 
       {/* NO. 02: INTERACTIVE 3D D3.JS GLOBE + DOCUMENT CHECKLIST PDF BUILDER + VISA PHOTO GUIDE */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule space-y-10 cv-auto-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule space-y-10">
         <InteractiveVisaGlobe
           id="visa-globe"
           selectedChecklistId={checklistDestinationId}
           onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
           checklistAnchorId="document-checklist"
         />
-        <div className="no-print cv-auto">
-          <WorldVisaHub
+        <div className="no-print">
+          <ViewportLazyWidget
             id="world-visa-hub"
-            onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
-            checklistAnchorId="document-checklist"
-          />
+            eyebrow={isUrdu ? 'گلوبل ٹائم لائنز' : 'Global Turnaround Index'}
+            heading={
+              isUrdu
+                ? '42 ممالک کی پروسیسنگ رفتار اور متبادل راستے'
+                : 'World Visa Hub: Processing Times Across 42 Countries'
+            }
+            description={
+              isUrdu
+                ? 'خطے کے لحاظ سے پروسیسنگ وقت کا موازنہ کریں اور تیز تر ویزا راستے دیکھیں۔'
+                : 'Compare regional visa processing timelines and discover faster e-Visa alternatives for Pakistani travellers.'
+            }
+            buttonLabel={isUrdu ? 'گلوبل ویزا ہب کھولیں' : 'Open Global Visa Hub'}
+            minHeightClass="min-h-[260px]"
+          >
+            {() => (
+              <LazyWorldVisaHub
+                id="world-visa-hub"
+                onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
+                checklistAnchorId="document-checklist"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
-        <div className="cv-auto">
-          <DocumentChecklistLibrary
-            id="document-checklist"
-            selectedDestinationId={checklistDestinationId}
-            onDestinationChange={setChecklistDestinationId}
-            sectionNumber={t.home.no02ChecklistEyebrow}
-          />
-        </div>
-        <div className="no-print cv-auto">
-          <VisaPhotoRequirements
+        <ViewportLazyWidget
+          id="document-checklist"
+          eyebrow={t.home.no02ChecklistEyebrow}
+          heading={isUrdu ? 'دستاویز چیک لسٹ اور PDF بلڈر' : 'Interactive Document Checklist & PDF Builder'}
+          description={
+            isUrdu
+              ? 'اپنے سفر کے مقصد کے مطابق مکمل دستاویزات منتخب کریں اور A4 چیک لسٹ ڈاؤن لوڈ کریں۔'
+              : 'Build a tailored embassy document checklist by country and travel purpose, and download a formatted A4 PDF.'
+          }
+          buttonLabel={isUrdu ? 'چیک لسٹ بلڈر کھولیں' : 'Open Checklist Builder'}
+          minHeightClass="min-h-[300px]"
+        >
+          {() => (
+            <LazyDocumentChecklistLibrary
+              id="document-checklist"
+              selectedDestinationId={checklistDestinationId}
+              onDestinationChange={setChecklistDestinationId}
+              sectionNumber={t.home.no02ChecklistEyebrow}
+            />
+          )}
+        </ViewportLazyWidget>
+        <div className="no-print">
+          <ViewportLazyWidget
             id="photo-requirements"
-            headingAs="h3"
             eyebrow={t.home.no02PhotoEyebrow}
             heading={t.home.no02PhotoHeading}
-          />
+            description={
+              isUrdu
+                ? 'شینگن، برطانیہ، امریکہ اور ای ویزا بایومیٹرک تصویر کے سائز اور بیک گراؤنڈ معیار دیکھیں۔'
+                : 'Embassy biometric photo dimensions, background rules, and common studio errors for Schengen, UK, USA, and e-Visa.'
+            }
+            buttonLabel={isUrdu ? 'تصویر گائیڈ کھولیں' : 'Open Photo Guide'}
+            minHeightClass="min-h-[240px]"
+          >
+            {() => (
+              <LazyVisaPhotoRequirements
+                id="photo-requirements"
+                headingAs="h3"
+                eyebrow={t.home.no02PhotoEyebrow}
+                heading={t.home.no02PhotoHeading}
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
       </div>
 
       {/* NO. 03: INTERACTIVE VISA COST CALCULATOR */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
-        <VisaCostCalculator
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <ViewportLazyWidget
           id="cost-calculator"
-          sectionNumber={t.home.no03CalcEyebrow}
-        />
+          eyebrow={t.home.no03CalcEyebrow}
+          heading={isUrdu ? 'ویزا اخراجات اور PKR فیس کیلکولیٹر' : 'Interactive Visa Cost & PKR Fee Calculator'}
+          description={
+            isUrdu
+              ? 'ملک، درخواست دہندگان اور اضافی سروسز منتخب کر کے مکمل لاگت کا تخمینہ دیکھیں۔'
+              : 'Estimate total visa costs in PKR across destinations, applicant counts, and optional support services.'
+          }
+          buttonLabel={isUrdu ? 'کیلکولیٹر کھولیں' : 'Open Cost Calculator'}
+          minHeightClass="min-h-[280px]"
+          eagerMatchSearch="country="
+        >
+          {() => (
+            <LazyVisaCostCalculator
+              id="cost-calculator"
+              sectionNumber={t.home.no03CalcEyebrow}
+            />
+          )}
+        </ViewportLazyWidget>
       </div>
 
       {/* NO. 04: LIVE VISA STATUS TRACKER (PAPER-CARD-TEXTURE + SSE) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
-        <VisaStatusTracker
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <ViewportLazyWidget
           id="track-status"
           eyebrow={t.home.no04TrackerEyebrow}
-        />
+          heading={isUrdu ? 'اپنی ویزا درخواست کا اسٹیٹس ٹریک کریں' : 'Live Visa Application Status Tracker'}
+          description={
+            isUrdu
+              ? 'اپنا ریفرنس نمبر درج کر کے فائل کی تیاری، اپائنٹمنٹ اور سفارتخانے کے مراحل دیکھیں۔'
+              : 'Enter your Visahouse reference number to inspect dossier audit, appointment, and embassy tracking stages.'
+          }
+          buttonLabel={isUrdu ? 'اسٹیٹس ٹریکر کھولیں' : 'Open Status Tracker'}
+          minHeightClass="min-h-[260px]"
+        >
+          {() => (
+            <LazyVisaStatusTracker
+              id="track-status"
+              eyebrow={t.home.no04TrackerEyebrow}
+            />
+          )}
+        </ViewportLazyWidget>
       </div>
 
       {/* NO. 05: HOW VISAHOUSE WORKS (4 STEPS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4">
             <p className="mono-label text-ink-muted">{t.home.no05Eyebrow}</p>
@@ -322,7 +420,7 @@ export function HomePage() {
       </section>
 
       {/* NO. 06: WHY VISAHOUSE (PROCESS PROMISES — ZERO FAKE STATS OR REVIEWS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto-sm">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
             <p className="mono-label text-ink-muted">{t.home.no06Eyebrow}</p>
@@ -354,7 +452,7 @@ export function HomePage() {
       </section>
 
       {/* NO. 07: SCHENGEN APPOINTMENTS + TRAVEL INSURANCE EDITORIAL BLOCKS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto-lg">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
         <div className="no-print mb-8">
           <p className="mono-label text-ink-muted">{t.home.no07Eyebrow}</p>
           <h2 className="font-display text-3xl sm:text-4xl font-medium text-ink mt-2">
@@ -449,35 +547,74 @@ export function HomePage() {
         </div>
 
         {/* Simulated Live Schengen Appointment Slot Availability Indicator */}
-        <div className="no-print mt-8 cv-auto">
-          <SchengenSlotAvailability
+        <div className="no-print mt-8">
+          <ViewportLazyWidget
             id="schengen-slots"
-            inquiryHref="/schengen-appointments#apply"
-          />
+            eyebrow={t.schengenSlots.eyebrow}
+            heading={t.schengenSlots.heading}
+            description={t.schengenSlots.subcopy}
+            buttonLabel={isUrdu ? 'اپائنٹمنٹ انڈیکیٹر کھولیں' : 'Open Appointment Indicator'}
+            minHeightClass="min-h-[260px]"
+          >
+            {() => (
+              <LazySchengenSlotAvailability
+                id="schengen-slots"
+                inquiryHref="/schengen-appointments#apply"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
 
         {/* Interactive Travel Insurance Advisor */}
-        <div className="no-print mt-8 cv-auto">
-          <TravelInsuranceAdvisor
+        <div className="no-print mt-8">
+          <ViewportLazyWidget
             id="insurance-advisor"
-            headingAs="h3"
-            inquiryHref="/travel-insurance#apply"
-          />
+            eyebrow={t.home.insuranceCardEyebrow}
+            heading={isUrdu ? 'ٹریول انشورنس پلان ایڈوائزر' : 'Interactive Travel Insurance Advisor'}
+            description={t.home.insuranceCardBody}
+            buttonLabel={isUrdu ? 'انشورنس ایڈوائزر کھولیں' : 'Open Insurance Advisor'}
+            minHeightClass="min-h-[260px]"
+          >
+            {() => (
+              <LazyTravelInsuranceAdvisor
+                id="insurance-advisor"
+                headingAs="h3"
+                inquiryHref="/travel-insurance#apply"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
 
         {/* Structured Archival Travel Readiness Guide (All 38 Destinations) */}
-        <div className="mt-8 cv-auto">
-          <TravelReadinessGuide
+        <div className="mt-8">
+          <ViewportLazyWidget
             id="travel-readiness"
-            headingAs="h3"
-          />
+            eyebrow={isUrdu ? 'سفر سے پہلے کی تیاری' : 'Country Entry & Travel Guide'}
+            heading={
+              isUrdu
+                ? 'پاور پلگ، سم کارڈ اور مقامی سفری ہدایات'
+                : 'Travel Readiness Guide: Plugs, SIM Cards & Local Etiquette'
+            }
+            description={
+              isUrdu
+                ? '42 ممالک کے لیے بجلی کے ساکٹ، مقامی سم، کرنسی اور سفری احتیاط دیکھیں۔'
+                : 'Essential arrival notes covering power adapters, local SIM options, and entry etiquette for all 42 destinations.'
+            }
+            buttonLabel={isUrdu ? 'ٹریول گائیڈ کھولیں' : 'Open Travel Readiness Guide'}
+            minHeightClass="min-h-[260px]"
+          >
+            {() => (
+              <LazyTravelReadinessGuide
+                id="travel-readiness"
+                headingAs="h3"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
       </section>
 
       {/* NO. 08: CLIENT TESTIMONIALS / VISA SUCCESS STORIES */}
-      <div className="cv-auto-sm">
-        <ClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />
-      </div>
+      <ClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />
 
       {/* NO. 09: TIMELINES & DOCUMENT REQUIREMENTS FAQ (FRAUNCES HEADINGS) */}
       <PakistaniVisaFaqSection
@@ -485,19 +622,30 @@ export function HomePage() {
         eyebrow={t.home.no09FaqEyebrow}
         heading={t.home.no09FaqHeading}
         description={t.home.no09FaqDesc}
-        className="border-b border-rule cv-auto"
+        className="border-b border-rule"
       />
 
       {/* NO. 10: VISA NEWS & POLICY ALERTS */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
-        <VisaNewsAlerts
-          sectionNumber={t.home.no10AlertsEyebrow}
-          sourcePath="/"
-        />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <ViewportLazyWidget
+          id="visa-alerts"
+          eyebrow={t.home.no10AlertsEyebrow}
+          heading={t.alerts.heading}
+          description={t.alerts.subcopy}
+          buttonLabel={isUrdu ? 'ویزا الرٹس کھولیں' : 'Open Visa Policy Alerts'}
+          minHeightClass="min-h-[240px]"
+        >
+          {() => (
+            <LazyVisaNewsAlerts
+              sectionNumber={t.home.no10AlertsEyebrow}
+              sourcePath="/"
+            />
+          )}
+        </ViewportLazyWidget>
       </div>
 
       {/* NO. 11: CLOSING LEAD FORM */}
-      <section id="apply" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 scroll-mt-24 cv-auto">
+      <section id="apply" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 scroll-mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4">
             <p className="mono-label text-ink-muted">{t.home.no11Eyebrow}</p>

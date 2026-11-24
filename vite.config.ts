@@ -2,9 +2,10 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
-import {defineConfig} from 'vite';
+import {visualizer} from 'rollup-plugin-visualizer';
+import {defineConfig, type PluginOption} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({mode, isSsrBuild}) => {
   return {
     plugins: [
       react(),
@@ -27,6 +28,17 @@ export default defineConfig(() => {
           }
         },
       },
+      ...(mode === 'analyze' && !isSsrBuild
+        ? [
+            visualizer({
+              filename: 'dist/stats.html',
+              template: 'treemap',
+              gzipSize: true,
+              brotliSize: true,
+              open: process.env.CI !== 'true',
+            }) as PluginOption,
+          ]
+        : []),
     ],
     resolve: {
       alias: {

@@ -237,3 +237,18 @@ html[lang="ur"] .highlighter-mark {
   unicode-bidi: isolate;
 }
 
+@media screen {
+  .cv-auto-sm {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 480px;
+  }
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 760px;
+  }
+  .cv-auto-lg {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1200px;
+  }
+}
+

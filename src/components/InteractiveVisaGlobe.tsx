@@ -946,6 +946,8 @@ export function InteractiveVisaGlobe({
                             x={badgeX + 17}
                             y={y + 2.5}
                             textAnchor="middle"
+                            aria-hidden="true"
+                            role="presentation"
                             className="font-latin-mono"
                             fontSize="9.5"
                             fontWeight="600"

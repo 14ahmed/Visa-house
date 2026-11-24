@@ -221,27 +221,29 @@ export function HomePage() {
       </section>
 
       {/* NO. 02: INTERACTIVE 3D D3.JS GLOBE + DOCUMENT CHECKLIST PDF BUILDER + VISA PHOTO GUIDE */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule space-y-10 cv-auto-lg">
         <InteractiveVisaGlobe
           id="visa-globe"
           selectedChecklistId={checklistDestinationId}
           onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
           checklistAnchorId="document-checklist"
         />
-        <div className="no-print">
+        <div className="no-print cv-auto">
           <WorldVisaHub
             id="world-visa-hub"
             onSelectDestination={(checklistId) => setChecklistDestinationId(checklistId)}
             checklistAnchorId="document-checklist"
           />
         </div>
-        <DocumentChecklistLibrary
-          id="document-checklist"
-          selectedDestinationId={checklistDestinationId}
-          onDestinationChange={setChecklistDestinationId}
-          sectionNumber={t.home.no02ChecklistEyebrow}
-        />
-        <div className="no-print">
+        <div className="cv-auto">
+          <DocumentChecklistLibrary
+            id="document-checklist"
+            selectedDestinationId={checklistDestinationId}
+            onDestinationChange={setChecklistDestinationId}
+            sectionNumber={t.home.no02ChecklistEyebrow}
+          />
+        </div>
+        <div className="no-print cv-auto">
           <VisaPhotoRequirements
             id="photo-requirements"
             headingAs="h3"
@@ -252,7 +254,7 @@ export function HomePage() {
       </div>
 
       {/* NO. 03: INTERACTIVE VISA COST CALCULATOR */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
         <VisaCostCalculator
           id="cost-calculator"
           sectionNumber={t.home.no03CalcEyebrow}
@@ -260,7 +262,7 @@ export function HomePage() {
       </div>
 
       {/* NO. 04: LIVE VISA STATUS TRACKER (PAPER-CARD-TEXTURE + SSE) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
         <VisaStatusTracker
           id="track-status"
           eyebrow={t.home.no04TrackerEyebrow}
@@ -268,7 +270,7 @@ export function HomePage() {
       </div>
 
       {/* NO. 05: HOW VISAHOUSE WORKS (4 STEPS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4">
             <p className="mono-label text-ink-muted">{t.home.no05Eyebrow}</p>
@@ -320,7 +322,7 @@ export function HomePage() {
       </section>
 
       {/* NO. 06: WHY VISAHOUSE (PROCESS PROMISES — ZERO FAKE STATS OR REVIEWS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto-sm">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
             <p className="mono-label text-ink-muted">{t.home.no06Eyebrow}</p>
@@ -352,7 +354,7 @@ export function HomePage() {
       </section>
 
       {/* NO. 07: SCHENGEN APPOINTMENTS + TRAVEL INSURANCE EDITORIAL BLOCKS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto-lg">
         <div className="no-print mb-8">
           <p className="mono-label text-ink-muted">{t.home.no07Eyebrow}</p>
           <h2 className="font-display text-3xl sm:text-4xl font-medium text-ink mt-2">
@@ -447,7 +449,7 @@ export function HomePage() {
         </div>
 
         {/* Simulated Live Schengen Appointment Slot Availability Indicator */}
-        <div className="no-print mt-8">
+        <div className="no-print mt-8 cv-auto">
           <SchengenSlotAvailability
             id="schengen-slots"
             inquiryHref="/schengen-appointments#apply"
@@ -455,7 +457,7 @@ export function HomePage() {
         </div>
 
         {/* Interactive Travel Insurance Advisor */}
-        <div className="no-print mt-8">
+        <div className="no-print mt-8 cv-auto">
           <TravelInsuranceAdvisor
             id="insurance-advisor"
             headingAs="h3"
@@ -464,7 +466,7 @@ export function HomePage() {
         </div>
 
         {/* Structured Archival Travel Readiness Guide (All 38 Destinations) */}
-        <div className="mt-8">
+        <div className="mt-8 cv-auto">
           <TravelReadinessGuide
             id="travel-readiness"
             headingAs="h3"
@@ -473,7 +475,9 @@ export function HomePage() {
       </section>
 
       {/* NO. 08: CLIENT TESTIMONIALS / VISA SUCCESS STORIES */}
-      <ClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />
+      <div className="cv-auto-sm">
+        <ClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />
+      </div>
 
       {/* NO. 09: TIMELINES & DOCUMENT REQUIREMENTS FAQ (FRAUNCES HEADINGS) */}
       <PakistaniVisaFaqSection
@@ -481,11 +485,11 @@ export function HomePage() {
         eyebrow={t.home.no09FaqEyebrow}
         heading={t.home.no09FaqHeading}
         description={t.home.no09FaqDesc}
-        className="border-b border-rule"
+        className="border-b border-rule cv-auto"
       />
 
       {/* NO. 10: VISA NEWS & POLICY ALERTS */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule cv-auto">
         <VisaNewsAlerts
           sectionNumber={t.home.no10AlertsEyebrow}
           sourcePath="/"
@@ -493,7 +497,7 @@ export function HomePage() {
       </div>
 
       {/* NO. 11: CLOSING LEAD FORM */}
-      <section id="apply" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 scroll-mt-24">
+      <section id="apply" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 scroll-mt-24 cv-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4">
             <p className="mono-label text-ink-muted">{t.home.no11Eyebrow}</p>

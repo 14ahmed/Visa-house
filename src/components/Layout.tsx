@@ -47,7 +47,7 @@ export function Layout({
       </main>
 
       {/* Editorial Full-Sitemap Footer */}
-      <footer className="mt-20 rule-double-top bg-paper-deep/55">
+      <footer className="mt-20 rule-double-top bg-paper-deep/55 cv-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-rule">
             {/* Brand column */}

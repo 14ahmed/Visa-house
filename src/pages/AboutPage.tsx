@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { EDITORIAL_IMAGES } from '../config/site';
+import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import type { BreadcrumbItem } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -92,6 +92,65 @@ export function AboutPage() {
       <ClientTestimonial
         eyebrow={isUrdu ? 'نمبر 02 · ویزا کامیابی کی کہانیاں' : 'No. 02 · Visa Success Stories'}
       />
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule">
+        <p className="mono-label text-ink-muted">
+          {isUrdu ? 'دائرہ کار، شفاف شناخت اور ادائیگی کے اصول' : 'No. 03 · Scope of Practice & Governance'}
+        </p>
+        <h2 className="font-display text-3xl sm:text-4xl font-medium text-ink mt-2 mb-8">
+          {isUrdu
+            ? 'ہماری خدمات کی قانونی حدود اور ادائیگی تحفظ'
+            : 'Consultancy Scope, Operator Disclosure & Payment Safety'}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article className="bg-slip border border-rule rounded-[3px] p-6 space-y-2">
+            <p className="mono-label text-visa-green">
+              {isUrdu ? 'ڈیسک شناخت' : 'Operator & Network'}
+            </p>
+            <h3 className="font-display text-xl font-medium text-ink">
+              {SITE_CONFIG.brandName} · {SITE_CONFIG.domain}
+            </h3>
+            <p className="text-sm text-ink-body leading-relaxed">
+              {SITE_CONFIG.legal.operatorDisclosure}. {SITE_CONFIG.legal.serviceCities}.
+            </p>
+          </article>
+
+          <article className="bg-slip border border-rule rounded-[3px] p-6 space-y-2">
+            <p className="mono-label text-visa-green">
+              {isUrdu ? 'خدمات کی حدود' : 'Scope of Practice'}
+            </p>
+            <h3 className="font-display text-xl font-medium text-ink">
+              {isUrdu ? 'صرف ایڈمنسٹریٹو فائل تیاری' : 'Administrative Visitor & Business Filing'}
+            </h3>
+            <p className="text-sm text-ink-body leading-relaxed">
+              {isUrdu
+                ? 'ویزاہاؤس صرف سیاحتی، فیملی اور بزنس ویزا دستاویزات کی جانچ اور فارم تیاری فراہم کرتا ہے۔ ہم کینیڈا (CICC)، آسٹریلیا (MARA)، برطانیہ (IAA/OISC) یا امریکی امیگریشن اٹارنی جیسی قانونی نمائندگی فراہم نہیں کرتے۔'
+                : 'We provide visitor, business, and tourist dossier audits, form preparation, and official-portal scheduling guidance—not regulated legal representation for asylum, appeals, or permanent residency under CICC (Canada), MARA (Australia), IAA/OISC (UK), or U.S. immigration law.'}
+            </p>
+          </article>
+
+          <article className="bg-slip border border-rule rounded-[3px] p-6 space-y-2">
+            <p className="mono-label text-stamp-red">
+              {isUrdu ? 'ادائیگی اور دستاویز تحفظ' : 'Official Payment & Retention'}
+            </p>
+            <h3 className="font-display text-xl font-medium text-ink">
+              {isUrdu ? 'صرف آفیشل اکاؤنٹ میں ادائیگی' : 'Verified Invoice Accounts Only'}
+            </h3>
+            <p className="text-sm text-ink-body leading-relaxed">
+              {SITE_CONFIG.legal.paymentSafetyNotice}
+            </p>
+            <div className="pt-2 flex flex-wrap gap-4 text-xs">
+              <Link to="/terms" className="text-visa-green hover:underline underline-offset-4">
+                {isUrdu ? 'شرائطِ خدمت اور ریفنڈ پالیسی →' : 'Terms & Refund Policy →'}
+              </Link>
+              <Link to="/privacy" className="text-visa-green hover:underline underline-offset-4">
+                {isUrdu ? 'پرائیویسی پالیسی →' : 'Privacy & Purge Policy →'}
+              </Link>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <div className="bg-slip border border-ink/70 p-6 sm:p-8 rounded-[3px] flex flex-col md:flex-row md:items-center justify-between gap-6">

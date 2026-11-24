@@ -126,6 +126,9 @@ export interface LeadFormInput {
   destination: string;
   passportNationality: string;
   travelMonth: string;
+  applicantProfile?: string;
+  travelHistory?: string;
+  priorRefusal?: string;
   notes: string;
   website?: string; // honeypot field
   selectedPackage?: string;

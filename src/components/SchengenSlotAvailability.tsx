@@ -12,6 +12,7 @@ import {
   RefreshCw,
   RotateCcw,
 } from 'lucide-react';
+import { SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import {
   SCHENGEN_CITY_OPTIONS,
@@ -83,7 +84,7 @@ export function SchengenSlotAvailability({
   const resolvedSubcopy = subcopy ?? t.schengenSlots.subcopy;
   const [feedState, setFeedState] = useState(() => createInitialSchengenSlotFeed(INITIAL_FEED_ISO));
   const [hydrated, setHydrated] = useState(false);
-  const [isStreaming, setIsStreaming] = useState(true);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [cityFilter, setCityFilter] = useState<SchengenCityId>('all');
   const [statusFilter, setStatusFilter] = useState<SlotStatus | 'all'>('all');
 
@@ -136,24 +137,30 @@ export function SchengenSlotAvailability({
       data-tick-count={feedState.tickCount}
       className={`paper-card-texture border border-ink/75 rounded-[3px] p-5 sm:p-7 lg:p-8 scroll-mt-24 ${className}`}
     >
-      {/* Header & Live Feed Control Strip */}
+      {/* Header & Indicative Queue Guide Control Strip */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 pb-6 border-b border-rule">
         <div className="max-w-2xl">
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mono-label text-ink-muted">
             <span
               className={`inline-flex items-center gap-1.5 ${
-                isStreaming ? 'text-visa-green' : 'text-ink-muted'
+                isStreaming ? 'text-visa-green' : 'text-[#8C5B00]'
               }`}
             >
               <span
                 className={`inline-block h-2 w-2 rounded-full ${
                   isStreaming
                     ? 'bg-visa-green animate-pulse motion-reduce:animate-none'
-                    : 'bg-ink-muted/60'
+                    : 'bg-[#8C5B00]'
                 }`}
                 aria-hidden="true"
               />
-              <span>{isStreaming ? t.schengenSlots.feedLive : t.schengenSlots.feedPaused}</span>
+              <span>
+                {isStreaming
+                  ? t.schengenSlots.feedLive
+                  : isUrdu
+                    ? 'موسمی قطار کا تخمینی جائزہ · منصوبہ بندی سمولیشن (لائیو VFS/BLS فیڈ نہیں)'
+                    : 'Indicative Seasonal Queue Guide · Planning Simulation (Not Live VFS/BLS Feed)'}
+              </span>
             </span>
             <span aria-hidden="true">·</span>
             <span>{resolvedEyebrow}</span>
@@ -174,6 +181,13 @@ export function SchengenSlotAvailability({
             aria-live="polite"
           >
             <span>
+              {isUrdu ? 'ڈیسک نظرثانی:' : 'Desk review:'}{' '}
+              <strong className="font-latin-mono text-ink font-medium">
+                {SITE_CONFIG.guideReviewDateLabel}
+              </strong>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span>
               {t.schengenSlots.lastSync}{' '}
               <strong className="font-latin-mono text-ink font-medium">
                 {hydrated ? formatFeedClock(feedState.lastPolledAt) : '--:--:--'}
@@ -192,6 +206,19 @@ export function SchengenSlotAvailability({
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
+            <a
+              href={buildWhatsAppUrl(
+                'current VFS / BLS Schengen appointment windows',
+                'Hello Visahouse, please confirm the real current VFS Global / BLS International Schengen appointment availability for my target destination.',
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 min-h-[42px] px-3.5 py-2 border border-visa-green/60 bg-slip text-visa-green text-xs sm:text-sm font-medium rounded-[2px] hover:bg-visa-green hover:text-slip transition-colors whitespace-nowrap"
+            >
+              <span>{isUrdu ? 'لائیو سلاٹس واٹس ایپ پر چیک کریں' : 'Verify Real Slots on WhatsApp'}</span>
+              <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            </a>
+
             <button
               type="button"
               onClick={() => setIsStreaming((prev) => !prev)}

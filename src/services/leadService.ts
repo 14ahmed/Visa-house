@@ -11,6 +11,7 @@ export interface LeadSubmissionPayload extends LeadFormInput {
 export interface LeadSubmissionResult {
   ok: boolean;
   referenceId: string;
+  deliveredRemotely: boolean;
   message: string;
 }
 
@@ -37,6 +38,7 @@ export async function submitLead(
     return {
       ok: true,
       referenceId: 'VH-RECEIVED',
+      deliveredRemotely: true,
       message: 'Inquiry logged.',
     };
   }
@@ -54,8 +56,16 @@ export async function submitLead(
     .toUpperCase() || 'GEN';
   const suffix = String(Date.now()).slice(-4);
   const referenceId = `VH-${codePrefix}-${suffix}`;
+  const notesSummary = [
+    payload.applicantProfile ? `Profile: ${payload.applicantProfile}` : '',
+    payload.travelHistory ? `Travel History: ${payload.travelHistory}` : '',
+    payload.priorRefusal ? `Prior Refusal: ${payload.priorRefusal}` : '',
+    payload.notes.trim(),
+  ]
+    .filter(Boolean)
+    .join(' | ');
 
-  // Mock lead submission: log captured inquiry data to the console
+  // Log inquiry payload cleanly in development/preview consoles
   console.log('[Visahouse] submitLead:', {
     referenceId,
     name: payload.fullName.trim(),
@@ -63,7 +73,10 @@ export async function submitLead(
     destination: payload.destination.trim(),
     passportNationality: payload.passportNationality.trim(),
     travelMonth: payload.travelMonth.trim(),
-    notes: payload.notes.trim(),
+    applicantProfile: payload.applicantProfile ?? '',
+    travelHistory: payload.travelHistory ?? '',
+    priorRefusal: payload.priorRefusal ?? '',
+    notes: notesSummary,
     sourcePath: payload.sourcePath,
     submittedAt: payload.submittedAt,
   });
@@ -94,7 +107,10 @@ export async function submitLead(
           destination: payload.destination.trim(),
           passportNationality: payload.passportNationality.trim(),
           travelMonth: payload.travelMonth.trim(),
-          notes: payload.notes.trim(),
+          applicantProfile: payload.applicantProfile ?? '',
+          travelHistory: payload.travelHistory ?? '',
+          priorRefusal: payload.priorRefusal ?? '',
+          notes: notesSummary,
           sourcePath: payload.sourcePath,
           submittedAt: payload.submittedAt,
         }),
@@ -108,8 +124,9 @@ export async function submitLead(
   return {
     ok: true,
     referenceId,
+    deliveredRemotely,
     message: deliveredRemotely
-      ? 'Your inquiry has been sent to our desk. A Visahouse consultant will review your travel dates and contact you on WhatsApp with the current document checklist and fee confirmation.'
-      : 'Your reference ID is ready. Tap "Continue on WhatsApp with Reference" below to send your details straight to our visa desk on +92 331 8877655 for the fastest reply.',
+      ? 'Your inquiry has been received by our desk. A Visahouse consultant will review your travel dates and contact you on WhatsApp with the current document checklist and fee confirmation.'
+      : `Reference ID ${referenceId} is generated locally. To ensure our consultants receive your inquiry immediately, tap "Send Reference on WhatsApp" or "Send via Email" below.`,
   };
 }

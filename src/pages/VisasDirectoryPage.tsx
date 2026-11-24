@@ -403,10 +403,19 @@ export function VisasDirectoryPage() {
                   </td>
                   <td className="py-3.5 px-4 text-ink-body">{localizeRegion(dest.region)}</td>
                   <td className="py-3.5 px-4 text-ink-body">{localizeChannel(dest.channel)}</td>
-                  <td className="py-3.5 px-4 text-visa-green font-medium">
-                    {formatRegulatedValue(dest.facts.govtFee) === SITE_CONFIG.confirmFallback
-                      ? t.common.confirmWithTeam
-                      : formatRegulatedValue(dest.facts.govtFee)}
+                  <td className="py-3.5 px-4">
+                    <a
+                      href="#cost-calculator"
+                      className="text-visa-green font-medium hover:underline underline-offset-4 block"
+                    >
+                      {formatRegulatedValue(dest.facts.govtFee) === SITE_CONFIG.confirmFallback
+                        ? dest.indicativeFeeLabel
+                        : formatRegulatedValue(dest.facts.govtFee)}
+                    </a>
+                    <span className="block text-xs text-ink-muted">
+                      {dest.indicativeProcessing} ·{' '}
+                      {isUrdu ? 'لائیو تصدیق ضروری' : 'Indicative · verify live'}
+                    </span>
                   </td>
                 </tr>
               ))}

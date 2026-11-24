@@ -28,7 +28,10 @@ export function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="mt-3 text-sm font-mono text-ink-muted">
-          Entity: {SITE_CONFIG.brandName} ({SITE_CONFIG.domain}) · Contact: {SITE_CONFIG.email}
+          Entity: {SITE_CONFIG.brandName} ({SITE_CONFIG.domain}) · Contact: {SITE_CONFIG.email} · Last Updated: {SITE_CONFIG.legal.legalLastUpdated}
+        </p>
+        <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+          {SITE_CONFIG.legal.operatorDisclosure} · {SITE_CONFIG.legal.serviceCities}
         </p>
 
         <div className="mt-8 pt-8 border-t border-ink/70 space-y-6 text-[15px] text-ink-body leading-relaxed">
@@ -42,7 +45,8 @@ export function PrivacyPage() {
               (such as your name, WhatsApp number, destination country, passport nationality, and
               planned travel month). If you formally engage us to prepare a visa file or insurance
               quote, you may share supporting documents such as passport bio scans, bank statements,
-              CNIC/FRC copies, and employment records strictly for preparing your application.
+              CNIC/FRC copies, FBR tax returns, and employment records strictly for preparing your
+              application.
             </p>
           </section>
 
@@ -72,11 +76,12 @@ export function PrivacyPage() {
 
           <section>
             <h2 className="font-display text-2xl font-medium text-ink mb-2">
-              4. Retention &amp; Deletion Requests
+              4. Document Retention &amp; Deletion Requests
             </h2>
             <p>
-              You may request deletion of passport scans, bank statements, or inquiry messages held
-              by {SITE_CONFIG.brandName} at any time by emailing{' '}
+              {SITE_CONFIG.legal.documentRetentionSummary} You may also request immediate deletion
+              of passport scans, bank statements, tax filings, or inquiry messages held by{' '}
+              {SITE_CONFIG.brandName} at any time by emailing{' '}
               <a href={`mailto:${SITE_CONFIG.email}`} className="text-visa-green underline">
                 {SITE_CONFIG.email}
               </a>{' '}
@@ -124,7 +129,10 @@ export function TermsPage() {
           Terms of Service
         </h1>
         <p className="mt-3 text-sm font-mono text-ink-muted">
-          Entity: {SITE_CONFIG.brandName} ({SITE_CONFIG.domain})
+          Entity: {SITE_CONFIG.brandName} ({SITE_CONFIG.domain}) · Last Updated: {SITE_CONFIG.legal.legalLastUpdated}
+        </p>
+        <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+          {SITE_CONFIG.legal.operatorDisclosure} · {SITE_CONFIG.legal.serviceCities}
         </p>
 
         <div className="mt-8 pt-8 border-t border-ink/70 space-y-6 text-[15px] text-ink-body leading-relaxed">
@@ -134,14 +142,20 @@ export function TermsPage() {
 
           <section>
             <h2 className="font-display text-2xl font-medium text-ink mb-2">
-              1. Nature of Services
+              1. Nature of Services &amp; Scope of Practice
             </h2>
             <p>
-              {SITE_CONFIG.brandName} provides private administrative visa consultancy, document
-              auditing, form preparation, official-channel appointment guidance, and travel
-              insurance quote coordination. We do not issue visas, do not influence consular
-              officers, and never guarantee visa approvals, specific processing durations, or
-              embassy appointment dates.
+              {SITE_CONFIG.brandName} provides private administrative visitor, tourist, and business
+              visa consultancy: document auditing, application form preparation, itinerary checks,
+              official-channel appointment guidance, and travel insurance quote coordination. We do
+              not issue visas, do not influence consular officers, and never guarantee visa
+              approvals, specific processing durations, or embassy appointment dates.
+            </p>
+            <p className="mt-2.5 text-sm text-ink-muted">
+              <strong>Regulated Jurisdiction Boundary:</strong> We do not act as licensed legal
+              counsel or regulated immigration representatives for asylum claims, tribunal appeals,
+              or permanent residency petitions under CICC/RCIC (Canada), MARA (Australia), IAA/OISC
+              (UK), or U.S. immigration attorneys.
             </p>
           </section>
 
@@ -158,19 +172,40 @@ export function TermsPage() {
 
           <section>
             <h2 className="font-display text-2xl font-medium text-ink mb-2">
-              3. Official Fees &amp; Consultancy Charges
+              3. Official Fees, Consultancy Charges &amp; Refund Policy
             </h2>
             <p>
               Government visa fees, authorised visa-centre service charges, courier charges, and
               insurance underwriter premiums are determined by third-party authorities and are
-              typically non-refundable once lodged, regardless of visa outcome. Consultancy service
+              strictly non-refundable once lodged, regardless of visa outcome. Consultancy service
               fees are confirmed in writing prior to work commencement.
             </p>
+            <ul className="mt-3 list-disc ps-5 space-y-1.5 text-sm">
+              <li>
+                <strong>Before document audit begins:</strong> 100% of paid consultancy service fee
+                is refundable upon written cancellation.
+              </li>
+              <li>
+                <strong>After audit / before form drafting or portal upload:</strong> Partial refund
+                minus completed file-review work.
+              </li>
+              <li>
+                <strong>After application drafting or submission:</strong> Consultancy service fee is
+                earned and non-refundable, regardless of consular decision.
+              </li>
+            </ul>
           </section>
 
           <section>
             <h2 className="font-display text-2xl font-medium text-ink mb-2">
-              4. Travel Bookings &amp; Policy Changes
+              4. Official Payment &amp; Anti-Fraud Notice
+            </h2>
+            <p>{SITE_CONFIG.legal.paymentSafetyNotice}</p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl font-medium text-ink mb-2">
+              5. Travel Bookings &amp; Policy Changes
             </h2>
             <p>
               Immigration regulations, entry cards, and fee circulars can change without notice. We

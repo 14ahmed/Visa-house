@@ -877,11 +877,21 @@ test('calculateVisaCost covers all 38 destinations, enforces exact line-item tot
       usaBusiness.addOnsSubtotalPkr,
   );
 
-  // Verify Student vs Tourist fee delta (UK Student £490 vs Visitor £115)
+  // Verify Student vs Tourist fee delta (UK Student £524 vs Visitor £127)
   const ukTourist = calculateVisaCost({ destinationSlug: 'uk', visaTypeId: 'tourist', applicants: 1 });
   const ukStudent = calculateVisaCost({ destinationSlug: 'uk', visaTypeId: 'student', applicants: 1 });
+  assert.ok(ukTourist.officialCurrencyNote.includes('GBP 127'));
+  assert.ok(ukStudent.officialCurrencyNote.includes('GBP 524'));
   assert.ok(ukStudent.embassyPerApplicantPkr > ukTourist.embassyPerApplicantPkr);
   assert.ok(ukStudent.serviceSubtotalPkr > ukTourist.serviceSubtotalPkr);
+  assert.ok(ukTourist.notes.some((n) => /international FX conversion|4–5%/i.test(n)));
+
+  const auTourist = calculateVisaCost({
+    destinationSlug: 'australia',
+    visaTypeId: 'tourist',
+    applicants: 1,
+  });
+  assert.ok(auTourist.officialCurrencyNote.includes('AUD 200'));
 
   // Verify currency formatter & summary output
   assert.equal(formatCurrencyAmount(27800, 'PKR'), 'PKR 27,800');

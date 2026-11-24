@@ -1,6 +1,6 @@
 import { useEffect, useId, useState, type FormEvent } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CheckCircle2, Loader2, MessageCircle } from 'lucide-react';
+import { CheckCircle2, Loader2, Mail, MessageCircle } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { DESTINATION_SUMMARIES as DESTINATIONS } from '../data/destinationIndex';
@@ -58,7 +58,7 @@ export function VisaInquiryForm({
   onSuccess,
   className = '',
 }: VisaInquiryFormProps) {
-  const { t } = useLanguage();
+  const { t, isUrdu } = useLanguage();
   const resolvedEyebrow = eyebrow ?? t.leadForm.eyebrow;
   const resolvedHeading = heading ?? t.leadForm.heading;
   const resolvedSubcopy = subcopy ?? t.leadForm.subcopy;
@@ -73,6 +73,9 @@ export function VisaInquiryForm({
     destination: defaultDestination,
     passportNationality: defaultNationality,
     travelMonth: months[1] ?? 'Flexible / Not Decided Yet',
+    applicantProfile: '',
+    travelHistory: '',
+    priorRefusal: '',
     notes: selectedPackageNote ? `Interested in: ${selectedPackageNote}` : '',
     website: '',
   });
@@ -129,6 +132,7 @@ export function VisaInquiryForm({
       setReceipt({
         ok: true,
         referenceId: 'VH-RECEIVED',
+        deliveredRemotely: true,
         message: 'Inquiry received.',
       });
       return;
@@ -169,14 +173,41 @@ export function VisaInquiryForm({
       destination: defaultDestination,
       passportNationality: defaultNationality,
       travelMonth: months[1] ?? 'Flexible / Not Decided Yet',
+      applicantProfile: '',
+      travelHistory: '',
+      priorRefusal: '',
       notes: '',
       website: '',
     });
   };
 
   if (receipt) {
-    const waSummary = `Hello Visahouse (Ref: ${receipt.referenceId}), my name is ${form.fullName}. I am inquiring about ${form.destination} on a ${form.passportNationality} passport for ${form.travelMonth}.${form.notes ? ` Notes: ${form.notes}` : ''}`;
+    const profileDetails = [
+      form.applicantProfile ? `Profile: ${form.applicantProfile}` : '',
+      form.travelHistory ? `Travel History: ${form.travelHistory}` : '',
+      form.priorRefusal ? `Prior Refusal: ${form.priorRefusal}` : '',
+      form.notes ? `Notes: ${form.notes}` : '',
+    ]
+      .filter(Boolean)
+      .join(' | ');
+    const waSummary = `Hello Visahouse (Ref: ${receipt.referenceId}), my name is ${form.fullName} (WhatsApp: ${form.whatsapp}). I am inquiring about ${form.destination} on a ${form.passportNationality} passport for ${form.travelMonth}.${profileDetails ? ` ${profileDetails}` : ''}`;
     const waUrl = buildWhatsAppUrl(form.destination, waSummary);
+    const mailtoSubject = `Visahouse Inquiry ${receipt.referenceId} — ${form.destination}`;
+    const mailtoBody = [
+      `Reference ID: ${receipt.referenceId}`,
+      `Applicant: ${form.fullName}`,
+      `WhatsApp: ${form.whatsapp}`,
+      `Destination / Service: ${form.destination}`,
+      `Passport Nationality: ${form.passportNationality}`,
+      `Planned Travel Month: ${form.travelMonth}`,
+      form.applicantProfile ? `Profile: ${form.applicantProfile}` : '',
+      form.travelHistory ? `Prior Travel History: ${form.travelHistory}` : '',
+      form.priorRefusal ? `Previous Refusal: ${form.priorRefusal}` : '',
+      form.notes ? `Notes: ${form.notes}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+    const mailHref = `mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
 
     return (
       <div
@@ -204,9 +235,20 @@ export function VisaInquiryForm({
           />
         </div>
 
-        <p className="mt-5 text-[15px] text-ink-body leading-relaxed max-w-prose">
-          {receipt.message}
-        </p>
+        {!receipt.deliveredRemotely && (
+          <div className="mt-5 p-4 bg-marigold/15 border border-marigold/60 rounded-[2px] text-sm text-ink leading-relaxed">
+            <strong>
+              {isUrdu ? 'اہم اگلا قدم:' : 'Action Required to Reach Our Consultants:'}
+            </strong>{' '}
+            {receipt.message}
+          </div>
+        )}
+
+        {receipt.deliveredRemotely && (
+          <p className="mt-5 text-[15px] text-ink-body leading-relaxed max-w-prose">
+            {receipt.message}
+          </p>
+        )}
 
         <dl className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 border-y border-rule py-4 text-sm">
           <div>
@@ -235,12 +277,25 @@ export function VisaInquiryForm({
             className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 bg-visa-green text-slip text-sm font-medium rounded-[2px] hover:bg-visa-green-dark transition-colors whitespace-nowrap"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            <span>{t.leadForm.continueWhatsapp}</span>
+            <span>
+              {receipt.deliveredRemotely
+                ? t.leadForm.continueWhatsapp
+                : isUrdu
+                  ? 'ریفرنس واٹس ایپ پر بھیجیں'
+                  : 'Send Reference on WhatsApp'}
+            </span>
+          </a>
+          <a
+            href={mailHref}
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 border border-ink/80 bg-paper text-ink text-sm font-medium rounded-[2px] hover:bg-paper-deep transition-colors whitespace-nowrap"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            <span>{isUrdu ? 'ای میل کے ذریعے بھیجیں' : 'Send via Email'}</span>
           </a>
           <button
             type="button"
             onClick={resetForm}
-            className="inline-flex items-center justify-center min-h-[44px] px-4 py-2.5 border border-ink/60 text-ink text-sm font-medium rounded-[2px] hover:bg-paper-deep transition-colors cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center justify-center min-h-[44px] px-4 py-2.5 border border-rule text-ink-muted hover:text-ink hover:border-ink/60 text-sm font-medium rounded-[2px] hover:bg-paper-deep transition-colors cursor-pointer whitespace-nowrap"
           >
             {t.leadForm.submitAnother}
           </button>
@@ -456,6 +511,83 @@ export function VisaInquiryForm({
                 {errors.travelMonth}
               </p>
             )}
+          </div>
+        </div>
+
+        {/* Optional Pre-Qualification Snapshot */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div>
+            <label htmlFor={`${fieldId}-profile`} className="block mono-label text-ink mb-2">
+              {isUrdu ? 'پروفائل کی قسم (اختیاری)' : 'Applicant Profile (Optional)'}
+            </label>
+            <select
+              id={`${fieldId}-profile`}
+              name="applicantProfile"
+              value={form.applicantProfile ?? ''}
+              onChange={(e) => handleChange('applicantProfile', e.target.value)}
+              className="w-full min-h-[44px] px-3.5 py-2.5 bg-paper border border-ink/40 focus:border-visa-green rounded-[2px] text-[15px] text-ink focus:bg-slip"
+            >
+              <option value="">{isUrdu ? 'منتخب کریں...' : 'Select profile...'}</option>
+              <option value="Salaried Employee">
+                {isUrdu ? 'ملازمت پیشہ (Salaried)' : 'Salaried Employee'}
+              </option>
+              <option value="Business Owner / Director">
+                {isUrdu ? 'کاروباری مالک / ڈائریکٹر' : 'Business Owner / Director'}
+              </option>
+              <option value="Student / Dependant">
+                {isUrdu ? 'طالب علم / زیرِ کفالت' : 'Student / Dependant'}
+              </option>
+              <option value="Family Sponsored / Retired">
+                {isUrdu ? 'فیملی اسپانسرڈ / ریٹائرڈ' : 'Family Sponsored / Retired'}
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor={`${fieldId}-travelHistory`} className="block mono-label text-ink mb-2">
+              {isUrdu ? 'سابقہ سفری تاریخ (اختیاری)' : 'Prior Travel History (Optional)'}
+            </label>
+            <select
+              id={`${fieldId}-travelHistory`}
+              name="travelHistory"
+              value={form.travelHistory ?? ''}
+              onChange={(e) => handleChange('travelHistory', e.target.value)}
+              className="w-full min-h-[44px] px-3.5 py-2.5 bg-paper border border-ink/40 focus:border-visa-green rounded-[2px] text-[15px] text-ink focus:bg-slip"
+            >
+              <option value="">{isUrdu ? 'منتخب کریں...' : 'Select history...'}</option>
+              <option value="Fresh Passport (No Prior Travel)">
+                {isUrdu ? 'فریش پاسپورٹ (کوئی سابقہ سفر نہیں)' : 'Fresh Passport'}
+              </option>
+              <option value="Asia or Gulf Travel">
+                {isUrdu ? 'ایشیا یا خلیجی ممالک کا سفر' : 'Asia or Gulf Travel'}
+              </option>
+              <option value="UK / US / Canada / Schengen History">
+                {isUrdu ? 'برطانیہ / امریکہ / کینیڈا / شینگن' : 'UK, US, Canada, or Schengen'}
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor={`${fieldId}-priorRefusal`} className="block mono-label text-ink mb-2">
+              {isUrdu ? 'سابقہ ویزا انکار (اختیاری)' : 'Previous Refusal? (Optional)'}
+            </label>
+            <select
+              id={`${fieldId}-priorRefusal`}
+              name="priorRefusal"
+              value={form.priorRefusal ?? ''}
+              onChange={(e) => handleChange('priorRefusal', e.target.value)}
+              className="w-full min-h-[44px] px-3.5 py-2.5 bg-paper border border-ink/40 focus:border-visa-green rounded-[2px] text-[15px] text-ink focus:bg-slip"
+            >
+              <option value="">{isUrdu ? 'منتخب کریں...' : 'Select status...'}</option>
+              <option value="No Prior Refusal">
+                {isUrdu ? 'نہیں (پہلی بار)' : 'No Prior Refusal'}
+              </option>
+              <option value="Yes — Previous Refusal (Need Audit)">
+                {isUrdu
+                  ? 'جی ہاں — سابقہ انکار کا آڈٹ درکار ہے'
+                  : 'Yes — UK, US, Canada, or Schengen Refusal'}
+              </option>
+            </select>
           </div>
         </div>
 

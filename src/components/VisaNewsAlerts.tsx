@@ -1,7 +1,9 @@
 import { useEffect, useId, useState, type FormEvent } from 'react';
-import { Bell, Check, Loader2, Mail } from 'lucide-react';
+import { Bell, Check, Loader2, Mail, MessageCircle } from 'lucide-react';
+import { SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { subscribeToVisaAlerts } from '../services/alertsService';
+import { buildWhatsAppUrl } from '../utils/formatters';
 import {
   formatAlertTopicsSummary,
   readRememberedAlertSubscription,
@@ -150,8 +152,11 @@ export function VisaNewsAlerts({
                   <Check className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="mono-label text-visa-green">
-                    Alert Dispatch Active · <span className="font-latin-mono">{confirmed.subscriptionId}</span>
+                  <p className="mono-label text-[#8C5B00]">
+                    {isUrdu
+                      ? 'ترجیحات محفوظ ہو گئیں · فعال کرنے کے لیے لنک دبائیں'
+                      : 'Alert Preferences Saved · Complete Activation'}{' '}
+                    · <span className="font-latin-mono">{confirmed.subscriptionId}</span>
                   </p>
                   <h3 className="font-display text-xl font-medium text-ink mt-1">
                     {confirmed.email}
@@ -169,11 +174,30 @@ export function VisaNewsAlerts({
                 </span>
               </div>
 
-              <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={buildWhatsAppUrl(
+                    'visa policy alerts activation',
+                    `Hello Visahouse, please activate Visa Policy Alerts (${confirmed.subscriptionId}) for ${confirmed.email}. Topics: ${formatAlertTopicsSummary(confirmed.topics) || 'General Policy Briefs'}.`,
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 min-h-[40px] px-4 py-2 bg-visa-green text-slip hover:bg-visa-green-dark text-xs font-medium rounded-[2px] transition-colors whitespace-nowrap"
+                >
+                  <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{isUrdu ? 'واٹس ایپ پر فعال کریں' : 'Activate on WhatsApp'}</span>
+                </a>
+                <a
+                  href={`mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(`Activate Visa Policy Alerts (${confirmed.subscriptionId})`)}&body=${encodeURIComponent(`Email: ${confirmed.email}\nSubscription ID: ${confirmed.subscriptionId}\nFeeds: ${formatAlertTopicsSummary(confirmed.topics) || 'General Policy Briefs'}`)}`}
+                  className="inline-flex items-center justify-center gap-2 min-h-[40px] px-4 py-2 border border-ink/60 bg-slip text-ink hover:border-visa-green hover:text-visa-green text-xs font-medium rounded-[2px] transition-colors whitespace-nowrap"
+                >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{isUrdu ? 'ای میل سے فعال کریں' : 'Activate via Email'}</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => setConfirmed(null)}
-                  className={`min-h-[40px] px-4 py-2 border border-ink/60 bg-slip text-ink hover:border-visa-green hover:text-visa-green text-xs rounded-[2px] transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[40px] px-4 py-2 border border-rule bg-paper text-ink-muted hover:text-ink hover:border-ink/60 text-xs rounded-[2px] transition-colors cursor-pointer whitespace-nowrap ${
                     isUrdu ? 'font-medium' : 'font-mono uppercase tracking-[0.08em]'
                   }`}
                 >

@@ -32,7 +32,7 @@ export const destination: DestinationData = {
       "Repeat US travellers renewing an eligible expiring B1/B2 visa (confirm live interview-waiver rules)",
       "Corporate delegates invited to US trade shows, client headquarters, or professional training seminars (non-employment B1)"
     ],
-    "eligibilityNote": "Under Section 214(b) of US immigration law, every B1/B2 decision hinges primarily on your DS-160 application and your brief live conversation with the visa officer—never on thick stacks of unrequested paper. Truthful, concise preparation is everything."
+    "eligibilityNote": "Under Section 214(b) of US immigration law, every B1/B2 decision hinges primarily on your DS-160 application and your brief live conversation with the visa officer—never on thick stacks of unrequested paper. Truthful, concise preparation is everything. Also note: interview-waiver (\"Dropbox\") renewal rules are tightly restricted (confirm current 12-month same-category eligibility), and STEM, medical, or engineering profiles can face Section 221(g) administrative processing lasting several weeks—apply 4–6 months ahead."
   },
   "checklist": [
     {

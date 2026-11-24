@@ -2,6 +2,35 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DESTINATIONS, REGIONS, VISA_CHANNELS } from '../src/data/destinations.ts';
+import { getCostCalculatorSchedule } from '../src/utils/visaCostCalculator.ts';
+
+const CURRENCY_SYMBOL: Record<string, string> = {
+  USD: 'USD ',
+  EUR: '€',
+  GBP: '£',
+  CAD: 'CAD ',
+  AUD: 'AUD ',
+  NZD: 'NZD ',
+  JPY: '¥',
+  SGD: 'SGD ',
+  MYR: 'MYR ',
+  BHD: 'BHD ',
+  ZAR: 'ZAR ',
+};
+
+function buildIndicativeSummary(slug: string): {
+  indicativeFeeLabel: string;
+  indicativeProcessing: string;
+} {
+  const schedule = getCostCalculatorSchedule(slug);
+  const fee = schedule.embassyFeeByType.tourist;
+  const sym = CURRENCY_SYMBOL[schedule.currency] ?? `${schedule.currency} `;
+  return {
+    indicativeFeeLabel:
+      fee === 0 ? 'Fee-waived / low e-Visa' : `~${sym}${fee.toLocaleString('en-US')} govt fee`,
+    indicativeProcessing: schedule.processingWindowEstimate,
+  };
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -17,22 +46,27 @@ for (const dest of DESTINATIONS) {
 }
 
 // 2. Emit lightweight destination summary index (no 500-word prose, FAQs, steps, or checklists)
-const summaries = DESTINATIONS.map((d) => ({
-  slug: d.slug,
-  country: d.country,
-  isoCode: d.isoCode,
-  region: d.region,
-  channel: d.channel,
-  accentHex: d.accentHex,
-  heroPromise: d.heroPromise,
-  facts: {
-    visaType: d.facts.visaType,
-    entryType: d.facts.entryType,
-    stayDuration: d.facts.stayDuration,
-    processingTime: d.facts.processingTime,
-    govtFee: d.facts.govtFee,
-  },
-}));
+const summaries = DESTINATIONS.map((d) => {
+  const indicative = buildIndicativeSummary(d.slug);
+  return {
+    slug: d.slug,
+    country: d.country,
+    isoCode: d.isoCode,
+    region: d.region,
+    channel: d.channel,
+    accentHex: d.accentHex,
+    heroPromise: d.heroPromise,
+    indicativeFeeLabel: indicative.indicativeFeeLabel,
+    indicativeProcessing: indicative.indicativeProcessing,
+    facts: {
+      visaType: d.facts.visaType,
+      entryType: d.facts.entryType,
+      stayDuration: d.facts.stayDuration,
+      processingTime: d.facts.processingTime,
+      govtFee: d.facts.govtFee,
+    },
+  };
+});
 
 const indexContent = `import type { RegionId, VisaChannel } from './types';
 
@@ -44,6 +78,8 @@ export interface DestinationSummary {
   channel: VisaChannel;
   accentHex: string;
   heroPromise: string;
+  indicativeFeeLabel: string;
+  indicativeProcessing: string;
   facts: {
     visaType: string;
     entryType: string;

@@ -269,21 +269,23 @@ const FEE_SCHEDULES: Record<string, DestinationFeeSchedule> = {
   // UK & Oceania
   uk: {
     currency: 'GBP',
-    embassyFeeByType: { tourist: 115, business: 115, family_visit: 115, student: 490, transit: 35 },
+    embassyFeeByType: { tourist: 127, business: 127, family_visit: 127, student: 524, transit: 35 },
     centreFeePkr: 9500,
-    centreProviderLabel: 'VFS Global / Gerry’s UK Visa Application Centre',
+    centreProviderLabel: 'VFS Global UK Visa Application Centre (Islamabad · Lahore · Karachi · Mirpur)',
     baseServiceFeePkr: 29000,
     processingWindowEstimate: '15–21 working days (Standard UKVI)',
-    specialNote: '6-month Standard Visitor (£115) shown; UK Student applicants also pay the Immigration Health Surcharge (IHS).',
+    specialNote:
+      '6-month Standard Visitor (£127) and Student (£524) per current UKVI tariffs; UK Student applicants also pay the Immigration Health Surcharge (IHS).',
   },
   australia: {
     currency: 'AUD',
-    embassyFeeByType: { tourist: 195, business: 195, family_visit: 195, student: 1600, transit: 0 },
+    embassyFeeByType: { tourist: 200, business: 200, family_visit: 200, student: 2000, transit: 0 },
     centreFeePkr: 10500,
     centreProviderLabel: 'VFS Global Australia Biometrics Collection Centre',
     baseServiceFeePkr: 30000,
     processingWindowEstimate: '3–6 weeks via ImmiAccount',
-    specialNote: 'Subclass 600 Visitor Visa (AUD 195) online via ImmiAccount plus mandatory in-person biometrics in Pakistan.',
+    specialNote:
+      'Subclass 600 Visitor Visa (AUD 200) and Subclass 500 Student (AUD 2,000) online via ImmiAccount plus mandatory in-person biometrics in Pakistan.',
   },
   'new-zealand': {
     currency: 'NZD',
@@ -299,7 +301,7 @@ const FEE_SCHEDULES: Record<string, DestinationFeeSchedule> = {
   'schengen-states': SCHENGEN_BASE_SCHEDULE,
   germany: {
     ...SCHENGEN_BASE_SCHEDULE,
-    centreProviderLabel: 'Embassy Islamabad / Consulate Karachi & VFS Global',
+    centreProviderLabel: 'German Missions Waitlist / Consular Services Portal & Authorised VAC (Islamabad · Karachi jurisdiction)',
     processingWindowEstimate: '15–30 calendar days post-appointment',
   },
   france: {
@@ -597,6 +599,9 @@ export function calculateVisaCost(input: VisaCostCalculatorInput): VisaCostEstim
   if (schedule.specialNote) {
     notes.push(schedule.specialNote);
   }
+  notes.push(
+    'Pakistani bank cards used on online mission portals (GOV.UK, IRCC, ImmiAccount, e-Visa) typically incur an additional ~4–5% international FX conversion, FED, and withholding markup on bank billing day.',
+  );
   notes.push(
     'Embassy and visa-centre fees are non-refundable once submitted, regardless of the consular outcome.',
   );

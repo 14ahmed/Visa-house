@@ -387,10 +387,11 @@ export function VisaStatusTracker({
           </div>
         </div>
 
-        {/* Quick-Fill Sample & Session Dossiers */}
-        <div className="mt-5 flex flex-wrap items-center gap-2">
-          <span className="mono-label text-ink-muted me-1">{t.tracker.sampleDossiers}</span>
-          {SAMPLE_VISA_STATUS_RECORDS.map((sample) => {
+        {/* Quick-Fill Sample & Session Dossiers + Direct Active File Check */}
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mono-label text-ink-muted me-1">{t.tracker.sampleDossiers}</span>
+            {SAMPLE_VISA_STATUS_RECORDS.map((sample) => {
             const active = record?.referenceId === sample.referenceId;
             return (
               <button
@@ -432,7 +433,24 @@ export function VisaStatusTracker({
               </button>
             );
           })}
+          </div>
+
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-1.5 border border-visa-green/60 bg-slip text-visa-green hover:bg-visa-green hover:text-slip text-xs font-medium rounded-[2px] transition-colors whitespace-nowrap shrink-0"
+          >
+            <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>{isUrdu ? 'واٹس ایپ پر لائیو فائل چیک کریں' : 'Check Active File on WhatsApp'}</span>
+          </a>
         </div>
+
+        <p className="mt-3 text-xs text-ink-muted leading-relaxed">
+          {isUrdu
+            ? 'نوٹ: آن لائن لُک اپ نمونہ ڈوزئیرز اور اسی براؤزر سیشن کی انکوائریز دکھاتا ہے۔ دوسرے فون یا لیپ ٹاپ پر فعال فائل کی تازہ سفارتی صورتحال کے لیے براہِ راست واٹس ایپ بٹن استعمال کریں۔'
+            : 'Note: Self-service lookup displays sample dossiers and inquiries created in this browser session. For real-time multi-device updates on an active paid file, tap Check Active File on WhatsApp.'}
+        </p>
       </form>
 
       {/* Idle 5-Stage Journey Preview Timeline (before lookup) */}

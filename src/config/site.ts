@@ -23,6 +23,20 @@ export const SITE_CONFIG = {
   guideReviewDateLabel: 'November 2026',
   /** Optional zero-backend form endpoint (e.g. Formspree or Web3Forms URL) to email leads to info@visahouse.online */
   leadFormEndpoint: '',
+  legal: {
+    operatorDisclosure:
+      'Visahouse (visahouse.online) — online-first visa consultancy desk affiliated with the AMG Visa network (amgvisa.com)',
+    serviceCities: 'Islamabad · Lahore · Karachi (Online Desk across Pakistan)',
+    legalLastUpdated: 'November 2026',
+    documentRetentionSummary:
+      'Passport scans, CNIC/FRC copies, and six-month bank statements are purged within 30–60 days after visa decision, or immediately upon written request.',
+    paymentSafetyNotice:
+      'Settle consultancy invoices strictly into the official corporate bank account listed on your written Visahouse invoice—never transfer fees to personal third-party accounts or unauthorised slot brokers.',
+    registeredEntityName: '',
+    registrationNumber: '',
+    ntn: '',
+    registeredOfficeAddress: '',
+  },
 } as const;
 
 export const EDITORIAL_IMAGES = {

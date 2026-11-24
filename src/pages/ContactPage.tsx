@@ -95,6 +95,24 @@ export function ContactPage() {
               </div>
             </div>
 
+            <div className="bg-paper-deep/60 border border-rule rounded-[3px] p-5 space-y-3 text-xs text-ink-body leading-relaxed">
+              <p className="mono-label text-ink">
+                {isUrdu
+                  ? 'ادائیگی کی حفاظت اور دستاویزات کی رازداری'
+                  : 'Payment Safety & Document Privacy'}
+              </p>
+              <p>{SITE_CONFIG.legal.paymentSafetyNotice}</p>
+              <p className="text-ink-muted">{SITE_CONFIG.legal.documentRetentionSummary}</p>
+              <div className="pt-1 flex flex-wrap gap-4">
+                <Link to="/terms" className="text-visa-green hover:underline underline-offset-4">
+                  {t.footer.termsOfService} →
+                </Link>
+                <Link to="/privacy" className="text-visa-green hover:underline underline-offset-4">
+                  {t.footer.privacyPolicy} →
+                </Link>
+              </div>
+            </div>
+
             <div className="text-sm space-y-2 pt-2">
               <p className="mono-label text-ink-muted">{t.pages.contactQuickLinks}</p>
               <ul className="space-y-1.5">

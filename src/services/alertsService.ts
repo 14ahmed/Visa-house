@@ -80,6 +80,6 @@ export async function subscribeToVisaAlerts(
     email: normalizedEmail,
     topics: normalizedTopics,
     message:
-      'Confirmed—you are now subscribed to Visahouse visa updates for your selected countries.',
+      'Your alert preferences and subscription ID are saved for this browser session. To activate live email circulars from our desk, tap Activate on WhatsApp or Activate via Email below.',
   };
 }

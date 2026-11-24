@@ -32,7 +32,7 @@ export const destination: DestinationData = {
       "Families, honeymooners, and retirees submitting linked NADRA FRC/MRC records and clear financial sponsorship.",
       "Eligible US, UK, Schengen, or Ireland visa holders who qualify for Turkey’s faster online e-Visa route."
     ],
-    "eligibilityNote": "Standard Pakistani passport holders without a valid US, UK, Schengen, or Ireland visa must submit biometrics and physical documents at an authorised Anatolia VAC in Islamabad, Lahore, or Karachi."
+    "eligibilityNote": "Standard Pakistani passport holders without a valid US, UK, Schengen, or Ireland visa must submit biometrics and physical documents at an authorised Anatolia VAC in Islamabad, Lahore, or Karachi. Travellers eligible for Turkey’s conditional e-Visa must also meet strict boarding checks at Pakistani departure airports (confirmed round-trip ticket, verifiable hotel booking, and proof of funds of at least USD 50 per day)."
   },
   "checklist": [
     {

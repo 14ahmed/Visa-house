@@ -545,7 +545,7 @@ export const CHECKLIST_DESTINATION_SOURCES: readonly ChecklistDestinationSource[
     "accentHex": "#B8332A",
     "channel": "Hybrid / Centre",
     "lastVerified": "",
-    "eligibilityNote": "Standard Pakistani passport holders without a valid US, UK, Schengen, or Ireland visa must submit biometrics and physical documents at an authorised Anatolia VAC in Islamabad, Lahore, or Karachi.",
+    "eligibilityNote": "Standard Pakistani passport holders without a valid US, UK, Schengen, or Ireland visa must submit biometrics and physical documents at an authorised Anatolia VAC in Islamabad, Lahore, or Karachi. Travellers eligible for Turkey’s conditional e-Visa must also meet strict boarding checks at Pakistani departure airports (confirmed round-trip ticket, verifiable hotel booking, and proof of funds of at least USD 50 per day).",
     "checklist": [
       {
         "groupTitle": "Core Identity & Travel Papers",
@@ -877,7 +877,7 @@ export const CHECKLIST_DESTINATION_SOURCES: readonly ChecklistDestinationSource[
     "accentHex": "#223A5E",
     "channel": "Interview / Consulate",
     "lastVerified": "",
-    "eligibilityNote": "Under Section 214(b) of US immigration law, every B1/B2 decision hinges primarily on your DS-160 application and your brief live conversation with the visa officer—never on thick stacks of unrequested paper. Truthful, concise preparation is everything.",
+    "eligibilityNote": "Under Section 214(b) of US immigration law, every B1/B2 decision hinges primarily on your DS-160 application and your brief live conversation with the visa officer—never on thick stacks of unrequested paper. Truthful, concise preparation is everything. Also note: interview-waiver (\"Dropbox\") renewal rules are tightly restricted (confirm current 12-month same-category eligibility), and STEM, medical, or engineering profiles can face Section 221(g) administrative processing lasting several weeks—apply 4–6 months ahead.",
     "checklist": [
       {
         "groupTitle": "Mandatory Consulate Appointment Items",

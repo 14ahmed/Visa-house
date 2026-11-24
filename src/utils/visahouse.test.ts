@@ -900,6 +900,29 @@ test('calculateVisaCost covers all 38 destinations, enforces exact line-item tot
   });
   assert.ok(nzStudent.officialCurrencyNote.includes('NZD 850'));
 
+  // Verify updated consultation fee tiers (Schengen & USA: 30k; UK/CA/AU/NZ: 40k; JP/KR/ZA: 25k)
+  for (const slug of ['schengen-states', 'france', 'usa'] as const) {
+    assert.equal(
+      calculateVisaCost({ destinationSlug: slug, visaTypeId: 'tourist', applicants: 1 })
+        .serviceBasePerApplicantPkr,
+      30000,
+    );
+  }
+  for (const slug of ['uk', 'canada', 'australia', 'new-zealand'] as const) {
+    assert.equal(
+      calculateVisaCost({ destinationSlug: slug, visaTypeId: 'tourist', applicants: 1 })
+        .serviceBasePerApplicantPkr,
+      40000,
+    );
+  }
+  for (const slug of ['japan', 'south-korea', 'south-africa'] as const) {
+    assert.equal(
+      calculateVisaCost({ destinationSlug: slug, visaTypeId: 'tourist', applicants: 1 })
+        .serviceBasePerApplicantPkr,
+      25000,
+    );
+  }
+
   // Verify currency formatter & summary output
   assert.equal(formatCurrencyAmount(27800, 'PKR'), 'PKR 27,800');
   assert.equal(formatCurrencyAmount(27800, 'USD'), 'USD 100');

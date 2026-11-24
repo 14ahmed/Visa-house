@@ -44,7 +44,6 @@ export function PostageStamp({
   return (
     <Link
       to={to}
-      aria-label={`${title} — ${subtitle} (${channelLabel})`}
       title={title}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-visa-green rounded-[2px] transition-transform duration-200 hover:-translate-y-0.5"
     >

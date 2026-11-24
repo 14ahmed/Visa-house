@@ -162,7 +162,7 @@ export function WorldVisaHub({
           >
             {localizeRegion(overview.shortestRegion.region)}
           </dd>
-          <p className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
+          <dd className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
             {formatLocalizedCopy(h.avgDaysFormat, {
               days: overview.shortestRegion.avgMedianDays,
             })}{' '}
@@ -170,7 +170,7 @@ export function WorldVisaHub({
             {formatLocalizedCopy(h.guidesCountFormat, {
               count: overview.shortestRegion.destinationCount,
             })}
-          </p>
+          </dd>
         </div>
 
         <div className="py-4 sm:px-5">
@@ -178,10 +178,10 @@ export function WorldVisaHub({
           <dd className="mt-1.5 font-latin-mono text-2xl font-semibold text-ink tabular-nums">
             {overview.fastTrackCount} / {overview.totalDestinations}
           </dd>
-          <p className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
+          <dd className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
             {h.filterFastTrack} <span aria-hidden="true">·</span>{' '}
             {formatLocalizedCopy(h.eVisaCountFormat, { count: overview.eVisaCount })}
-          </p>
+          </dd>
         </div>
 
         <div className="py-4 sm:px-5">
@@ -190,12 +190,12 @@ export function WorldVisaHub({
             ~{overview.globalAvgDays}{' '}
             <span className="text-sm font-sans font-normal text-ink-body">{h.daysUnit}</span>
           </dd>
-          <p className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
+          <dd className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-ink-muted tabular-nums`}>
             <span className="font-latin-mono">
               {overview.fastestDestination.minCalendarDays}–{overview.longestRegion.maxDays}d
             </span>{' '}
             {isUrdu ? 'عالمی حد' : 'observed range'}
-          </p>
+          </dd>
         </div>
 
         <div className="py-4 sm:px-5 last:sm:pe-0">
@@ -210,9 +210,9 @@ export function WorldVisaHub({
               {overview.fastestDestination.isoCode}
             </span>
           </dd>
-          <p className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-visa-green font-medium font-latin-mono tabular-nums`}>
+          <dd className={`${isUrdu ? 'mt-2' : 'mt-1'} text-xs text-visa-green font-medium font-latin-mono tabular-nums`}>
             {overview.fastestDestination.processingEstimate}
-          </p>
+          </dd>
         </div>
       </dl>
 

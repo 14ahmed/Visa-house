@@ -19,6 +19,8 @@ export function BrandLogo({
     <img
       src={VISAHOUSE_THEMED_LOGO_SRC}
       alt={alt}
+      width={400}
+      height={223}
       referrerPolicy="no-referrer"
       decoding="async"
       className={`block w-auto object-contain mix-blend-multiply brightness-[1.03] contrast-[1.05] select-none ${className}`}

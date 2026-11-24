@@ -49,7 +49,11 @@ export function LanguageSwitcher({
             type="button"
             lang={meta.htmlLang}
             aria-pressed={active}
-            aria-label={meta.switchToAriaLabel}
+            aria-label={
+              itemLocale === 'en'
+                ? `${label} — Switch language to English`
+                : `${label} — زبان اردو میں تبدیل کریں`
+            }
             onClick={() => setLocale(itemLocale)}
             className={`inline-flex items-center justify-center rounded-[1px] transition-colors duration-150 cursor-pointer whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-visa-green ${
               variant === 'compact' ? 'min-h-[34px] px-2.5 py-1' : 'min-h-[38px] px-3.5 py-1.5'

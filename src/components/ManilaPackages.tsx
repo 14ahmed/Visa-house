@@ -57,7 +57,7 @@ export function ManilaPackages({
                   : 'bg-paper-deep/80 text-ink-muted border-rule hover:text-ink hover:bg-paper-deep'
               }`}
             >
-              <span className="mr-2 opacity-60">0{idx + 1}</span>
+              <span className="mr-2 text-ink-muted">0{idx + 1}</span>
               {pkg.tabLabel}
             </button>
           );

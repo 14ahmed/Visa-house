@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getCountryArtworkMeta } from '../utils/countryArtwork';
-import { CountryArtworkSvg } from './CountryArtwork';
+
+const LazyCountryArtworkSvg = lazy(async () => ({
+  default: (await import('./CountryArtwork')).CountryArtworkSvg,
+}));
 
 interface PostageStampProps {
   to: string;
@@ -118,12 +121,14 @@ export function PostageStamp({
                 className="w-full h-[132px] sm:h-[140px] object-contain mix-blend-multiply brightness-[1.05] contrast-[1.07] [mask-image:radial-gradient(ellipse_92%_90%_at_50%_50%,#000_74%,transparent_100%)] select-none transition-transform duration-300 ease-out group-hover:scale-[1.06]"
               />
             ) : (
-              <CountryArtworkSvg
-                isoCode={normalizedCode}
-                accentHex={accentHex}
-                variant="stamp"
-                className="w-full h-[126px] sm:h-[132px] transition-transform duration-200 ease-out group-hover:scale-[1.04]"
-              />
+              <Suspense fallback={<div className="w-full h-[126px] sm:h-[132px]" aria-hidden="true" />}>
+                <LazyCountryArtworkSvg
+                  isoCode={normalizedCode}
+                  accentHex={accentHex}
+                  variant="stamp"
+                  className="w-full h-[126px] sm:h-[132px] transition-transform duration-200 ease-out group-hover:scale-[1.04]"
+                />
+              </Suspense>
             )}
           </div>
 

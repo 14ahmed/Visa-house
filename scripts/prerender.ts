@@ -37,6 +37,38 @@ async function prerender() {
   }
 
   const template = fs.readFileSync(templatePath, 'utf-8');
+
+  // Inspect built assets so each prerendered route preloads its CSS + active route module only
+  const assetFiles = fs.existsSync(path.resolve(distDir, 'assets'))
+    ? fs.readdirSync(path.resolve(distDir, 'assets'))
+    : [];
+  const findAsset = (prefix: string, ext: '.js' | '.css'): string | undefined =>
+    assetFiles.find((f) => f.startsWith(`${prefix}-`) && f.endsWith(ext));
+
+  const entryCss = findAsset('index', '.css');
+  const iconsChunk = findAsset('icons', '.js');
+
+  const routeChunkForPath = (routePath: string): string[] => {
+    const chunks: string[] = [];
+    if (iconsChunk) chunks.push(iconsChunk);
+    const pushIf = (prefix: string) => {
+      const f = findAsset(prefix, '.js');
+      if (f && !chunks.includes(f)) chunks.push(f);
+    };
+    if (routePath === '/') pushIf('HomePage');
+    else if (routePath === '/visas') pushIf('VisasDirectoryPage');
+    else if (routePath.startsWith('/visas/')) {
+      pushIf('CountryPage');
+      pushIf(routePath.slice('/visas/'.length));
+    } else if (routePath === '/schengen-appointments') pushIf('SchengenPage');
+    else if (routePath === '/travel-insurance') pushIf('InsurancePage');
+    else if (routePath === '/about') pushIf('AboutPage');
+    else if (routePath === '/contact') pushIf('ContactPage');
+    else if (routePath === '/privacy' || routePath === '/terms') pushIf('LegalPages');
+    else pushIf('NotFoundPage');
+    return chunks;
+  };
+
   const { renderRoute } = (await import(pathToFileURL(ssrEntryPath).href)) as {
     renderRoute: (url: string) => { html: string; headTags: string };
   };
@@ -49,7 +81,17 @@ async function prerender() {
   for (const routePath of routesToRender) {
     const { html, headTags } = renderRoute(routePath);
 
-    let finalHeadTags = headTags;
+    const preloadTags: string[] = [];
+    if (entryCss) {
+      preloadTags.push(
+        `<link rel="preload" as="style" href="/assets/${entryCss}" fetchpriority="high" />`,
+      );
+    }
+    for (const chunk of routeChunkForPath(routePath)) {
+      preloadTags.push(`<link rel="modulepreload" crossorigin href="/assets/${chunk}" />`);
+    }
+
+    let finalHeadTags = [preloadTags.join('\n    '), headTags].filter(Boolean).join('\n    ');
     if (isPreview) {
       finalHeadTags = finalHeadTags.includes('name="robots"')
         ? finalHeadTags.replace(

@@ -8,19 +8,25 @@ import { PAKISTANI_VISA_FAQS } from '../data/visaFaqs';
 import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/formatters';
 import { buildFaqSchema, buildHomeSchemas } from '../utils/seo';
-import { ClientTestimonial } from '../components/ClientTestimonial';
 import { HeroSection } from '../components/HeroSection';
 import { LazyInteractiveVisaGlobe as InteractiveVisaGlobe } from '../components/LazyInteractiveVisaGlobe';
 import { Layout } from '../components/Layout';
-import { LeadForm } from '../components/LeadForm';
 import { PakistaniVisaFaqSection } from '../components/PakistaniVisaFaqSection';
 import { PostageStamp } from '../components/PostageStamp';
-import { RubberStamp } from '../components/RubberStamp';
 import { SeoHead } from '../components/SeoHead';
 import { ViewportLazyWidget } from '../components/ViewportLazyWidget';
 
+const LazyClientTestimonial = lazy(async () => ({
+  default: (await import('../components/ClientTestimonial')).ClientTestimonial,
+}));
 const LazyDocumentChecklistLibrary = lazy(async () => ({
   default: (await import('../components/DocumentChecklistLibrary')).DocumentChecklistLibrary,
+}));
+const LazyLeadForm = lazy(async () => ({
+  default: (await import('../components/LeadForm')).LeadForm,
+}));
+const LazyRubberStamp = lazy(async () => ({
+  default: (await import('../components/RubberStamp')).RubberStamp,
 }));
 const LazySchengenSlotAvailability = lazy(async () => ({
   default: (await import('../components/SchengenSlotAvailability')).SchengenSlotAvailability,
@@ -428,13 +434,23 @@ export function HomePage() {
               {t.home.no06Heading}
             </h2>
           </div>
-          <RubberStamp
-            label={t.home.no06StampLabel}
-            sublabel={t.home.no06StampSublabel}
-            color="#0F5C4B"
-            rotation={4}
-            variant="oval"
-          />
+          <ViewportLazyWidget
+            id="why-visahouse-stamp"
+            eyebrow={t.home.no06Eyebrow}
+            heading={t.home.no06StampLabel}
+            description={t.home.no06StampSublabel}
+            compactFallback={() => <div className="h-[72px] w-[148px]" aria-hidden="true" />}
+          >
+            {() => (
+              <LazyRubberStamp
+                label={t.home.no06StampLabel}
+                sublabel={t.home.no06StampSublabel}
+                color="#0F5C4B"
+                rotation={4}
+                variant="oval"
+              />
+            )}
+          </ViewportLazyWidget>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -614,7 +630,41 @@ export function HomePage() {
       </section>
 
       {/* NO. 08: CLIENT TESTIMONIALS / VISA SUCCESS STORIES */}
-      <ClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />
+      <ViewportLazyWidget
+        id="testimonials"
+        eyebrow={t.home.no08TestimonialsEyebrow}
+        heading={t.testimonials.title}
+        description={t.testimonials.subcopy}
+        compactFallback={(onLoadNow) => (
+          <section
+            id="testimonials"
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-rule scroll-mt-24"
+          >
+            <div className="paper-card-texture border border-ink/75 rounded-[3px] p-6 sm:p-8 flex flex-col justify-between gap-5 min-h-[260px]">
+              <div className="max-w-2xl">
+                <p className="mono-label text-ink-muted">{t.home.no08TestimonialsEyebrow}</p>
+                <h2 className="font-display text-2xl sm:text-3xl font-medium text-ink mt-2">
+                  {t.testimonials.title}
+                </h2>
+                <p className="mt-2.5 text-sm sm:text-[15px] text-ink-body leading-relaxed">
+                  {t.testimonials.subcopy}
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={onLoadNow}
+                  className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 bg-visa-green text-slip text-xs font-mono uppercase tracking-[0.1em] rounded-[2px] hover:bg-visa-green-dark transition-colors cursor-pointer"
+                >
+                  {isUrdu ? 'کامیابی کی کہانیاں دیکھیں' : 'View Visa Success Stories'}
+                </button>
+              </div>
+            </div>
+          </section>
+        )}
+      >
+        {() => <LazyClientTestimonial eyebrow={t.home.no08TestimonialsEyebrow} />}
+      </ViewportLazyWidget>
 
       {/* NO. 09: TIMELINES & DOCUMENT REQUIREMENTS FAQ (FRAUNCES HEADINGS) */}
       <PakistaniVisaFaqSection
@@ -682,7 +732,17 @@ export function HomePage() {
           </div>
 
           <div className="lg:col-span-8">
-            <LeadForm defaultDestination="Thailand Visa" />
+            <ViewportLazyWidget
+              id="apply-form"
+              extraHashes={['apply']}
+              eyebrow={t.home.no11Eyebrow}
+              heading={isUrdu ? 'ویزا درخواست فارم' : 'Start Your Visa Assessment'}
+              description={t.home.no11Body}
+              buttonLabel={isUrdu ? 'درخواست فارم کھولیں' : 'Open Application Form'}
+              minHeightClass="min-h-[320px]"
+            >
+              {() => <LazyLeadForm defaultDestination="Thailand Visa" />}
+            </ViewportLazyWidget>
           </div>
         </div>
       </section>

@@ -8,6 +8,8 @@ interface ViewportLazyWidgetProps {
   buttonLabel?: string;
   minHeightClass?: string;
   eagerMatchSearch?: string;
+  extraHashes?: string[];
+  compactFallback?: (onLoadNow: () => void) => ReactNode;
   children: () => ReactNode;
 }
 
@@ -24,15 +26,25 @@ export function ViewportLazyWidget({
   buttonLabel = 'Open Interactive Tool',
   minHeightClass = 'min-h-[240px]',
   eagerMatchSearch,
+  extraHashes,
+  compactFallback,
   children,
 }: ViewportLazyWidgetProps) {
   const [shouldLoad, setShouldLoad] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const hashesKey = extraHashes?.join(',') ?? '';
 
   useEffect(() => {
     if (shouldLoad || typeof window === 'undefined') return undefined;
 
-    const hashMatches = () => window.location.hash === `#${id}`;
+    const validHashes = new Set([`#${id}`]);
+    if (hashesKey) {
+      for (const h of hashesKey.split(',')) {
+        if (h) validHashes.add(h.startsWith('#') ? h : `#${h}`);
+      }
+    }
+
+    const hashMatches = () => validHashes.has(window.location.hash);
     const searchMatches =
       Boolean(eagerMatchSearch) && window.location.search.includes(eagerMatchSearch!);
 
@@ -67,9 +79,11 @@ export function ViewportLazyWidget({
       window.removeEventListener('hashchange', onHashChange);
       observer?.disconnect();
     };
-  }, [shouldLoad, id, eagerMatchSearch]);
+  }, [shouldLoad, id, eagerMatchSearch, hashesKey]);
 
-  const shell = (
+  const shell = compactFallback ? (
+    compactFallback(() => setShouldLoad(true))
+  ) : (
     <section
       id={id}
       className={`paper-card-texture border border-ink/75 rounded-[3px] p-6 sm:p-8 scroll-mt-24 flex flex-col justify-between gap-5 ${minHeightClass}`}
@@ -95,21 +109,19 @@ export function ViewportLazyWidget({
     </section>
   );
 
+  const suspenseFallback = compactFallback ? (
+    compactFallback(() => setShouldLoad(true))
+  ) : (
+    <div
+      className={`paper-card-texture border border-rule rounded-[3px] p-6 sm:p-8 flex items-center justify-center text-sm font-mono text-ink-muted ${minHeightClass}`}
+    >
+      Loading {heading}…
+    </div>
+  );
+
   return (
     <div ref={containerRef}>
-      {!shouldLoad ? (
-        shell
-      ) : (
-        <Suspense
-          fallback={
-            <div className={`paper-card-texture border border-rule rounded-[3px] p-6 sm:p-8 flex items-center justify-center text-sm font-mono text-ink-muted ${minHeightClass}`}>
-              Loading {heading}…
-            </div>
-          }
-        >
-          {children()}
-        </Suspense>
-      )}
+      {!shouldLoad ? shell : <Suspense fallback={suspenseFallback}>{children()}</Suspense>}
     </div>
   );
 }

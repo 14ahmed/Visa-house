@@ -37,10 +37,17 @@ export default defineConfig(() => {
       rolldownOptions: {
         output: {
           codeSplitting: {
+            minSize: 4000,
             groups: [
+              {
+                name: 'icons',
+                test: /node_modules[\\/]lucide-react/,
+                priority: 20,
+              },
               {
                 name: 'all-checklists-data',
                 test: /src[\\/]data[\\/]destinations(?:-|\.ts)/,
+                priority: 15,
               },
             ],
           },

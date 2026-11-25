@@ -4,7 +4,23 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../src/config/site.ts';
 import { DESTINATIONS } from '../src/data/destinations.ts';
 import { STATIC_ROUTES } from '../src/data/routes.ts';
+import { PAKISTANI_VISA_FAQS } from '../src/data/visaFaqs.ts';
 import { COUNTRY_ARTWORK_META } from '../src/utils/countryArtwork.ts';
+import { getCostCalculatorSchedule } from '../src/utils/visaCostCalculator.ts';
+
+const LLM_CURRENCY_SYMBOL: Record<string, string> = {
+  EUR: '€',
+  GBP: '£',
+  JPY: '¥',
+};
+
+function formatGovtFeeForLlm(currency: string, amount: number): string {
+  if (amount === 0) return 'Free / Fee Waived';
+  const sym = LLM_CURRENCY_SYMBOL[currency];
+  return sym
+    ? `${sym}${amount.toLocaleString('en-US')}`
+    : `${currency} ${amount.toLocaleString('en-US')}`;
+}
 
 function escapeXml(value: string): string {
   return value
@@ -265,7 +281,11 @@ ${sitemapEntries}
     '',
     `> ${SITE_CONFIG.tagline} Online visa guidance, document checklists, Schengen appointment help, and travel insurance for ${SITE_CONFIG.passportAdjective} passport holders. Operated by AMG (${SITE_CONFIG.parentBrandUrl}).`,
     '',
+    `- Last Updated: ${lastmod}`,
     `- Brand & Alternate Names: ${SITE_CONFIG.brandName}, AMG Visa, Visahouse Pakistan`,
+    `- Operator: ${SITE_CONFIG.legal.operatorDisclosure}`,
+    `- Service Desks: ${SITE_CONFIG.legal.serviceCities}`,
+    `- Service Scope: Private administrative visitor, business, and tourist visa filing support (not a government embassy or regulated legal representative)`,
     `- Website: ${SITE_CONFIG.siteUrl}`,
     `- Full Structured Knowledge Base: ${SITE_CONFIG.siteUrl}/llms-full.txt`,
     `- WhatsApp / Phone: ${SITE_CONFIG.whatsappDisplay}`,
@@ -278,14 +298,23 @@ ${sitemapEntries}
     `- [All Visa Guides](${SITE_CONFIG.siteUrl}/visas): Directory of ${DESTINATIONS.length} country visa guides from Pakistan`,
     `- [Schengen Appointments](${SITE_CONFIG.siteUrl}/schengen-appointments): Official VFS Global & BLS International guidance from Islamabad, Lahore, and Karachi`,
     `- [Travel Insurance](${SITE_CONFIG.siteUrl}/travel-insurance): Schengen-accepted (€30,000+ medical) and worldwide travel insurance plans`,
-    `- [About Visahouse](${SITE_CONFIG.siteUrl}/about): How our online visa desk works`,
-    `- [Contact](${SITE_CONFIG.siteUrl}/contact): WhatsApp and email inquiry desk`,
+    `- [About Visahouse](${SITE_CONFIG.siteUrl}/about): Scope of practice, operator disclosure, and how our online visa desk works`,
+    `- [Contact](${SITE_CONFIG.siteUrl}/contact): WhatsApp and email inquiry desk plus payment safety notice`,
     '',
     `## Country Visa Guides from Pakistan (${DESTINATIONS.length})`,
-    ...DESTINATIONS.map(
-      (d) =>
-        `- [${d.country} Visa from Pakistan](${SITE_CONFIG.siteUrl}/visas/${d.slug}): ${d.region} · ${d.channel} · ${d.facts.processingTime}`,
-    ),
+    ...DESTINATIONS.map((d) => {
+      const schedule = getCostCalculatorSchedule(d.slug);
+      const processing = d.facts.processingTime.trim() || schedule.processingWindowEstimate;
+      const govtFee = formatGovtFeeForLlm(schedule.currency, schedule.embassyFeeByType.tourist);
+      const consultancy = `PKR ${schedule.baseServiceFeePkr.toLocaleString('en-US')}`;
+      return `- [${d.country} Visa from Pakistan](${SITE_CONFIG.siteUrl}/visas/${d.slug}): ${d.region} · ${d.channel} · ${processing} · Est. ${govtFee} govt + ${consultancy} consultancy`;
+    }),
+    '',
+    '## Optional',
+    `- [Privacy Policy](${SITE_CONFIG.siteUrl}/privacy): Document handling, 30–60 day post-decision purge schedule, and deletion requests`,
+    `- [Terms of Service](${SITE_CONFIG.siteUrl}/terms): Administrative scope boundaries, tiered consultancy refund terms, and official payment safety`,
+    `- [XML Sitemap](${SITE_CONFIG.siteUrl}/sitemap.xml): Machine-readable index of all 50 canonical URLs and landmark artwork`,
+    `- [Full LLM Knowledge Base](${SITE_CONFIG.siteUrl}/llms-full.txt): Expanded country advisories, fee schedules, checklists, and FAQs in a single Markdown document`,
     '',
   ].join('\n');
 
@@ -298,24 +327,52 @@ ${sitemapEntries}
     `- Contact Email: ${SITE_CONFIG.email}`,
     `- Working Hours: ${SITE_CONFIG.officeHours}`,
     '',
+    '## Consultancy Overview, Scope & Fee Tiers',
+    `- Operator & Service Cities: ${SITE_CONFIG.legal.operatorDisclosure} (${SITE_CONFIG.legal.serviceCities})`,
+    '- Scope of Practice: Private administrative visitor, tourist, and business visa document auditing, form drafting, itinerary preparation, official-channel appointment guidance, and travel insurance quote coordination. Visahouse does not act as licensed legal counsel for asylum, tribunal appeals, or permanent residency under CICC/RCIC (Canada), MARA (Australia), IAA/OISC (UK), or U.S. immigration law.',
+    '- Standard Consultation Fee Tiers (Tourist Baseline): Schengen (17 states + Schengen Area) & USA: PKR 30,000 | UK, Canada, Australia & New Zealand: PKR 40,000 | Japan, South Korea & South Africa: PKR 25,000.',
+    '- Multi-Applicant & Bank FX Notes: Additional companions in the same file receive a 15% consultancy service discount. Pakistani bank cards used on online mission portals (GOV.UK, IRCC, ImmiAccount, e-Visa) typically incur ~4–5% international FX conversion, FED, and withholding charges on billing day.',
+    `- Official Payment Safety: ${SITE_CONFIG.legal.paymentSafetyNotice}`,
+    `- Privacy & Retention: ${SITE_CONFIG.legal.documentRetentionSummary}`,
+    '',
     `## All ${DESTINATIONS.length} Country Visa Summaries (Pakistani Passport Holders)`,
     '',
     ...DESTINATIONS.flatMap((d) => {
+      const schedule = getCostCalculatorSchedule(d.slug);
+      const processing = d.facts.processingTime.trim() || schedule.processingWindowEstimate;
+      const govtFee = formatGovtFeeForLlm(schedule.currency, schedule.embassyFeeByType.tourist);
+      const consultancy = `PKR ${schedule.baseServiceFeePkr.toLocaleString('en-US')}`;
+      const stayParts = [
+        d.facts.stayDuration.trim() ? `Stay: ${d.facts.stayDuration.trim()}` : '',
+        d.facts.validity.trim() ? `Validity: ${d.facts.validity.trim()}` : '',
+      ].filter(Boolean);
       const topDocs = d.checklist
         .flatMap((g) => g.items)
         .slice(0, 5)
         .map((item) => item.label)
         .join('; ');
+
       return [
         `### ${d.country} Visa from Pakistan`,
         `- URL: ${SITE_CONFIG.siteUrl}/visas/${d.slug}`,
         `- Region: ${d.region} | Channel: ${d.channel} | Visa Type: ${d.facts.visaType} (${d.facts.entryType})`,
-        `- Typical Processing: ${d.facts.processingTime} | Stay: ${d.facts.stayDuration} | Validity: ${d.facts.validity}`,
+        `- Official Channel / Centre: ${schedule.centreProviderLabel}`,
+        `- Indicative Processing: ${processing}`,
+        `- Indicative Fees (Verify Live): Govt ${govtFee} | Visahouse Consultation ${consultancy}`,
+        ...(stayParts.length > 0 ? [`- ${stayParts.join(' | ')}`] : []),
         `- Summary: ${d.heroPromise}`,
+        `- Key Advisory: ${d.whoCanApply.eligibilityNote}`,
         `- Core Documents: ${topDocs}`,
         '',
       ];
     }),
+    '## Frequently Asked Questions (Pakistani Passport Holders)',
+    '',
+    ...PAKISTANI_VISA_FAQS.flatMap((faq) => [
+      `### ${faq.question}`,
+      faq.answer,
+      '',
+    ]),
   ].join('\n');
 
   fs.mkdirSync(publicDir, { recursive: true });

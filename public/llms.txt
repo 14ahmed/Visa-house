@@ -2,7 +2,11 @@
 
 > Every visa under one roof. Online visa guidance, document checklists, Schengen appointment help, and travel insurance for Pakistani passport holders. Operated by AMG (https://amgvisa.com).
 
+- Last Updated: 2026-11-25
 - Brand & Alternate Names: Visahouse, AMG Visa, Visahouse Pakistan
+- Operator: Visahouse (visahouse.online) — online-first visa consultancy desk affiliated with the AMG Visa network (amgvisa.com)
+- Service Desks: Islamabad · Lahore · Karachi (Online Desk across Pakistan)
+- Service Scope: Private administrative visitor, business, and tourist visa filing support (not a government embassy or regulated legal representative)
 - Website: https://visahouse.online
 - Full Structured Knowledge Base: https://visahouse.online/llms-full.txt
 - WhatsApp / Phone: +92 331 8877655
@@ -15,49 +19,55 @@
 - [All Visa Guides](https://visahouse.online/visas): Directory of 42 country visa guides from Pakistan
 - [Schengen Appointments](https://visahouse.online/schengen-appointments): Official VFS Global & BLS International guidance from Islamabad, Lahore, and Karachi
 - [Travel Insurance](https://visahouse.online/travel-insurance): Schengen-accepted (€30,000+ medical) and worldwide travel insurance plans
-- [About Visahouse](https://visahouse.online/about): How our online visa desk works
-- [Contact](https://visahouse.online/contact): WhatsApp and email inquiry desk
+- [About Visahouse](https://visahouse.online/about): Scope of practice, operator disclosure, and how our online visa desk works
+- [Contact](https://visahouse.online/contact): WhatsApp and email inquiry desk plus payment safety notice
 
 ## Country Visa Guides from Pakistan (42)
-- [Thailand Visa from Pakistan](https://visahouse.online/visas/thailand): Southeast Asia · Hybrid / Centre · 
-- [Malaysia Visa from Pakistan](https://visahouse.online/visas/malaysia): Southeast Asia · e-Visa · 
-- [Indonesia Visa from Pakistan](https://visahouse.online/visas/indonesia): Southeast Asia · e-Visa · 
-- [Singapore Visa from Pakistan](https://visahouse.online/visas/singapore): Southeast Asia · Hybrid / Centre · 
-- [Cambodia Visa from Pakistan](https://visahouse.online/visas/cambodia): Southeast Asia · e-Visa · 
-- [Sri Lanka Visa from Pakistan](https://visahouse.online/visas/sri-lanka): South Asia · e-Visa · 
-- [Nepal Visa from Pakistan](https://visahouse.online/visas/nepal): South Asia · Hybrid / Centre · 
-- [Uzbekistan Visa from Pakistan](https://visahouse.online/visas/uzbekistan): Central Asia & Gulf · Hybrid / Centre · 
-- [Bahrain Visa from Pakistan](https://visahouse.online/visas/bahrain): Central Asia & Gulf · e-Visa · 
-- [Turkey Visa from Pakistan](https://visahouse.online/visas/turkey): Central Asia & Gulf · Hybrid / Centre · 
-- [Azerbaijan Visa from Pakistan](https://visahouse.online/visas/azerbaijan): Central Asia & Gulf · e-Visa · 
-- [Japan Visa from Pakistan](https://visahouse.online/visas/japan): East Asia · Sticker / Embassy · 
-- [South Korea Visa from Pakistan](https://visahouse.online/visas/south-korea): East Asia · Sticker / Embassy · 
-- [Philippines Visa from Pakistan](https://visahouse.online/visas/philippines): Southeast Asia · Sticker / Embassy · 
-- [United States Visa from Pakistan](https://visahouse.online/visas/usa): North America · Interview / Consulate · 
-- [Canada Visa from Pakistan](https://visahouse.online/visas/canada): North America · Hybrid / Centre · 
-- [United Kingdom Visa from Pakistan](https://visahouse.online/visas/uk): Europe & UK · Hybrid / Centre · 
-- [Australia Visa from Pakistan](https://visahouse.online/visas/australia): Oceania · Hybrid / Centre · 
-- [New Zealand Visa from Pakistan](https://visahouse.online/visas/new-zealand): Oceania · e-Visa · 
-- [Schengen States Visa from Pakistan](https://visahouse.online/visas/schengen-states): Europe & UK · Hybrid / Centre · 
-- [Germany Visa from Pakistan](https://visahouse.online/visas/germany): Europe & UK · Hybrid / Centre · 
-- [France Visa from Pakistan](https://visahouse.online/visas/france): Europe & UK · Hybrid / Centre · 
-- [Greece Visa from Pakistan](https://visahouse.online/visas/greece): Europe & UK · Hybrid / Centre · 
-- [Portugal Visa from Pakistan](https://visahouse.online/visas/portugal): Europe & UK · Hybrid / Centre · 
-- [Hungary Visa from Pakistan](https://visahouse.online/visas/hungary): Europe & UK · Hybrid / Centre · 
-- [Poland Visa from Pakistan](https://visahouse.online/visas/poland): Europe & UK · Hybrid / Centre · 
-- [Netherlands Visa from Pakistan](https://visahouse.online/visas/netherlands): Europe & UK · Hybrid / Centre · 
-- [Norway Visa from Pakistan](https://visahouse.online/visas/norway): Europe & UK · Hybrid / Centre · 
-- [Denmark Visa from Pakistan](https://visahouse.online/visas/denmark): Europe & UK · Hybrid / Centre · 
-- [Belgium Visa from Pakistan](https://visahouse.online/visas/belgium): Europe & UK · Hybrid / Centre · 
-- [Luxembourg Visa from Pakistan](https://visahouse.online/visas/luxembourg): Europe & UK · Hybrid / Centre · 
-- [Finland Visa from Pakistan](https://visahouse.online/visas/finland): Europe & UK · Hybrid / Centre · 
-- [Sweden Visa from Pakistan](https://visahouse.online/visas/sweden): Europe & UK · Hybrid / Centre · 
-- [Switzerland Visa from Pakistan](https://visahouse.online/visas/switzerland): Europe & UK · Hybrid / Centre · 
-- [Austria Visa from Pakistan](https://visahouse.online/visas/austria): Europe & UK · Hybrid / Centre · 
-- [Italy Visa from Pakistan](https://visahouse.online/visas/italy): Europe & UK · Hybrid / Centre · 
-- [Spain Visa from Pakistan](https://visahouse.online/visas/spain): Europe & UK · Hybrid / Centre · 
-- [Egypt Visa from Pakistan](https://visahouse.online/visas/egypt): Africa · Sticker / Embassy · 
-- [Morocco Visa from Pakistan](https://visahouse.online/visas/morocco): Africa · Sticker / Embassy · 
-- [Kenya Visa from Pakistan](https://visahouse.online/visas/kenya): Africa · e-Visa · 
-- [South Africa Visa from Pakistan](https://visahouse.online/visas/south-africa): Africa · Hybrid / Centre · 
-- [Zimbabwe Visa from Pakistan](https://visahouse.online/visas/zimbabwe): Africa · e-Visa · 
+- [Thailand Visa from Pakistan](https://visahouse.online/visas/thailand): Southeast Asia · Hybrid / Centre · 5–10 working days · Est. USD 40 govt + PKR 14,500 consultancy
+- [Malaysia Visa from Pakistan](https://visahouse.online/visas/malaysia): Southeast Asia · e-Visa · 3–7 working days · Est. MYR 125 govt + PKR 10,500 consultancy
+- [Indonesia Visa from Pakistan](https://visahouse.online/visas/indonesia): Southeast Asia · e-Visa · 5–8 working days · Est. USD 65 govt + PKR 11,500 consultancy
+- [Singapore Visa from Pakistan](https://visahouse.online/visas/singapore): Southeast Asia · Hybrid / Centre · 5–9 working days · Est. SGD 30 govt + PKR 14,000 consultancy
+- [Cambodia Visa from Pakistan](https://visahouse.online/visas/cambodia): Southeast Asia · e-Visa · 3–5 working days · Est. USD 36 govt + PKR 8,500 consultancy
+- [Sri Lanka Visa from Pakistan](https://visahouse.online/visas/sri-lanka): South Asia · e-Visa · 2–4 working days · Est. USD 20 govt + PKR 8,500 consultancy
+- [Nepal Visa from Pakistan](https://visahouse.online/visas/nepal): South Asia · Hybrid / Centre · 4–7 working days · Est. USD 30 govt + PKR 11,000 consultancy
+- [Uzbekistan Visa from Pakistan](https://visahouse.online/visas/uzbekistan): Central Asia & Gulf · Hybrid / Centre · 5–10 working days · Est. USD 20 govt + PKR 13,500 consultancy
+- [Bahrain Visa from Pakistan](https://visahouse.online/visas/bahrain): Central Asia & Gulf · e-Visa · 3–7 working days · Est. BHD 13 govt + PKR 10,500 consultancy
+- [Turkey Visa from Pakistan](https://visahouse.online/visas/turkey): Central Asia & Gulf · Hybrid / Centre · 10–15 working days (sticker) · 1–3 days (qualifying e-Visa) · Est. USD 60 govt + PKR 18,500 consultancy
+- [Azerbaijan Visa from Pakistan](https://visahouse.online/visas/azerbaijan): Central Asia & Gulf · e-Visa · 3 working days (Standard) · 3–5 hours (Urgent) · Est. USD 26 govt + PKR 7,500 consultancy
+- [Japan Visa from Pakistan](https://visahouse.online/visas/japan): East Asia · Sticker / Embassy · 6–12 working days · Est. ¥3,000 govt + PKR 25,000 consultancy
+- [South Korea Visa from Pakistan](https://visahouse.online/visas/south-korea): East Asia · Sticker / Embassy · 8–15 working days · Est. USD 40 govt + PKR 25,000 consultancy
+- [Philippines Visa from Pakistan](https://visahouse.online/visas/philippines): Southeast Asia · Sticker / Embassy · 7–14 working days · Est. USD 40 govt + PKR 15,500 consultancy
+- [United States Visa from Pakistan](https://visahouse.online/visas/usa): North America · Interview / Consulate · Appointment wait varies; 5–15 working days post-interview · Est. USD 185 govt + PKR 30,000 consultancy
+- [Canada Visa from Pakistan](https://visahouse.online/visas/canada): North America · Hybrid / Centre · 4–10 weeks (IRCC processing times fluctuate) · Est. CAD 185 govt + PKR 40,000 consultancy
+- [United Kingdom Visa from Pakistan](https://visahouse.online/visas/uk): Europe & UK · Hybrid / Centre · 15–21 working days (Standard UKVI) · Est. £135 govt + PKR 40,000 consultancy
+- [Australia Visa from Pakistan](https://visahouse.online/visas/australia): Oceania · Hybrid / Centre · 3–6 weeks via ImmiAccount · Est. AUD 250 govt + PKR 40,000 consultancy
+- [New Zealand Visa from Pakistan](https://visahouse.online/visas/new-zealand): Oceania · e-Visa · 4–7 weeks via INZ Online · Est. NZD 441 govt + PKR 40,000 consultancy
+- [Schengen States Visa from Pakistan](https://visahouse.online/visas/schengen-states): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Germany Visa from Pakistan](https://visahouse.online/visas/germany): Europe & UK · Hybrid / Centre · 15–30 calendar days post-appointment · Est. €90 govt + PKR 30,000 consultancy
+- [France Visa from Pakistan](https://visahouse.online/visas/france): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Greece Visa from Pakistan](https://visahouse.online/visas/greece): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Portugal Visa from Pakistan](https://visahouse.online/visas/portugal): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Hungary Visa from Pakistan](https://visahouse.online/visas/hungary): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Poland Visa from Pakistan](https://visahouse.online/visas/poland): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Netherlands Visa from Pakistan](https://visahouse.online/visas/netherlands): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Norway Visa from Pakistan](https://visahouse.online/visas/norway): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Denmark Visa from Pakistan](https://visahouse.online/visas/denmark): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Belgium Visa from Pakistan](https://visahouse.online/visas/belgium): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Luxembourg Visa from Pakistan](https://visahouse.online/visas/luxembourg): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Finland Visa from Pakistan](https://visahouse.online/visas/finland): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Sweden Visa from Pakistan](https://visahouse.online/visas/sweden): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Switzerland Visa from Pakistan](https://visahouse.online/visas/switzerland): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Austria Visa from Pakistan](https://visahouse.online/visas/austria): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Italy Visa from Pakistan](https://visahouse.online/visas/italy): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Spain Visa from Pakistan](https://visahouse.online/visas/spain): Europe & UK · Hybrid / Centre · 15–30 calendar days after biometrics · Est. €90 govt + PKR 30,000 consultancy
+- [Egypt Visa from Pakistan](https://visahouse.online/visas/egypt): Africa · Sticker / Embassy · 7–14 working days · Est. USD 30 govt + PKR 14,500 consultancy
+- [Morocco Visa from Pakistan](https://visahouse.online/visas/morocco): Africa · Sticker / Embassy · 10–15 working days · Est. €25 govt + PKR 15,500 consultancy
+- [Kenya Visa from Pakistan](https://visahouse.online/visas/kenya): Africa · e-Visa · 3–5 working days · Est. USD 33 govt + PKR 9,500 consultancy
+- [South Africa Visa from Pakistan](https://visahouse.online/visas/south-africa): Africa · Hybrid / Centre · 10–20 working days · Est. ZAR 425 govt + PKR 25,000 consultancy
+- [Zimbabwe Visa from Pakistan](https://visahouse.online/visas/zimbabwe): Africa · e-Visa · 5–10 working days · Est. USD 30 govt + PKR 10,500 consultancy
+
+## Optional
+- [Privacy Policy](https://visahouse.online/privacy): Document handling, 30–60 day post-decision purge schedule, and deletion requests
+- [Terms of Service](https://visahouse.online/terms): Administrative scope boundaries, tiered consultancy refund terms, and official payment safety
+- [XML Sitemap](https://visahouse.online/sitemap.xml): Machine-readable index of all 50 canonical URLs and landmark artwork
+- [Full LLM Knowledge Base](https://visahouse.online/llms-full.txt): Expanded country advisories, fee schedules, checklists, and FAQs in a single Markdown document

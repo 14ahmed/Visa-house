@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
   disclaimer:
     'Visahouse is a private consultancy, not a government body or embassy. Final decisions rest with the authorities.',
   confirmFallback: 'Confirm with our team',
-  guideReviewDateIso: '2026-11-23',
+  guideReviewDateIso: '2026-11-25',
   guideReviewDateLabel: 'November 2026',
   /** Optional zero-backend form endpoint (e.g. Formspree or Web3Forms URL) to email leads to info@visahouse.online */
   leadFormEndpoint: '',

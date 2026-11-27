@@ -3,6 +3,13 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Link: <https://visahouse.online/llms.txt>; rel="alternate"; type="text/markdown", <https://visahouse.online/sitemap.xml>; rel="sitemap"; type="application/xml"
+
+/404
+  X-Robots-Tag: noindex, follow
+
+/404.html
+  X-Robots-Tag: noindex, follow
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
@@ -10,11 +17,24 @@
 /src/assets/images/*
   Cache-Control: public, max-age=31536000, immutable
 
+/og-image.jpg
+  Cache-Control: public, max-age=86400
+
 /og-image.avif
   Cache-Control: public, max-age=86400
 
+/logo.png
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
 /favicon.svg
   Cache-Control: public, max-age=604800
+
+/e4f8a19c2b7d4065a3c9e18f7b2d504a.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
 
 /robots.txt
   Content-Type: text/plain; charset=utf-8

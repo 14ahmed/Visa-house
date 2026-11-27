@@ -57,6 +57,8 @@ export function CountryPage({ destination }: CountryPageProps) {
   ];
 
   const related = getRelatedDestinations(destination.relatedSlugs);
+  const consultancyFeePkr = getConsultancyFeePkr(destination.slug);
+  const formattedConsultancyFee = `PKR ${consultancyFeePkr.toLocaleString('en-US')}`;
   const waHref = buildWhatsAppUrl(`${destination.country} visa from ${SITE_CONFIG.passportAudience}`);
 
   return (
@@ -224,8 +226,10 @@ export function CountryPage({ destination }: CountryPageProps) {
             Pakistani passport holders applying for a <strong>{destination.country}</strong> visa
             typically apply via <strong>{destination.channel}</strong> ({destination.facts.visaType}).
             Typical allowed stay is <strong>{formatRegulatedValue(destination.facts.stayDuration)}</strong>{' '}
-            with validity of <strong>{formatRegulatedValue(destination.facts.validity)}</strong>, and
-            live processing times and fees are confirmed directly before filing.
+            with validity of <strong>{formatRegulatedValue(destination.facts.validity)}</strong>.{' '}
+            {SITE_CONFIG.brandName} private consultancy fee starts from{' '}
+            <strong>{formattedConsultancyFee}</strong> per primary applicant (official embassy and
+            visa-centre fees are paid separately and confirmed live before filing).
           </p>
 
           <div className="mt-5 overflow-x-auto">
@@ -257,6 +261,12 @@ export function CountryPage({ destination }: CountryPageProps) {
                   <td className="py-2.5">
                     {formatRegulatedValue(destination.facts.stayDuration)} ·{' '}
                     {formatRegulatedValue(destination.facts.validity)}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" className="py-2.5 pe-4 font-medium text-ink whitespace-nowrap">Visahouse Consultancy Fee</th>
+                  <td className="py-2.5">
+                    {formattedConsultancyFee} per applicant (tourist baseline; 15% companion discount; excludes embassy &amp; visa-centre fees)
                   </td>
                 </tr>
                 <tr>

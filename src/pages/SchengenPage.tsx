@@ -101,6 +101,14 @@ export function SchengenPage() {
             <p data-aeo-answer="true" className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
               {t.home.schengenCardBody}
             </p>
+            <p className="mt-3 text-xs font-mono text-ink-muted">
+              Visahouse Schengen dossier &amp; appointment consultancy:{' '}
+              <strong className="text-ink">PKR 30,000</strong> per applicant · excludes €90
+              embassy fee &amp; VFS/BLS centre charges · Updated{' '}
+              <time dateTime={SITE_CONFIG.guideReviewDateIso}>
+                {SITE_CONFIG.guideReviewDateLabel}
+              </time>
+            </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <a

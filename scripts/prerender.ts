@@ -154,7 +154,7 @@ async function prerender() {
     if (route.path === '/') {
       images.push(
         {
-          loc: `${SITE_CONFIG.siteUrl}/og-image.avif`,
+          loc: `${SITE_CONFIG.siteUrl}/og-image.jpg`,
           title: `${SITE_CONFIG.brandName} Pakistan Visa Desk`,
         },
         {
@@ -245,6 +245,7 @@ ${sitemapEntries}
         'User-agent: ChatGPT-User',
         'User-agent: GPTBot',
         'User-agent: Google-Extended',
+        'User-agent: Google-CloudVertexBot',
         'User-agent: PerplexityBot',
         'User-agent: Perplexity-User',
         'User-agent: ClaudeBot',
@@ -252,6 +253,12 @@ ${sitemapEntries}
         'User-agent: Claude-User',
         'User-agent: Applebot-Extended',
         'User-agent: Amazonbot',
+        'User-agent: Meta-ExternalAgent',
+        'User-agent: Meta-ExternalFetcher',
+        'User-agent: DuckAssistBot',
+        'User-agent: MistralAI-User',
+        'User-agent: YouBot',
+        'User-agent: cohere-ai',
         'Allow: /',
         'Allow: /llms.txt',
         'Allow: /llms-full.txt',

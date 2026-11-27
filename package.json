@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist dist-ssr",
     "lint": "tsc --noEmit",
-    "test": "tsx --test src/utils/visahouse.test.ts"
+    "test": "tsx --test src/utils/visahouse.test.ts",
+    "indexnow": "tsx scripts/ping-indexnow.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

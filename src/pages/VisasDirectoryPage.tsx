@@ -91,6 +91,7 @@ export function VisasDirectoryPage() {
             path: '/visas',
             mainEntityId: `${SITE_CONFIG.siteUrl}/visas#itemlist`,
             hasBreadcrumb: true,
+            speakableSelectors: ['h1', '[data-aeo-answer="true"]'],
           }),
           buildServiceSchema({
             name: `Visa Consultancy Directory for ${SITE_CONFIG.passportAudience}`,
@@ -130,6 +131,20 @@ export function VisasDirectoryPage() {
             </h1>
             <p className="mt-4 text-base sm:text-lg text-ink-body leading-relaxed max-w-2xl">
               {t.pages.visasSubcopy}
+            </p>
+            <p
+              data-aeo-answer="true"
+              className="mt-4 px-4 py-3 bg-slip border border-rule rounded-[2px] text-xs sm:text-sm text-ink-body leading-relaxed max-w-2xl"
+            >
+              <strong className="text-ink">Visahouse Consultancy Fees (Tourist Baseline):</strong>{' '}
+              e-Visa routes from <strong>PKR 7,500</strong> · Japan, South Korea &amp; South Africa{' '}
+              <strong>PKR 25,000</strong> · Schengen &amp; USA <strong>PKR 30,000</strong> · UK,
+              Canada, Australia &amp; New Zealand <strong>PKR 40,000</strong> (excludes official
+              embassy &amp; visa-centre charges · Updated{' '}
+              <time dateTime={SITE_CONFIG.guideReviewDateIso}>
+                {SITE_CONFIG.guideReviewDateLabel}
+              </time>
+              ).
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <a

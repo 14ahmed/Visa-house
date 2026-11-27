@@ -102,6 +102,13 @@ export function InsurancePage() {
               <span>{t.home.insuranceZonesVal}</span>
               <span aria-hidden="true">·</span>
               <span>{t.common.pakistan}</span>
+              <span aria-hidden="true">·</span>
+              <span>
+                Updated{' '}
+                <time dateTime={SITE_CONFIG.guideReviewDateIso}>
+                  {SITE_CONFIG.guideReviewDateLabel}
+                </time>
+              </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-medium tracking-tight leading-[1.06] text-ink">

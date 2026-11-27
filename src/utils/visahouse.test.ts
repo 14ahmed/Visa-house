@@ -12,7 +12,8 @@ import {
   validateLeadForm,
 } from './formatters';
 import { submitLead } from '../services/leadService';
-import { buildCanonicalUrl, renderSeoTagsToHtml } from './seo';
+import { CONSULTANCY_FEE_PKR } from '../data/consultancyFees';
+import { buildCanonicalUrl, buildPageGraph, renderSeoTagsToHtml } from './seo';
 import {
   buildChecklistFilename,
   buildVisaChecklistDocument,
@@ -96,6 +97,7 @@ import {
   clampApplicants,
   formatCostEstimateSummary,
   formatCurrencyAmount,
+  getCostCalculatorSchedule,
   hasFeeScheduleForAllDestinations,
 } from './visaCostCalculator';
 import {
@@ -357,7 +359,7 @@ test('validateLeadForm catches missing required fields, non-digit or out-of-rang
   assert.equal(valid.isSpam, false);
 });
 
-test('buildWhatsAppUrl and SEO serializer produce valid canonical links and JSON-LD', () => {
+test('buildWhatsAppUrl, CONSULTANCY_FEE_PKR, and SEO serializer produce unified @graph JSON-LD and clean noindex output', () => {
   const wa = buildWhatsAppUrl('Thailand visa');
   assert.ok(wa.startsWith('https://wa.me/'));
   assert.ok(wa.includes('Thailand%20visa'));
@@ -365,7 +367,15 @@ test('buildWhatsAppUrl and SEO serializer produce valid canonical links and JSON
   assert.equal(buildCanonicalUrl('/visas/thailand'), `${SITE_CONFIG.siteUrl}/visas/thailand`);
   assert.equal(STATIC_ROUTES.length, 50);
 
-  const head = renderSeoTagsToHtml({
+  for (const dest of DESTINATIONS) {
+    assert.equal(
+      CONSULTANCY_FEE_PKR[dest.slug],
+      getCostCalculatorSchedule(dest.slug).baseServiceFeePkr,
+      `CONSULTANCY_FEE_PKR mismatch for ${dest.slug}`,
+    );
+  }
+
+  const spec = {
     title: 'Thailand Visa from Pakistan | Visahouse',
     description: 'Apply for a Thailand tourist visa from Pakistan.',
     path: '/visas/thailand',
@@ -373,9 +383,34 @@ test('buildWhatsAppUrl and SEO serializer produce valid canonical links and JSON
       { name: 'Home', path: '/' },
       { name: 'Thailand', path: '/visas/thailand' },
     ],
-  });
+  };
+
+  const head = renderSeoTagsToHtml(spec);
   assert.ok(head.includes('<link rel="canonical"'));
+  assert.ok(head.includes('https://visahouse.online/og-image.jpg'));
+  assert.ok(head.includes('image/jpeg'));
+  assert.ok(head.includes('<script type="application/ld+json" data-visahouse-ld="true">'));
   assert.ok(head.includes('BreadcrumbList'));
+
+  const graph = buildPageGraph(spec) as { '@context': string; '@graph': Record<string, unknown>[] };
+  assert.equal(graph['@context'], 'https://schema.org');
+  assert.ok(Array.isArray(graph['@graph']));
+  const org = graph['@graph'].find((n) => n['@id'] === `${SITE_CONFIG.siteUrl}/#organization`) as Record<string, unknown>;
+  assert.ok(org);
+  assert.deepEqual(org['@type'], ['Organization', 'OnlineBusiness']);
+  assert.equal((org.logo as Record<string, unknown>).url, `${SITE_CONFIG.siteUrl}/logo.png`);
+
+  const noindexHead = renderSeoTagsToHtml({
+    title: 'Page Not Found (404) | Visahouse',
+    description: 'Not found',
+    path: '/404',
+    noindex: true,
+  });
+  assert.ok(noindexHead.includes('name="robots" content="noindex, follow"'));
+  assert.equal(noindexHead.includes('rel="canonical"'), false);
+  assert.equal(noindexHead.includes('og:image'), false);
+  assert.equal(noindexHead.includes('application/ld+json'), false);
+  assert.equal(buildPageGraph({ title: '404', description: '404', path: '/404', noindex: true }), null);
 });
 
 test('mock submitLead validates inputs and logs captured inquiry data to the console', async () => {

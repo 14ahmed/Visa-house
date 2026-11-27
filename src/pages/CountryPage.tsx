@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
+import { getConsultancyFeePkr } from '../data/consultancyFees';
 import {
   DESTINATION_SUMMARIES as DESTINATIONS,
   getRelatedDestinationSummaries as getRelatedDestinations,
@@ -71,6 +72,8 @@ export function CountryPage({ destination }: CountryPageProps) {
             description: destination.seoDescription,
             path,
             serviceType: `${destination.country} Visa Consultancy`,
+            pricePkr: getConsultancyFeePkr(destination.slug),
+            offerDescription: `Baseline Visahouse dossier preparation & filing consultancy fee per primary applicant (excludes embassy and visa-centre fees).`,
           }),
           buildGuideWebPageSchema({
             name: `${destination.country} Visa from ${SITE_CONFIG.passportAudience}`,
@@ -80,9 +83,10 @@ export function CountryPage({ destination }: CountryPageProps) {
           buildHowToSchema({
             name: `How to apply for a ${destination.country} visa from ${SITE_CONFIG.passportAudience}`,
             description: destination.heroPromise,
+            path,
             steps: destination.steps,
           }),
-          buildFaqSchema(destination.faqs),
+          buildFaqSchema(destination.faqs, path),
         ]}
       />
 

@@ -8,7 +8,14 @@ import {
 } from '../data/services';
 import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl, formatRegulatedValue } from '../utils/formatters';
-import { buildFaqSchema, buildServiceSchema, type BreadcrumbItem } from '../utils/seo';
+import {
+  buildCanonicalUrl,
+  buildFaqSchema,
+  buildHowToSchema,
+  buildServiceSchema,
+  buildWebPageSchema,
+  type BreadcrumbItem,
+} from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FaqAccordion } from '../components/FaqAccordion';
 import { Layout } from '../components/Layout';
@@ -39,6 +46,8 @@ const COVERAGE_PILLARS = [
 export function InsurancePage() {
   const { t, isUrdu, localizeCountry } = useLanguage();
   const path = '/travel-insurance';
+  const insuranceDescription =
+    'Compare Schengen-compliant €30,000, Asia, and Worldwide travel medical insurance plans from Pakistan with clear coverage and claims steps.';
   const breadcrumbs: BreadcrumbItem[] = [
     { name: 'Home', path: '/' },
     { name: 'Travel Insurance', path },
@@ -51,10 +60,18 @@ export function InsurancePage() {
     <Layout whatsappContext="travel insurance quote" applyHref="#apply">
       <SeoHead
         title="Travel Insurance from Pakistan — Schengen Cover | Visahouse"
-        description="Compare Schengen-compliant €30,000, Asia, and Worldwide travel medical insurance plans from Pakistan with clear coverage and claims steps."
+        description={insuranceDescription}
         path={path}
         breadcrumbs={breadcrumbs}
         schemas={[
+          buildWebPageSchema({
+            name: 'Travel Insurance from Pakistan — Schengen Cover | Visahouse',
+            description: insuranceDescription,
+            path,
+            mainEntityId: `${buildCanonicalUrl(path)}#service`,
+            hasBreadcrumb: true,
+            speakableSelectors: ['h1', '[data-aeo-answer="true"]'],
+          }),
           buildServiceSchema({
             name: `Travel Insurance & Schengen Medical Cover from ${SITE_CONFIG.passportAudience}`,
             description:
@@ -62,7 +79,14 @@ export function InsurancePage() {
             path,
             serviceType: 'Travel Insurance Consultancy',
           }),
-          buildFaqSchema(INSURANCE_FAQS),
+          buildHowToSchema({
+            name: 'How to file a travel medical insurance claim abroad',
+            description:
+              'Emergency assistance contact, original itemised medical & airline documentation, insurer notification, and claim-desk support.',
+            path,
+            steps: INSURANCE_CLAIMS_STEPS,
+          }),
+          buildFaqSchema(INSURANCE_FAQS, path),
         ]}
       />
 
@@ -85,7 +109,7 @@ export function InsurancePage() {
               <span className="highlighter-mark">{t.pages.insuranceHeroHighlight}</span>
             </h1>
 
-            <p className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
+            <p data-aeo-answer="true" className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
               {t.home.insuranceCardBody}
             </p>
 

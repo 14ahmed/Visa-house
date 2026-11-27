@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SITE_CONFIG } from '../config/site';
-import type { BreadcrumbItem } from '../utils/seo';
+import { buildWebPageSchema, type BreadcrumbItem } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Layout } from '../components/Layout';
 import { SeoHead } from '../components/SeoHead';
@@ -19,6 +19,15 @@ export function PrivacyPage() {
         description="How Visahouse collects, handles, stores, and deletes passport scans and personal inquiry data submitted by visa applicants."
         path={path}
         breadcrumbs={breadcrumbs}
+        schemas={[
+          buildWebPageSchema({
+            name: 'Privacy Policy | Visahouse',
+            description:
+              'How Visahouse collects, handles, stores, and deletes passport scans and personal inquiry data submitted by visa applicants.',
+            path,
+            hasBreadcrumb: true,
+          }),
+        ]}
       />
 
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
@@ -120,6 +129,15 @@ export function TermsPage() {
         description="Consultancy scope, non-government disclaimer, fee transparency, and applicant responsibilities when using Visahouse services."
         path={path}
         breadcrumbs={breadcrumbs}
+        schemas={[
+          buildWebPageSchema({
+            name: 'Terms of Service | Visahouse',
+            description:
+              'Consultancy scope, non-government disclaimer, fee transparency, and applicant responsibilities when using Visahouse services.',
+            path,
+            hasBreadcrumb: true,
+          }),
+        ]}
       />
 
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">

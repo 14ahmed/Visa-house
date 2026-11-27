@@ -3,7 +3,7 @@ import { Clock, Mail, MessageCircle } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/formatters';
-import type { BreadcrumbItem } from '../utils/seo';
+import { buildWebPageSchema, ORG_ID, type BreadcrumbItem } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Layout } from '../components/Layout';
 import { LeadForm } from '../components/LeadForm';
@@ -26,6 +26,17 @@ export function ContactPage() {
         description="Reach the Visahouse online visa desk on WhatsApp or via our inquiry form for live fee confirmation and document checklists in Pakistan."
         path={path}
         breadcrumbs={breadcrumbs}
+        schemas={[
+          buildWebPageSchema({
+            type: 'ContactPage',
+            name: 'Contact Visahouse — WhatsApp & Online Visa Desk | Pakistan',
+            description:
+              'Reach the Visahouse online visa desk on WhatsApp or via our inquiry form for live fee confirmation and document checklists in Pakistan.',
+            path,
+            mainEntityId: ORG_ID,
+            hasBreadcrumb: true,
+          }),
+        ]}
       />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">

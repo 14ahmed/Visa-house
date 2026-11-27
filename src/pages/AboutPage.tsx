@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
-import type { BreadcrumbItem } from '../utils/seo';
+import { buildWebPageSchema, ORG_ID, type BreadcrumbItem } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ClientTestimonial } from '../components/ClientTestimonial';
 import { Layout } from '../components/Layout';
@@ -24,6 +24,17 @@ export function AboutPage() {
         description="Learn how Visahouse prepares honest, audit-clean visa dossiers, Schengen guidance, and travel insurance for Pakistani passport holders."
         path={path}
         breadcrumbs={breadcrumbs}
+        schemas={[
+          buildWebPageSchema({
+            type: 'AboutPage',
+            name: 'About Visahouse — Online Visa Consultancy | Pakistan',
+            description:
+              'Learn how Visahouse prepares honest, audit-clean visa dossiers, Schengen guidance, and travel insurance for Pakistani passport holders.',
+            path,
+            mainEntityId: ORG_ID,
+            hasBreadcrumb: true,
+          }),
+        ]}
       />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16 border-b border-ink/80">

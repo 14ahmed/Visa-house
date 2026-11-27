@@ -2,16 +2,16 @@ import { lazy, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
+import { CONSULTANCY_FEE_RANGE_PKR } from '../data/consultancyFees';
 import { DESTINATION_SUMMARIES as DESTINATIONS, REGIONS, VISA_CHANNELS } from '../data/destinationIndex';
-import { PAKISTANI_VISA_FAQS } from '../data/visaFaqs';
 import type { RegionId, VisaChannel } from '../data/types';
 import { useLanguage } from '../context/LanguageContext';
 import { filterDestinations, formatRegulatedValue } from '../utils/formatters';
 import { formatLocalizedCopy } from '../utils/i18n';
 import {
-  buildFaqSchema,
   buildItemListSchema,
   buildServiceSchema,
+  buildWebPageSchema,
   type BreadcrumbItem,
 } from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -84,12 +84,25 @@ export function VisasDirectoryPage() {
         path="/visas"
         breadcrumbs={breadcrumbs}
         schemas={[
+          buildWebPageSchema({
+            type: 'CollectionPage',
+            name: 'All Visa Destinations from Pakistan | Visahouse',
+            description: `Browse ${DESTINATIONS.length} country visa guides from Pakistan—UK, Canada, USA, Australia, Schengen states, Africa, and Asia.`,
+            path: '/visas',
+            mainEntityId: `${SITE_CONFIG.siteUrl}/visas#itemlist`,
+            hasBreadcrumb: true,
+          }),
           buildServiceSchema({
             name: `Visa Consultancy Directory for ${SITE_CONFIG.passportAudience}`,
             description:
               'Complete index of tourist, business, and visitor visa guides prepared for Pakistani passport holders.',
             path: '/visas',
             serviceType: 'Visa Consultancy Directory',
+            lowPricePkr: CONSULTANCY_FEE_RANGE_PKR.min,
+            highPricePkr: CONSULTANCY_FEE_RANGE_PKR.max,
+            offerCount: DESTINATIONS.length,
+            offerDescription:
+              'Visahouse dossier preparation & filing consultancy fee range across 42 destinations (excludes embassy and visa-centre charges).',
           }),
           buildItemListSchema(
             `Visa Guides from ${SITE_CONFIG.passportAudience}`,
@@ -97,8 +110,8 @@ export function VisasDirectoryPage() {
               name: `${d.country} Visa from ${SITE_CONFIG.passportAudience}`,
               path: `/visas/${d.slug}`,
             })),
+            '/visas',
           ),
-          buildFaqSchema([...PAKISTANI_VISA_FAQS]),
         ]}
       />
 

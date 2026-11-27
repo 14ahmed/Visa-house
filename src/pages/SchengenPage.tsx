@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MessageCircle } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
+import { getConsultancyFeePkr } from '../data/consultancyFees';
 import { DESTINATION_SUMMARIES as DESTINATIONS } from '../data/destinationIndex';
 import {
   SCHENGEN_COUNTRIES,
@@ -10,7 +11,14 @@ import {
 } from '../data/services';
 import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/formatters';
-import { buildFaqSchema, buildServiceSchema, type BreadcrumbItem } from '../utils/seo';
+import {
+  buildCanonicalUrl,
+  buildFaqSchema,
+  buildHowToSchema,
+  buildServiceSchema,
+  buildWebPageSchema,
+  type BreadcrumbItem,
+} from '../utils/seo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FaqAccordion } from '../components/FaqAccordion';
 import { Layout } from '../components/Layout';
@@ -24,6 +32,8 @@ import { VisaNewsAlerts } from '../components/VisaNewsAlerts';
 export function SchengenPage() {
   const { t, isUrdu, localizeCountry } = useLanguage();
   const path = '/schengen-appointments';
+  const schengenDescription =
+    'Book Schengen appointments through official visa-centre channels from Pakistan with Main-Destination checks, dossier audit, and travel insurance.';
   const breadcrumbs: BreadcrumbItem[] = [
     { name: 'Home', path: '/' },
     { name: 'Schengen Appointments', path },
@@ -36,18 +46,36 @@ export function SchengenPage() {
     <Layout whatsappContext="Schengen visa appointments" applyHref="#apply">
       <SeoHead
         title="Schengen Visa Appointments from Pakistan | Visahouse"
-        description="Book Schengen appointments through official visa-centre channels from Pakistan with Main-Destination checks, dossier audit, and travel insurance."
+        description={schengenDescription}
         path={path}
         breadcrumbs={breadcrumbs}
         schemas={[
+          buildWebPageSchema({
+            name: 'Schengen Visa Appointments from Pakistan | Visahouse',
+            description: schengenDescription,
+            path,
+            mainEntityId: `${buildCanonicalUrl(path)}#service`,
+            hasBreadcrumb: true,
+            speakableSelectors: ['h1', '[data-aeo-answer="true"]'],
+          }),
           buildServiceSchema({
             name: `Schengen Visa Appointments & Dossier Guidance from ${SITE_CONFIG.passportAudience}`,
             description:
               'Official-channel Schengen visa appointment preparation and complete dossier assembly for Pakistani applicants.',
             path,
             serviceType: 'Schengen Visa Consultancy',
+            pricePkr: getConsultancyFeePkr('schengen-states'),
+            offerDescription:
+              'Baseline Visahouse Schengen appointment readiness & dossier preparation fee (excludes €90 embassy fee and VFS/BLS centre charges).',
           }),
-          buildFaqSchema(SCHENGEN_FAQS),
+          buildHowToSchema({
+            name: 'How to prepare a Schengen visa appointment and dossier from Pakistan',
+            description:
+              'Main-Destination jurisdiction audit, complete harmonized dossier prep, official VFS/BLS booking guidance, and biometrics packet check.',
+            path,
+            steps: SCHENGEN_STEPS,
+          }),
+          buildFaqSchema(SCHENGEN_FAQS, path),
         ]}
       />
 
@@ -70,7 +98,7 @@ export function SchengenPage() {
               <span className="highlighter-mark">{t.pages.schengenHeroHighlight}</span>
             </h1>
 
-            <p className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
+            <p data-aeo-answer="true" className="mt-5 text-lg text-ink-body leading-relaxed max-w-2xl">
               {t.home.schengenCardBody}
             </p>
 

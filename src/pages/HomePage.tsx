@@ -4,10 +4,9 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import { EDITORIAL_IMAGES, SITE_CONFIG } from '../config/site';
 import { DESTINATION_SUMMARIES as DESTINATIONS, REGIONS } from '../data/destinationIndex';
 import type { RegionId } from '../data/types';
-import { PAKISTANI_VISA_FAQS } from '../data/visaFaqs';
 import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/formatters';
-import { buildFaqSchema, buildHomeSchemas } from '../utils/seo';
+import { buildHomeSchemas } from '../utils/seo';
 import { HeroSection } from '../components/HeroSection';
 import { LazyInteractiveVisaGlobe as InteractiveVisaGlobe } from '../components/LazyInteractiveVisaGlobe';
 import { Layout } from '../components/Layout';
@@ -101,7 +100,7 @@ export function HomePage() {
         title="Visahouse — Every Visa Under One Roof | Pakistan"
         description="Online-first visa filing, Schengen appointment guidance, and travel insurance for Pakistani passport holders. Every visa under one roof."
         path="/"
-        schemas={[...buildHomeSchemas(), buildFaqSchema([...PAKISTANI_VISA_FAQS])]}
+        schemas={buildHomeSchemas()}
       />
 
       {/* HERO: Dedicated Editorial Hero Section Component */}

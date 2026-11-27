@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect } from 'react';
 import { SITE_CONFIG } from '../config/site';
 import {
-  buildBreadcrumbSchema,
   buildCanonicalUrl,
+  buildPageGraph,
+  OG_IMAGE_URL,
   type PageSeoSpec,
 } from '../utils/seo';
 
@@ -22,9 +23,33 @@ function upsertMeta(attrName: 'name' | 'property', key: string, content: string)
   el.setAttribute('content', content);
 }
 
+function removeMeta(attrName: 'name' | 'property', key: string) {
+  document.head.querySelector(`meta[${attrName}="${key}"]`)?.remove();
+}
+
+const SOCIAL_META_KEYS: { attr: 'name' | 'property'; key: string }[] = [
+  { attr: 'property', key: 'og:type' },
+  { attr: 'property', key: 'og:locale' },
+  { attr: 'property', key: 'og:locale:alternate' },
+  { attr: 'property', key: 'og:site_name' },
+  { attr: 'property', key: 'og:url' },
+  { attr: 'property', key: 'og:title' },
+  { attr: 'property', key: 'og:description' },
+  { attr: 'property', key: 'og:image' },
+  { attr: 'property', key: 'og:image:type' },
+  { attr: 'property', key: 'og:image:width' },
+  { attr: 'property', key: 'og:image:height' },
+  { attr: 'property', key: 'og:image:alt' },
+  { attr: 'name', key: 'twitter:card' },
+  { attr: 'name', key: 'twitter:title' },
+  { attr: 'name', key: 'twitter:description' },
+  { attr: 'name', key: 'twitter:image' },
+  { attr: 'name', key: 'twitter:image:alt' },
+];
+
 /**
  * Updates per-route <title>, meta description, canonical URL, OpenGraph, Twitter,
- * and Schema.org JSON-LD scripts on the client, and records them during static SSR prerendering.
+ * and unified Schema.org JSON-LD @graph script on the client, and records them during SSR.
  */
 export function SeoHead(spec: PageSeoSpec) {
   const ssrCollector = useContext(SsrHeadContext);
@@ -41,32 +66,44 @@ export function SeoHead(spec: PageSeoSpec) {
     if (typeof document === 'undefined') return;
 
     document.title = spec.title;
+    upsertMeta('name', 'description', spec.description);
+
+    // Clear all previous JSON-LD scripts (including SSR-rendered ones) to prevent duplicates
+    document.head
+      .querySelectorAll('script[type="application/ld+json"]')
+      .forEach((node) => node.remove());
+
+    if (spec.noindex) {
+      upsertMeta('name', 'robots', 'noindex, follow');
+      document.head.querySelector('link[rel="canonical"]')?.remove();
+      for (const { attr, key } of SOCIAL_META_KEYS) {
+        removeMeta(attr, key);
+      }
+      return;
+    }
+
+    removeMeta('name', 'robots');
+
     const canonical = buildCanonicalUrl(spec.path);
-    const ogImageUrl = `${SITE_CONFIG.siteUrl}/og-image.avif`;
     const ogImageAlt = `${SITE_CONFIG.brandName} Pakistan Visa Desk — ${spec.title}`;
 
-    upsertMeta('name', 'description', spec.description);
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:locale', 'en_PK');
+    upsertMeta('property', 'og:locale:alternate', 'ur_PK');
     upsertMeta('property', 'og:site_name', SITE_CONFIG.brandName);
     upsertMeta('property', 'og:url', canonical);
     upsertMeta('property', 'og:title', spec.title);
     upsertMeta('property', 'og:description', spec.description);
-    upsertMeta('property', 'og:image', ogImageUrl);
-    upsertMeta('property', 'og:image:type', 'image/avif');
+    upsertMeta('property', 'og:image', OG_IMAGE_URL);
+    upsertMeta('property', 'og:image:type', 'image/jpeg');
+    upsertMeta('property', 'og:image:width', '1200');
+    upsertMeta('property', 'og:image:height', '630');
     upsertMeta('property', 'og:image:alt', ogImageAlt);
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', spec.title);
     upsertMeta('name', 'twitter:description', spec.description);
-    upsertMeta('name', 'twitter:image', ogImageUrl);
+    upsertMeta('name', 'twitter:image', OG_IMAGE_URL);
     upsertMeta('name', 'twitter:image:alt', ogImageAlt);
-
-    if (spec.noindex) {
-      upsertMeta('name', 'robots', 'noindex, follow');
-    } else {
-      const existingRobots = document.head.querySelector('meta[name="robots"]');
-      if (existingRobots) existingRobots.remove();
-    }
 
     let linkCanonical = document.head.querySelector('link[rel="canonical"]');
     if (!linkCanonical) {
@@ -76,24 +113,12 @@ export function SeoHead(spec: PageSeoSpec) {
     }
     linkCanonical.setAttribute('href', canonical);
 
-    // Replace previous route-injected JSON-LD tags
-    document.head
-      .querySelectorAll('script[data-visahouse-ld="true"]')
-      .forEach((node) => node.remove());
-
-    const allSchemas: Record<string, unknown>[] = [];
-    if (spec.breadcrumbs && spec.breadcrumbs.length > 0) {
-      allSchemas.push(buildBreadcrumbSchema(spec.breadcrumbs));
-    }
-    if (spec.schemas && spec.schemas.length > 0) {
-      allSchemas.push(...spec.schemas);
-    }
-
-    for (const schema of allSchemas) {
+    const graph = buildPageGraph(spec);
+    if (graph) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.setAttribute('data-visahouse-ld', 'true');
-      script.textContent = JSON.stringify(schema);
+      script.textContent = JSON.stringify(graph);
       document.head.appendChild(script);
     }
   }, [spec.title, spec.description, spec.path, spec.noindex, schemasKey]);
